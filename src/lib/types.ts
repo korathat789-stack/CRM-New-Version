@@ -22,6 +22,7 @@ export interface Customer {
   source: string | null;
   industry: string | null;
   notes: string | null;
+  address: string | null;
   deleted_at: string | null;
   created_at: string;
   updated_at: string;

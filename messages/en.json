@@ -152,6 +152,12 @@
       "source": "Source",
       "industry": "Industry",
       "notes": "Notes",
+      "address": "Address",
+      "contactTitle": "Primary contact",
+      "contactName": "Contact name",
+      "contactEmail": "Email",
+      "contactPhone": "Phone",
+      "contactLine": "LINE ID",
       "save": "Save Customer",
       "errRequired": "Required",
       "errTaxId": "Tax ID must be 13 digits",
@@ -444,7 +450,25 @@
     "title": "Settings",
     "subtitle": "Administration",
     "usersCard": "Users & Roles",
-    "usersDesc": "Add, edit and remove users; assign roles and permissions."
+    "usersDesc": "Add, edit and remove users; assign roles and permissions.",
+    "catalogCard": "Categories & Grades",
+    "catalogDesc": "Manage customer types and the A–F grade thresholds.",
+    "catalog": {
+      "title": "Categories & Grades",
+      "customerTypes": "Customer types",
+      "code": "Code",
+      "labelEn": "Label (EN)",
+      "labelTh": "Label (TH)",
+      "addType": "Add type",
+      "inUse": "This type is in use and cannot be deleted.",
+      "gradeBands": "Grade thresholds (฿, minimum)",
+      "basisAnnual": "Annual",
+      "basisLifetime": "Lifetime",
+      "grade": "Grade",
+      "minBaht": "Minimum (฿)",
+      "saveGrades": "Save thresholds",
+      "gradesNote": "Grade is the lowest band whose minimum the revenue meets. F is always the floor."
+    }
   },
   "gates": {
     "req": {

@@ -32,6 +32,11 @@ interface Props {
     source: string;
     industry: string;
     notes: string;
+    address: string;
+    contact_name: string;
+    contact_email: string;
+    contact_phone: string;
+    contact_line: string;
   };
 }
 
@@ -163,6 +168,33 @@ export function CustomerForm({
                   <input name="industry" defaultValue={initial?.industry} placeholder={t("industry")} className="input bg-white" />
                 </div>
               </Field>
+            </div>
+          </div>
+
+          <Field label={t("address")}>
+            <textarea name="address" defaultValue={initial?.address} rows={2} className="input" />
+          </Field>
+
+          {/* Primary contact */}
+          <div className="rounded-md border border-dashed border-gray-300 p-3">
+            <div className="mb-2 text-xs font-bold text-gray-600">
+              {t("contactTitle")}
+            </div>
+            <div className="flex flex-col gap-3">
+              <Field label={t("contactName")}>
+                <input name="contact_name" defaultValue={initial?.contact_name} className="input" />
+              </Field>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <Field label={t("contactEmail")}>
+                  <input name="contact_email" type="email" defaultValue={initial?.contact_email} className="input" />
+                </Field>
+                <Field label={t("contactPhone")}>
+                  <input name="contact_phone" defaultValue={initial?.contact_phone} className="input" />
+                </Field>
+                <Field label={t("contactLine")}>
+                  <input name="contact_line" defaultValue={initial?.contact_line} className="input" />
+                </Field>
+              </div>
             </div>
           </div>
 

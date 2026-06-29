@@ -31,6 +31,11 @@ function readForm(formData: FormData) {
     source: get("source"),
     industry: get("industry"),
     notes: get("notes"),
+    address: get("address"),
+    contact_name: get("contact_name"),
+    contact_email: get("contact_email"),
+    contact_phone: get("contact_phone"),
+    contact_line: get("contact_line"),
     allow_duplicate: get("allow_duplicate") === "true",
   };
 }
@@ -56,7 +61,37 @@ function payload(input: ReturnType<typeof readForm>) {
     source: input.source || null,
     industry: input.industry || null,
     notes: input.notes || null,
+    address: input.address || null,
   };
+}
+
+// Create or update the customer's primary contact from the form fields.
+async function upsertPrimaryContact(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  customerId: string,
+  input: ReturnType<typeof readForm>
+) {
+  if (!input.contact_name) return;
+  const fields = {
+    name: input.contact_name,
+    email: input.contact_email || null,
+    phone: input.contact_phone || null,
+    line_id: input.contact_line || null,
+    is_primary: true,
+  };
+  const { data: existing } = await supabase
+    .from("contacts")
+    .select("id")
+    .eq("customer_id", customerId)
+    .eq("is_primary", true)
+    .is("deleted_at", null)
+    .limit(1)
+    .maybeSingle();
+  if (existing) {
+    await supabase.from("contacts").update(fields).eq("id", existing.id);
+  } else {
+    await supabase.from("contacts").insert({ customer_id: customerId, ...fields });
+  }
 }
 
 export async function createCustomer(
@@ -91,6 +126,8 @@ export async function createCustomer(
     .single();
 
   if (error) return { ok: false, error: error.message, values: input as never };
+
+  await upsertPrimaryContact(supabase, data.id, input);
 
   revalidatePath("/customers");
   redirect(`/customers/${data.id}`);
@@ -128,6 +165,8 @@ export async function updateCustomer(
     .eq("id", id);
 
   if (error) return { ok: false, error: error.message, values: input as never };
+
+  await upsertPrimaryContact(supabase, id, input);
 
   revalidatePath("/customers");
   revalidatePath(`/customers/${id}`);

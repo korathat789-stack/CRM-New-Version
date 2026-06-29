@@ -9,7 +9,7 @@ import { StageBadge } from "@/components/ui/StageBadge";
 import { GradeBasisToggle } from "@/components/customers/GradeBasisToggle";
 import { DeleteCustomerDialog } from "@/components/customers/DeleteCustomerDialog";
 import { getCustomer } from "@/lib/customers";
-import { isSupabaseConfigured } from "@/lib/config";
+import { isSupabaseConfigured, getGradeBands } from "@/lib/config";
 import { gradeForCustomer, type GradeBasis } from "@/lib/grade";
 import { formatBahtShort } from "@/lib/money";
 
@@ -31,7 +31,8 @@ export default async function CustomerPage({
   const tc = await getTranslations("common");
   const locale = await getLocale();
   const basis: GradeBasis = basisParam === "lifetime" ? "lifetime" : "annual";
-  const grade = gradeForCustomer(customer, basis);
+  const bands = await getGradeBands(basis);
+  const grade = gradeForCustomer(customer, basis, bands);
 
   const typeLabel = customer.type
     ? locale === "th"

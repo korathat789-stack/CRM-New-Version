@@ -1,4 +1,6 @@
 import { createClient } from "./supabase/server";
+import { getGradeBands } from "./config";
+import { computeGrade } from "./grade";
 import { OPEN_STAGES, type StageCode } from "./stages";
 import type {
   Customer,
@@ -31,15 +33,16 @@ export async function listCustomers(
   params: ListCustomersParams
 ): Promise<CustomerListItem[]> {
   const supabase = await createClient();
-  const gradeColumn =
-    params.basis === "annual" ? "grade_annual" : "grade_lifetime";
+  // Grade is computed from the (user-editable) config bands so changes take
+  // effect immediately — not from the fixed generated columns.
+  const bands = await getGradeBands(params.basis);
 
   // Select only the columns the list/preview render (skips notes/address text
   // and timestamps) to keep the payload small.
   let query = supabase
     .from("customers")
     .select(
-      "id, code, name, tax_id, type_id, province, owner_id, annual_revenue, lifetime_revenue, source, industry, grade_annual, grade_lifetime, customer_types(label_en, label_th), profiles!customers_owner_id_fkey(full_name)"
+      "id, code, name, tax_id, type_id, province, owner_id, annual_revenue, lifetime_revenue, source, industry, customer_types(label_en, label_th), profiles!customers_owner_id_fkey(full_name)"
     )
     .is("deleted_at", null)
     .order("name");
@@ -47,9 +50,6 @@ export async function listCustomers(
   if (params.q && params.q.trim()) {
     const term = `%${params.q.trim()}%`;
     query = query.or(`name.ilike.${term},code.ilike.${term}`);
-  }
-  if (params.grade) {
-    query = query.eq(gradeColumn, params.grade);
   }
 
   const { data, error } = await query;
@@ -60,7 +60,7 @@ export async function listCustomers(
   const ids = rows.map((r) => r.id);
   const pipeline = await openPipelineByCustomer(ids);
 
-  return rows.map((row) => {
+  const items = rows.map((row) => {
     const { customer_types, profiles, ...customer } = row as unknown as Record<
       string,
       unknown
@@ -69,17 +69,19 @@ export async function listCustomers(
       profiles: { full_name: string | null } | null;
     };
     const c = customer as unknown as Customer;
+    const amount =
+      params.basis === "annual" ? c.annual_revenue : c.lifetime_revenue;
     return {
       ...c,
       type_label_en: customer_types?.label_en ?? null,
       type_label_th: customer_types?.label_th ?? null,
       owner_name: profiles?.full_name ?? null,
       open_pipeline: pipeline.get(c.id) ?? 0,
-      grade: (params.basis === "annual"
-        ? (row as { grade_annual: Grade }).grade_annual
-        : (row as { grade_lifetime: Grade }).grade_lifetime) as Grade,
+      grade: computeGrade(amount, bands),
     };
   });
+
+  return params.grade ? items.filter((i) => i.grade === params.grade) : items;
 }
 
 async function openPipelineByCustomer(
