@@ -86,3 +86,16 @@ export const ALL_STAGES: StageCode[] = [...OPEN_STAGES, "won", "lost"];
 export function isStageCode(value: string): value is StageCode {
   return value in STAGES;
 }
+
+/** Stage options for filter dropdowns ("all" + every stage). Client-safe. */
+export const STAGE_FILTER_OPTIONS: (StageCode | "all")[] = [
+  "all",
+  ...ALL_STAGES,
+];
+
+export function parseStageFilter(
+  value: string | undefined
+): StageCode | undefined {
+  if (value && value !== "all" && isStageCode(value)) return value;
+  return undefined;
+}

@@ -169,16 +169,17 @@ export default async function CustomerPage({
             ) : (
               <div className="mb-4 overflow-hidden rounded-md border border-[var(--color-line-soft)]">
                 {customer.projects.map((p) => (
-                  <div
+                  <Link
                     key={p.id}
-                    className="flex items-center gap-2 border-b border-[var(--color-line-soft)] px-2.5 py-2.5 text-xs last:border-b-0"
+                    href={`/projects/${p.id}`}
+                    className="flex items-center gap-2 border-b border-[var(--color-line-soft)] px-2.5 py-2.5 text-xs last:border-b-0 hover:bg-gray-50"
                   >
                     <span className="min-w-0 flex-1 truncate text-gray-900">
                       {p.name}
                     </span>
                     <StageBadge code={p.stage} />
                     <b className="text-gray-700">{formatBahtShort(p.value)}</b>
-                  </div>
+                  </Link>
                 ))}
               </div>
             )}

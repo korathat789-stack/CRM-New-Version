@@ -166,5 +166,59 @@
       "mismatch": "The ID does not match.",
       "restricted": "Only a Manager or Admin can delete records."
     }
+  },
+  "projects": {
+    "title": "Project Tracking",
+    "subtitle": "All projects · {count} shown",
+    "newProject": "New Project",
+    "searchPlaceholder": "Search project or customer…",
+    "noProjects": "No projects match your filters.",
+    "filters": {
+      "status": "Status",
+      "owner": "Owner",
+      "value": "Value",
+      "due": "Due",
+      "sort": "Sort",
+      "all": "All",
+      "valueAny": "Any value",
+      "value1m": "≥ ฿1M",
+      "value5m": "≥ ฿5M",
+      "dueAll": "Any due",
+      "dueOverdue": "Overdue",
+      "dueQuarter": "This quarter",
+      "sortValue": "Value ↓",
+      "sortMargin": "Margin ↓",
+      "sortDue": "Due ↑"
+    },
+    "cols": {
+      "project": "Project",
+      "customer": "Customer",
+      "value": "Value",
+      "due": "Due",
+      "estDate": "Est. date",
+      "cost": "Cost",
+      "margin": "Margin"
+    },
+    "total": "Total · {count} projects",
+    "blended": "blended",
+    "insight": {
+      "valueCostMargin": "Value · Cost · Margin",
+      "value": "Value",
+      "cost": "Cost",
+      "margin": "Margin",
+      "timeline": "Timeline — Due vs Estimated",
+      "dueDate": "Due date",
+      "estClose": "Estimated close",
+      "slip": "{days}d slip",
+      "onTrack": "on track",
+      "linkedRecords": "Linked Records",
+      "customer": "Customer",
+      "opportunity": "Opportunity",
+      "quotation": "Quotation",
+      "view360": "360",
+      "none": "—",
+      "editProject": "Edit Project",
+      "backToList": "Back to projects"
+    }
   }
 }

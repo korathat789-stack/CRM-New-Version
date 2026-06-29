@@ -166,5 +166,59 @@
       "mismatch": "รหัสไม่ตรงกัน",
       "restricted": "เฉพาะผู้จัดการหรือผู้ดูแลระบบเท่านั้นที่ลบได้"
     }
+  },
+  "projects": {
+    "title": "การติดตามโครงการ",
+    "subtitle": "โครงการทั้งหมด · แสดง {count} รายการ",
+    "newProject": "เพิ่มโครงการ",
+    "searchPlaceholder": "ค้นหาโครงการหรือลูกค้า…",
+    "noProjects": "ไม่พบโครงการที่ตรงกับตัวกรอง",
+    "filters": {
+      "status": "สถานะ",
+      "owner": "ผู้ดูแล",
+      "value": "มูลค่า",
+      "due": "กำหนดส่ง",
+      "sort": "เรียง",
+      "all": "ทั้งหมด",
+      "valueAny": "ทุกมูลค่า",
+      "value1m": "≥ ฿1M",
+      "value5m": "≥ ฿5M",
+      "dueAll": "ทุกกำหนด",
+      "dueOverdue": "เกินกำหนด",
+      "dueQuarter": "ไตรมาสนี้",
+      "sortValue": "มูลค่า ↓",
+      "sortMargin": "มาร์จิน ↓",
+      "sortDue": "กำหนดส่ง ↑"
+    },
+    "cols": {
+      "project": "โครงการ",
+      "customer": "ลูกค้า",
+      "value": "มูลค่า",
+      "due": "กำหนดส่ง",
+      "estDate": "วันที่ประเมิน",
+      "cost": "ต้นทุน",
+      "margin": "มาร์จิน"
+    },
+    "total": "รวม · {count} โครงการ",
+    "blended": "เฉลี่ย",
+    "insight": {
+      "valueCostMargin": "มูลค่า · ต้นทุน · มาร์จิน",
+      "value": "มูลค่า",
+      "cost": "ต้นทุน",
+      "margin": "มาร์จิน",
+      "timeline": "ไทม์ไลน์ — กำหนดส่ง vs ประเมิน",
+      "dueDate": "วันที่กำหนดส่ง",
+      "estClose": "วันที่ประเมินปิด",
+      "slip": "ช้า {days} วัน",
+      "onTrack": "ตามแผน",
+      "linkedRecords": "รายการที่เชื่อมโยง",
+      "customer": "ลูกค้า",
+      "opportunity": "โอกาสการขาย",
+      "quotation": "ใบเสนอราคา",
+      "view360": "360",
+      "none": "—",
+      "editProject": "แก้ไขโครงการ",
+      "backToList": "กลับไปที่รายการโครงการ"
+    }
   }
 }
