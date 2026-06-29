@@ -34,10 +34,12 @@ export async function listCustomers(
   const gradeColumn =
     params.basis === "annual" ? "grade_annual" : "grade_lifetime";
 
+  // Select only the columns the list/preview render (skips notes/address text
+  // and timestamps) to keep the payload small.
   let query = supabase
     .from("customers")
     .select(
-      "*, customer_types(label_en, label_th), profiles!customers_owner_id_fkey(full_name)"
+      "id, code, name, tax_id, type_id, province, owner_id, annual_revenue, lifetime_revenue, source, industry, grade_annual, grade_lifetime, customer_types(label_en, label_th), profiles!customers_owner_id_fkey(full_name)"
     )
     .is("deleted_at", null)
     .order("name");
@@ -59,7 +61,7 @@ export async function listCustomers(
   const pipeline = await openPipelineByCustomer(ids);
 
   return rows.map((row) => {
-    const { customer_types, profiles, ...customer } = row as Record<
+    const { customer_types, profiles, ...customer } = row as unknown as Record<
       string,
       unknown
     > & {

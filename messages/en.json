@@ -281,6 +281,14 @@
       "searchPlaceholder": "Search customer…",
       "sameTable": "Same table as Customers page",
       "newCustomer": "New customer"
+    },
+    "detail": {
+      "date": "Quotation date",
+      "expiring": "Expiring date",
+      "creditTerm": "Credit term",
+      "days": "days",
+      "customer": "Customer",
+      "back": "Back to quotations"
     }
   },
   "reports": {

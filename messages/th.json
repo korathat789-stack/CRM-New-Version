@@ -281,6 +281,14 @@
       "searchPlaceholder": "ค้นหาลูกค้า…",
       "sameTable": "ตารางเดียวกับหน้าลูกค้า",
       "newCustomer": "เพิ่มลูกค้าใหม่"
+    },
+    "detail": {
+      "date": "วันที่ออก",
+      "expiring": "วันหมดอายุ",
+      "creditTerm": "เครดิต",
+      "days": "วัน",
+      "customer": "ลูกค้า",
+      "back": "กลับไปที่ใบเสนอราคา"
     }
   },
   "reports": {

@@ -60,9 +60,10 @@ export default async function QuotationsPage() {
                 QUOTATION_STATUS_COLORS[r.status] ??
                 QUOTATION_STATUS_COLORS.draft;
               return (
-                <div
+                <Link
                   key={r.id}
-                  className="grid grid-cols-[1.2fr_1.6fr_1fr_0.9fr_1fr] items-center gap-2 border-b border-[var(--color-line-soft)] px-4 py-2.5 text-xs"
+                  href={`/quotations/${r.id}`}
+                  className="grid grid-cols-[1.2fr_1.6fr_1fr_0.9fr_1fr] items-center gap-2 border-b border-[var(--color-line-soft)] px-4 py-2.5 text-xs hover:bg-gray-50"
                 >
                   <div className="font-semibold text-gray-900">{r.number}</div>
                   <div className="text-gray-700">{r.customer_name ?? "—"}</div>
@@ -83,7 +84,7 @@ export default async function QuotationsPage() {
                       {t(`status.${r.status}`)}
                     </span>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </>
