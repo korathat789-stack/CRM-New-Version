@@ -78,8 +78,21 @@
   "dashboard": {
     "title": "แดชบอร์ด",
     "subtitle": "ภาพรวม",
-    "welcome": "ยินดีต้อนรับสู่ MatchPoint CRM",
-    "foundationNote": "วางโครงสร้างพื้นฐานเรียบร้อย หน้าฟีเจอร์จะมาในเฟสถัดไป"
+    "period": { "month": "รายเดือน", "quarter": "รายไตรมาส", "year": "รายปี" },
+    "kpi": {
+      "quotationTotal": "มูลค่าใบเสนอราคา",
+      "wonTotal": "ปิดการขายได้",
+      "openPipeline": "ยังไม่ปิด (ค้างอยู่)",
+      "profit": "กำไร"
+    },
+    "funnel": "ไปป์ไลน์ตามขั้น",
+    "bottleneck": "คอขวด: {stage}",
+    "count": "{count} ดีล",
+    "notifications": "การแจ้งเตือน",
+    "pendingApproval": "{count} โอกาสรอการอนุมัติ",
+    "overdueTasks": "{count} งานเกินกำหนด",
+    "allClear": "เรียบร้อย — ไม่มีรายการที่ต้องดำเนินการ",
+    "viewTasks": "ดูงาน"
   },
   "customers": {
     "title": "ลูกค้า",

@@ -78,8 +78,21 @@
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Overview",
-    "welcome": "Welcome to MatchPoint CRM",
-    "foundationNote": "Foundation ready. Feature pages arrive in the next phases."
+    "period": { "month": "Month", "quarter": "Quarter", "year": "Year" },
+    "kpi": {
+      "quotationTotal": "Quotation value",
+      "wonTotal": "Closed-won",
+      "openPipeline": "Open (not closed)",
+      "profit": "Profit"
+    },
+    "funnel": "Pipeline by stage",
+    "bottleneck": "Bottleneck: {stage}",
+    "count": "{count} deals",
+    "notifications": "Notifications",
+    "pendingApproval": "{count} opportunities awaiting sign-off",
+    "overdueTasks": "{count} overdue tasks",
+    "allClear": "All clear — nothing needs attention.",
+    "viewTasks": "View tasks"
   },
   "customers": {
     "title": "Customers",
