@@ -87,10 +87,19 @@ export default async function DashboardPage({
               <Bell className="h-4 w-4 text-gray-500" aria-hidden />
               <span className="text-sm font-bold text-gray-900">{t("notifications")}</span>
             </div>
-            {d.pendingApproval === 0 && d.overdueTasks === 0 ? (
+            {d.pendingApproval === 0 && d.overdueTasks === 0 && d.followupsDue === 0 ? (
               <div className="py-6 text-center text-xs text-gray-400">{t("allClear")}</div>
             ) : (
               <div className="flex flex-col gap-2">
+                {d.followupsDue > 0 && (
+                  <Link
+                    href="/opportunities"
+                    className="flex items-center gap-2 rounded-md border border-[#bfdbfe] bg-[#eff6ff] px-3 py-2 text-xs text-[#1d4ed8]"
+                  >
+                    <CheckSquare className="h-3.5 w-3.5" aria-hidden />
+                    {t("followupsDue", { count: d.followupsDue })}
+                  </Link>
+                )}
                 {d.pendingApproval > 0 && (
                   <Link
                     href="/opportunities"

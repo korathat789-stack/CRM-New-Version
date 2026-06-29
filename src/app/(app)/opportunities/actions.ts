@@ -80,6 +80,22 @@ export async function advanceStage(
   return { ok: true };
 }
 
+export async function updateNextAction(
+  id: string,
+  date: string
+): Promise<AdvanceResult> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "notAuthenticated" };
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("opportunities")
+    .update({ next_action_date: date || null })
+    .eq("id", id);
+  if (error) return { ok: false, error: error.message };
+  revalidatePath(`/opportunities/${id}`);
+  return { ok: true };
+}
+
 /** Manager/Admin sign-off required before Won. */
 export async function authorizeOpportunity(id: string): Promise<AdvanceResult> {
   let me;
@@ -156,6 +172,7 @@ export async function createOpportunity(
       title,
       value: parseBahtToSatang(String(formData.get("value") ?? "")) ?? 0,
       next_step: String(formData.get("next_step") ?? "").trim() || null,
+      next_action_date: String(formData.get("next_action_date") ?? "") || null,
       owner_id: user.id,
     })
     .select("id")

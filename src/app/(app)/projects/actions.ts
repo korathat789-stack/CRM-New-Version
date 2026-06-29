@@ -48,3 +48,22 @@ export async function createProject(
   revalidatePath("/projects");
   redirect(`/projects/${data.id}`);
 }
+
+const FULFILLMENT = ["pending", "delivering", "installing", "closed"];
+
+export async function updateFulfillment(
+  id: string,
+  status: string
+): Promise<{ ok: boolean; error?: string }> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "notAuthenticated" };
+  if (!FULFILLMENT.includes(status)) return { ok: false, error: "invalid" };
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("projects")
+    .update({ fulfillment: status })
+    .eq("id", id);
+  if (error) return { ok: false, error: error.message };
+  revalidatePath(`/projects/${id}`);
+  return { ok: true };
+}

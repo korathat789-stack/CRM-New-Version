@@ -65,7 +65,7 @@ export function OpportunityForm() {
             <input name="title" className="input" />
           </label>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             <label className="flex flex-col gap-1">
               <span className="text-xs font-semibold text-gray-600">{t("value")}</span>
               <input name="value" inputMode="numeric" placeholder="0" className="input" />
@@ -73,6 +73,10 @@ export function OpportunityForm() {
             <label className="flex flex-col gap-1">
               <span className="text-xs font-semibold text-gray-600">{t("nextStep")}</span>
               <input name="next_step" className="input" />
+            </label>
+            <label className="flex flex-col gap-1">
+              <span className="text-xs font-semibold text-gray-600">{t("nextActionDate")}</span>
+              <input type="date" name="next_action_date" className="input" />
             </label>
           </div>
 

@@ -33,6 +33,9 @@ interface Props {
     industry: string;
     notes: string;
     address: string;
+    segment: string;
+    buyer_role: string;
+    partner_name: string;
     contact_name: string;
     contact_email: string;
     contact_phone: string;
@@ -120,6 +123,27 @@ export function CustomerForm({
                   </option>
                 ))}
               </select>
+            </Field>
+          </div>
+
+          {/* 2-axis classification (matches the team's tracking sheet) */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <Field label={t("segment")}>
+              <select name="segment" defaultValue={initial?.segment ?? ""} className="input">
+                <option value="">{t("select")}</option>
+                <option value="project">{t("segmentProject")}</option>
+                <option value="general">{t("segmentGeneral")}</option>
+              </select>
+            </Field>
+            <Field label={t("buyerRole")}>
+              <select name="buyer_role" defaultValue={initial?.buyer_role ?? ""} className="input">
+                <option value="">{t("select")}</option>
+                <option value="end_user">{t("roleEndUser")}</option>
+                <option value="reseller">{t("roleReseller")}</option>
+              </select>
+            </Field>
+            <Field label={t("partnerName")}>
+              <input name="partner_name" defaultValue={initial?.partner_name} className="input" />
             </Field>
           </div>
 

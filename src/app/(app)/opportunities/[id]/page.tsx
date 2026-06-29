@@ -2,9 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Card, CardBody } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { StageBadge } from "@/components/ui/StageBadge";
 import { CompletenessTracker } from "@/components/opportunities/CompletenessTracker";
 import { StageGateControl } from "@/components/opportunities/StageGateControl";
+import { NextActionEditor } from "@/components/opportunities/NextActionEditor";
+import { AddActivityButton } from "@/components/activities/AddActivityButton";
 import { getOpportunity } from "@/lib/opportunities";
 import { isSupabaseConfigured } from "@/lib/config";
 import { getCurrentUser } from "@/lib/auth";
@@ -53,9 +56,18 @@ export default async function OpportunityDetailPage({
               <div className="text-[11px] text-gray-500">{opp.next_step}</div>
             )}
           </div>
+          <div className="flex gap-2">
+            <Link href={`/quotations/new?customer=${opp.customer_id}&opp=${opp.id}`}>
+              <Button variant="outline">{t("createQuotation")}</Button>
+            </Link>
+            <AddActivityButton customerId={opp.customer_id} opportunityId={opp.id} />
+          </div>
         </div>
 
         <CardBody className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div className="lg:col-span-2">
+            <NextActionEditor id={opp.id} value={opp.next_action_date ?? ""} />
+          </div>
           <CompletenessTracker
             percent={opp.completeness.percent}
             items={opp.completeness.items}

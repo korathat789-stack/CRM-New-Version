@@ -20,6 +20,7 @@ export interface DashboardData {
   bottleneck: StageCode | null;
   pendingApproval: number;
   overdueTasks: number;
+  followupsDue: number;
 }
 
 function periodBounds(period: Period, now: Date): { start: string; end: string } {
@@ -47,7 +48,7 @@ export async function getDashboard(
   const { start, end } = periodBounds(period, now);
   const today = now.toISOString().slice(0, 10);
 
-  const [oppsRes, quotesRes, projectsRes, pendingRes, overdueRes] = await Promise.all([
+  const [oppsRes, quotesRes, projectsRes, pendingRes, overdueRes, followupRes] = await Promise.all([
     supabase.from("opportunities").select("stage, value").is("deleted_at", null),
     supabase.from("quotations").select("total").is("deleted_at", null),
     supabase
@@ -67,6 +68,12 @@ export async function getDashboard(
       .is("deleted_at", null)
       .eq("status", "open")
       .lt("due_date", today),
+    supabase
+      .from("opportunities")
+      .select("id", { count: "exact", head: true })
+      .is("deleted_at", null)
+      .in("stage", OPEN_STAGES)
+      .lte("next_action_date", today),
   ]);
 
   const opps = (oppsRes.data ?? []) as { stage: StageCode; value: number }[];
@@ -120,5 +127,6 @@ export async function getDashboard(
     bottleneck,
     pendingApproval: pendingRes.count ?? 0,
     overdueTasks: overdueRes.count ?? 0,
+    followupsDue: followupRes.count ?? 0,
   };
 }

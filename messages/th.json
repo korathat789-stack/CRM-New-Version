@@ -91,6 +91,7 @@
     "notifications": "การแจ้งเตือน",
     "pendingApproval": "{count} โอกาสรอการอนุมัติ",
     "overdueTasks": "{count} งานเกินกำหนด",
+    "followupsDue": "{count} รายการถึงกำหนดติดตาม",
     "allClear": "เรียบร้อย — ไม่มีรายการที่ต้องดำเนินการ",
     "viewTasks": "ดูงาน"
   },
@@ -156,6 +157,13 @@
       "taxIdHint": "13 หลัก",
       "type": "ประเภท",
       "province": "จังหวัด",
+      "segment": "ลักษณะ",
+      "segmentProject": "โครงการ",
+      "segmentGeneral": "ทั่วไป",
+      "buyerRole": "บทบาท",
+      "roleEndUser": "ผู้ใช้งาน (End user)",
+      "roleReseller": "ขายต่อ (Reseller)",
+      "partnerName": "ชื่อผู้ขายต่อ / พาร์ทเนอร์",
       "select": "เลือก…",
       "salesInsight": "ข้อมูลการขาย",
       "annualRevenue": "รายได้ต่อปี (฿)",
@@ -253,6 +261,13 @@
       "none": "—",
       "editProject": "แก้ไขโครงการ",
       "backToList": "กลับไปที่รายการโครงการ"
+    },
+    "fulfillment": {
+      "label": "การส่งมอบงาน",
+      "pending": "รอดำเนินการ",
+      "delivering": "รอส่งของ",
+      "installing": "รอติดตั้ง",
+      "closed": "ปิดงาน"
     }
   },
   "quotations": {
@@ -545,7 +560,8 @@
       "managerOverride": "ผู้จัดการอนุมัติข้าม",
       "overrideOnly": "เฉพาะผู้จัดการหรือผู้ดูแลเท่านั้นที่ข้ามได้",
       "close": "ปิด",
-      "stageUpdated": "อัปเดตขั้นแล้ว"
+      "stageUpdated": "อัปเดตขั้นแล้ว",
+      "createQuotation": "สร้างใบเสนอราคา"
     },
     "form": {
       "title": "โอกาสการขายใหม่",
@@ -554,6 +570,7 @@
       "oppTitle": "ชื่อโอกาส",
       "value": "มูลค่า (฿)",
       "nextStep": "ขั้นถัดไป",
+      "nextActionDate": "วันติดตามถัดไป",
       "save": "สร้างโอกาส",
       "required": "ต้องระบุลูกค้าและชื่อโอกาส"
     }
@@ -570,5 +587,25 @@
     "overdue": "เกินกำหนด",
     "noDue": "ไม่มีกำหนด",
     "delete": "ลบ"
+  },
+  "activity": {
+    "title": "บันทึกกิจกรรม",
+    "add": "เพิ่มกิจกรรม",
+    "type": "ประเภท",
+    "date": "วันที่",
+    "summary": "รายละเอียด",
+    "nextStep": "สิ่งที่ต้องทำต่อ",
+    "quotationNo": "เลขใบเสนอราคา",
+    "types": {
+      "call": "โทร",
+      "email": "อีเมล",
+      "meeting": "ประชุม",
+      "presentation": "นำเสนอ",
+      "zoom": "ออนไลน์ / Zoom",
+      "quotation": "ใบเสนอราคา",
+      "poc": "ทดสอบ POC",
+      "line": "LINE",
+      "note": "บันทึก"
+    }
   }
 }

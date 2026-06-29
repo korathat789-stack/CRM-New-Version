@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { ArrowUpRight } from "lucide-react";
 import { Card, CardBody } from "@/components/ui/Card";
 import { StageBadge } from "@/components/ui/StageBadge";
+import { FulfillmentEditor } from "@/components/projects/FulfillmentEditor";
 import { getProject } from "@/lib/projects";
 import { isSupabaseConfigured } from "@/lib/config";
 import { formatBahtShort } from "@/lib/money";
@@ -87,6 +88,8 @@ export default async function ProjectInsightPage({
               valueColor={slipDays > 0 ? "#d97706" : undefined}
             />
           </Panel>
+
+          <FulfillmentEditor id={p.id} value={p.fulfillment} />
 
           {/* Linked records */}
           <div className="rounded-md border border-dashed border-[var(--color-primary)] bg-blue-50 p-3">

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations, getLocale } from "next-intl/server";
-import { Phone, Mail, MessageCircle, Plus } from "lucide-react";
+import { Phone, Mail, MessageCircle } from "lucide-react";
 import { Card, CardBody } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { GradeBadge } from "@/components/ui/GradeBadge";
 import { StageBadge } from "@/components/ui/StageBadge";
 import { GradeBasisToggle } from "@/components/customers/GradeBasisToggle";
 import { DeleteCustomerDialog } from "@/components/customers/DeleteCustomerDialog";
+import { AddActivityButton } from "@/components/activities/AddActivityButton";
 import { getCustomer } from "@/lib/customers";
 import { isSupabaseConfigured, getGradeBands } from "@/lib/config";
 import { gradeForCustomer, type GradeBasis } from "@/lib/grade";
@@ -78,10 +79,7 @@ export default async function CustomerPage({
               code={customer.code ?? ""}
               name={customer.name}
             />
-            <Button disabled title={tc("comingSoon")}>
-              <Plus className="h-4 w-4" aria-hidden />
-              {t("addActivity")}
-            </Button>
+            <AddActivityButton customerId={customer.id} />
           </div>
         </div>
 

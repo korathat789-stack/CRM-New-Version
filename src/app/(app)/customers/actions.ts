@@ -32,6 +32,9 @@ function readForm(formData: FormData) {
     industry: get("industry"),
     notes: get("notes"),
     address: get("address"),
+    segment: get("segment"),
+    buyer_role: get("buyer_role"),
+    partner_name: get("partner_name"),
     contact_name: get("contact_name"),
     contact_email: get("contact_email"),
     contact_phone: get("contact_phone"),
@@ -62,6 +65,12 @@ function payload(input: ReturnType<typeof readForm>) {
     industry: input.industry || null,
     notes: input.notes || null,
     address: input.address || null,
+    segment: input.segment === "project" || input.segment === "general" ? input.segment : null,
+    buyer_role:
+      input.buyer_role === "end_user" || input.buyer_role === "reseller"
+        ? input.buyer_role
+        : null,
+    partner_name: input.partner_name || null,
   };
 }
 

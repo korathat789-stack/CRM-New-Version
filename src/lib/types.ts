@@ -23,6 +23,9 @@ export interface Customer {
   industry: string | null;
   notes: string | null;
   address: string | null;
+  segment: string | null; // 'project' | 'general'
+  buyer_role: string | null; // 'end_user' | 'reseller'
+  partner_name: string | null;
   deleted_at: string | null;
   created_at: string;
   updated_at: string;

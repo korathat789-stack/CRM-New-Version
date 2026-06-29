@@ -91,6 +91,7 @@
     "notifications": "Notifications",
     "pendingApproval": "{count} opportunities awaiting sign-off",
     "overdueTasks": "{count} overdue tasks",
+    "followupsDue": "{count} follow-ups due",
     "allClear": "All clear — nothing needs attention.",
     "viewTasks": "View tasks"
   },
@@ -156,6 +157,13 @@
       "taxIdHint": "13 digits",
       "type": "Type",
       "province": "Province",
+      "segment": "Segment",
+      "segmentProject": "Project",
+      "segmentGeneral": "General",
+      "buyerRole": "Buyer role",
+      "roleEndUser": "End user",
+      "roleReseller": "Reseller",
+      "partnerName": "Reseller / partner name",
       "select": "Select…",
       "salesInsight": "Sales Insight",
       "annualRevenue": "Annual Revenue (฿)",
@@ -253,6 +261,13 @@
       "none": "—",
       "editProject": "Edit Project",
       "backToList": "Back to projects"
+    },
+    "fulfillment": {
+      "label": "Fulfillment",
+      "pending": "Pending",
+      "delivering": "Delivering",
+      "installing": "Installing",
+      "closed": "Closed"
     }
   },
   "quotations": {
@@ -545,7 +560,8 @@
       "managerOverride": "Manager override",
       "overrideOnly": "Only a Manager or Admin can override.",
       "close": "Close",
-      "stageUpdated": "Stage updated."
+      "stageUpdated": "Stage updated.",
+      "createQuotation": "Create Quotation"
     },
     "form": {
       "title": "New Opportunity",
@@ -554,6 +570,7 @@
       "oppTitle": "Opportunity title",
       "value": "Value (฿)",
       "nextStep": "Next step",
+      "nextActionDate": "Follow-up date",
       "save": "Create Opportunity",
       "required": "Customer and title are required."
     }
@@ -570,5 +587,25 @@
     "overdue": "overdue",
     "noDue": "No due date",
     "delete": "Delete"
+  },
+  "activity": {
+    "title": "Log activity",
+    "add": "Add Activity",
+    "type": "Type",
+    "date": "Date",
+    "summary": "Detail",
+    "nextStep": "Next step",
+    "quotationNo": "Quotation No.",
+    "types": {
+      "call": "Call",
+      "email": "Email",
+      "meeting": "Meeting",
+      "presentation": "Presentation",
+      "zoom": "Online / Zoom",
+      "quotation": "Quotation",
+      "poc": "POC",
+      "line": "LINE",
+      "note": "Note"
+    }
   }
 }
