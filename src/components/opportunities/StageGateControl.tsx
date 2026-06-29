@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { ShieldAlert, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { toast } from "@/lib/toast";
 import { STAGES } from "@/lib/stages";
 import type { StageCode } from "@/lib/stages";
 import {
@@ -48,6 +49,7 @@ export function StageGateControl({
       if (res.blockers) setBlockers(res.blockers);
       else {
         setBlockers(null);
+        if (res.ok) toast(t("stageUpdated"));
         router.refresh();
       }
     });

@@ -31,7 +31,8 @@
     "retry": "Retry",
     "signOut": "Sign Out",
     "language": "Language",
-    "comingSoon": "Coming Soon"
+    "comingSoon": "Coming Soon",
+    "saved": "Saved"
   },
   "states": {
     "loading": "Loading",

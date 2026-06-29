@@ -31,7 +31,8 @@
     "retry": "ลองใหม่",
     "signOut": "ออกจากระบบ",
     "language": "ภาษา",
-    "comingSoon": "เร็วๆ นี้"
+    "comingSoon": "เร็วๆ นี้",
+    "saved": "บันทึกแล้ว"
   },
   "states": {
     "loading": "กำลังโหลด",

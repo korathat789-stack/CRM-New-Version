@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { Sidebar } from "@/components/shell/Sidebar";
 import { Topbar } from "@/components/shell/Topbar";
+import { Toaster } from "@/components/ui/Toaster";
 import { getCurrentUser } from "@/lib/auth";
 
 // Authenticated app shell: role-gated sidebar + top bar. Unauthenticated users
@@ -24,6 +25,7 @@ export default async function AppLayout({
         <Topbar user={user} />
         <main className="flex-1 p-4 sm:p-6">{children}</main>
       </div>
+      <Toaster />
     </div>
   );
 }

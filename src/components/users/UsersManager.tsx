@@ -7,6 +7,7 @@ import { Search, Plus, Pencil, Trash2 } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { CapabilityMatrix } from "./CapabilityMatrix";
+import { toast } from "@/lib/toast";
 import type { AppUser } from "@/lib/users";
 import { ROLES, type Role } from "@/lib/roles";
 import {
@@ -44,6 +45,7 @@ export function UsersManager({
 }) {
   const t = useTranslations("users");
   const tr = useTranslations("roles");
+  const tcommon = useTranslations("common");
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [dialog, setDialog] = useState<DialogState>(null);
@@ -63,7 +65,8 @@ export function UsersManager({
 
   const onDelete = (id: string) => {
     startTransition(async () => {
-      await deleteUser(id);
+      const res = await deleteUser(id);
+      if (res.ok) toast(tcommon("saved"));
       router.refresh();
     });
   };
@@ -213,8 +216,10 @@ function UserDialog({
       const res = isEdit
         ? await updateUser(existing!.id, { full_name: fullName, role, status })
         : await inviteUser({ email, full_name: fullName, role });
-      if (res.ok) onSaved();
-      else setError(errorMessage(res.error));
+      if (res.ok) {
+        toast(tc("saved"));
+        onSaved();
+      } else setError(errorMessage(res.error));
     });
   };
 

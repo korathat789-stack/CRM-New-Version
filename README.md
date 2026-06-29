@@ -64,6 +64,8 @@ server-side checks in Server Actions. Hidden menus are UX only.
 2. In **SQL Editor**, run the migrations in order:
    - `supabase/migrations/0001_init.sql`
    - `supabase/migrations/0002_mpt_crm_core.sql` ← full MatchPoint schema + RLS
+   - `supabase/migrations/0003_reports.sql` ← sales target + report views
+   - `supabase/migrations/0004_stage_gates.sql` ← opportunity gate fields
 3. Enable **Email** auth (and Google if desired) under Authentication → Providers.
 4. The **first** user to sign up becomes `admin` automatically; everyone else
    starts as `sales` (change roles later in Users & Roles).
@@ -94,6 +96,50 @@ auth and data.**
 | `NEXT_PUBLIC_SUPABASE_URL`      | Supabase project URL                 |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key             |
 | `SUPABASE_SERVICE_ROLE_KEY`     | Server-only; admin tasks. Never public |
+
+## Features
+
+- **Customers** — Customer 360 (KPIs, linked projects, activity, contacts),
+  search master-detail, add/edit with auto-grade + Tax-ID duplicate guard,
+  soft-delete with typed-ID confirm. A–F grade with Annual/Lifetime basis.
+- **Opportunities** — list + detail with the **stage-gate workflow**:
+  completeness tracker, server-validated gates, Manager/Admin override,
+  Won → auto-creates a project.
+- **Project Tracking** — filterable list with value/cost/**margin** (color-coded)
+  + totals, Project Insight detail, Project ↔ Customer deep-links.
+- **Quotations** — line items with per-line discount, VAT 7% (excluded/included),
+  customer picker on the same customers table.
+- **Reports** (Manager + Admin only) — Sales, Cost Budgeting, Accounting,
+  Profit & Loss, with charts (recharts).
+- **Users & Roles** (Admin only) — invite/edit/delete, capability matrix.
+- Bilingual TH/EN throughout; role-gated sidebar (Main / Reports / Admin).
+
+## Testing
+
+```bash
+npm test          # unit tests for lib/ (grade, margin, money, quotation, gates)
+npm run build     # type-check + production build
+```
+
+Tests run on the Node test runner via `tsx` (TypeScript loader). They cover the
+money/grade/margin/quotation/gate logic — including the ÷0 margin guard, grade
+band boundaries, VAT subtotal+vat=total invariants, and stage-gate evaluation.
+
+## Manual QA checklist
+
+- **States** — every route handles Loading (skeleton), Empty, Error
+  (`error.tsx`), No-access, and Success. Success actions raise a toast.
+- **Permissions** (RLS + server checks, not just hidden menus):
+  - Sales: no Reports, no Settings (No-access pages); cannot delete; cannot
+    change own role (guard trigger).
+  - Manager: Reports yes; Settings/Users no.
+  - Admin: everything.
+- **Money** — stored as integer satang; margin shows "—" when value is 0.
+- **Stage gates** — advancing a stage with unmet requirements is blocked
+  server-side; Manager/Admin can override; Won creates a project.
+- **i18n** — toggle TH/EN; Thai renders in Sarabun; no hard-coded UI strings.
+- **a11y/responsive** — 44px touch targets, visible focus ring, stage pills carry
+  text labels, tables reflow to cards on mobile.
 
 ## How to test Phase 1
 
