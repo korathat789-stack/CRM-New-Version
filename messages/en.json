@@ -373,5 +373,54 @@
       "legendRevenue": "Revenue",
       "legendNet": "Net"
     }
+  },
+  "users": {
+    "title": "Users & Roles",
+    "count": "{count} users · {admins} admin",
+    "searchPlaceholder": "Search user…",
+    "newUser": "New User",
+    "noUsers": "No users match your search.",
+    "cols": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "lastLogin": "Last login",
+      "actions": "Actions"
+    },
+    "status": { "active": "Active", "inactive": "Inactive" },
+    "never": "—",
+    "dialog": {
+      "newTitle": "New user",
+      "editTitle": "Edit user",
+      "fullName": "Full name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "capabilities": "Role capabilities",
+      "reference": "reference",
+      "cap": {
+        "viewEdit": "View & edit records",
+        "delete": "Delete records",
+        "authorize": "Authorize / sign-off (Won)",
+        "viewReports": "View Reports",
+        "settings": "Settings / config",
+        "manageUsers": "Manage users & permissions"
+      },
+      "rolesNote": "Admin = full control + assigns rights. Manager = all data, reports & sign-off, but not permissions/settings. Sales = daily work only — no Reports, no settings.",
+      "save": "Save user",
+      "errEmailRequired": "Email is required.",
+      "errServiceRole": "Inviting users requires the Supabase service role key (SUPABASE_SERVICE_ROLE_KEY).",
+      "errForbidden": "Only an admin can manage users.",
+      "errSelf": "You cannot delete your own account.",
+      "errFailed": "Could not save. Please try again."
+    },
+    "delete": { "confirm": "Delete this user?" }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Administration",
+    "usersCard": "Users & Roles",
+    "usersDesc": "Add, edit and remove users; assign roles and permissions."
   }
 }
