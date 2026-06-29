@@ -66,6 +66,14 @@ server-side checks in Server Actions. Hidden menus are UX only.
    - `supabase/migrations/0002_mpt_crm_core.sql` ← full MatchPoint schema + RLS
    - `supabase/migrations/0003_reports.sql` ← sales target + report views
    - `supabase/migrations/0004_stage_gates.sql` ← opportunity gate fields
+
+   Or apply them all (plus seed) from your own machine with PowerShell + psql:
+
+   ```powershell
+   ./scripts/deploy-supabase.ps1
+   # prompts for your Postgres connection URI
+   # (Project Settings → Database → Connection string → URI)
+   ```
 3. Enable **Email** auth (and Google if desired) under Authentication → Providers.
 4. The **first** user to sign up becomes `admin` automatically; everyone else
    starts as `sales` (change roles later in Users & Roles).
