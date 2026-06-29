@@ -422,5 +422,68 @@
     "subtitle": "Administration",
     "usersCard": "Users & Roles",
     "usersDesc": "Add, edit and remove users; assign roles and permissions."
+  },
+  "gates": {
+    "req": {
+      "customerName": "Customer name",
+      "customerType": "Customer type",
+      "customerOwner": "Owner assigned",
+      "oppValue": "Opportunity value",
+      "presentationLogged": "Presentation activity logged",
+      "quoteNumber": "Quotation No.",
+      "quoteAmount": "Quotation amount",
+      "quoteSent": "Quotation sent date",
+      "pocScheduled": "POC schedule",
+      "pocResult": "POC test result",
+      "pocPassed": "POC passed",
+      "signedQuote": "Signed quotation attached",
+      "authorized": "Manager / Admin authorize"
+    }
+  },
+  "opportunities": {
+    "title": "Opportunities",
+    "subtitle": "{count} shown",
+    "newOpportunity": "New Opportunity",
+    "noOpportunities": "No opportunities yet.",
+    "cols": {
+      "title": "Opportunity",
+      "customer": "Customer",
+      "stage": "Stage",
+      "value": "Value",
+      "nextStep": "Next step"
+    },
+    "detail": {
+      "completeness": "Completeness",
+      "blockersBeforeWon": "{count} blockers before Won",
+      "complete": "{percent}% complete",
+      "nextStep": "Next step",
+      "advanceTo": "Advance to {stage}",
+      "markWon": "Mark Won",
+      "markLost": "Mark Lost",
+      "authorize": "Authorize (sign-off)",
+      "authorized": "Authorized",
+      "pocTitle": "POC",
+      "pocSchedule": "POC schedule date",
+      "pocResult": "POC test result",
+      "savePoc": "Save POC",
+      "logPresentation": "Log presentation",
+      "presentationDone": "Presentation logged",
+      "blockTitle": "Can't advance yet",
+      "blockBody": "{count} required steps are incomplete. Finish these or ask a Manager to override.",
+      "managerOverride": "Manager override",
+      "overrideOnly": "Only a Manager or Admin can override.",
+      "close": "Close",
+      "stageUpdated": "Stage updated."
+    },
+    "form": {
+      "title": "New Opportunity",
+      "customer": "Customer",
+      "selectCustomer": "Select a customer",
+      "oppTitle": "Opportunity title",
+      "value": "Value (฿)",
+      "nextStep": "Next step",
+      "save": "Create Opportunity",
+      "required": "Customer and title are required."
+    }
   }
 }

@@ -422,5 +422,68 @@
     "subtitle": "การดูแลระบบ",
     "usersCard": "ผู้ใช้และสิทธิ์",
     "usersDesc": "เพิ่ม แก้ไข และลบผู้ใช้ กำหนดบทบาทและสิทธิ์"
+  },
+  "gates": {
+    "req": {
+      "customerName": "ชื่อลูกค้า",
+      "customerType": "ประเภทลูกค้า",
+      "customerOwner": "กำหนดผู้ดูแล",
+      "oppValue": "มูลค่าโอกาส",
+      "presentationLogged": "บันทึกกิจกรรมนำเสนอแล้ว",
+      "quoteNumber": "เลขที่ใบเสนอราคา",
+      "quoteAmount": "จำนวนเงินใบเสนอราคา",
+      "quoteSent": "วันที่ส่งใบเสนอราคา",
+      "pocScheduled": "กำหนดการทดสอบ POC",
+      "pocResult": "ผลการทดสอบ POC",
+      "pocPassed": "POC ผ่าน",
+      "signedQuote": "แนบใบเสนอราคาที่เซ็นแล้ว",
+      "authorized": "ผู้จัดการ / ผู้ดูแลอนุมัติ"
+    }
+  },
+  "opportunities": {
+    "title": "โอกาสการขาย",
+    "subtitle": "แสดง {count} รายการ",
+    "newOpportunity": "เพิ่มโอกาสการขาย",
+    "noOpportunities": "ยังไม่มีโอกาสการขาย",
+    "cols": {
+      "title": "โอกาส",
+      "customer": "ลูกค้า",
+      "stage": "ขั้น",
+      "value": "มูลค่า",
+      "nextStep": "ขั้นถัดไป"
+    },
+    "detail": {
+      "completeness": "ความครบถ้วน",
+      "blockersBeforeWon": "{count} อุปสรรคก่อนปิดการขาย",
+      "complete": "ครบถ้วน {percent}%",
+      "nextStep": "ขั้นถัดไป",
+      "advanceTo": "เลื่อนไปยัง {stage}",
+      "markWon": "ทำเครื่องหมายชนะ",
+      "markLost": "ทำเครื่องหมายไม่สำเร็จ",
+      "authorize": "อนุมัติ (เซ็นรับรอง)",
+      "authorized": "อนุมัติแล้ว",
+      "pocTitle": "POC",
+      "pocSchedule": "วันที่กำหนดทดสอบ POC",
+      "pocResult": "ผลการทดสอบ POC",
+      "savePoc": "บันทึก POC",
+      "logPresentation": "บันทึกการนำเสนอ",
+      "presentationDone": "บันทึกการนำเสนอแล้ว",
+      "blockTitle": "ยังเลื่อนขั้นไม่ได้",
+      "blockBody": "มี {count} ขั้นตอนที่จำเป็นยังไม่เสร็จ กรุณาทำให้เสร็จหรือขอให้ผู้จัดการอนุมัติข้าม",
+      "managerOverride": "ผู้จัดการอนุมัติข้าม",
+      "overrideOnly": "เฉพาะผู้จัดการหรือผู้ดูแลเท่านั้นที่ข้ามได้",
+      "close": "ปิด",
+      "stageUpdated": "อัปเดตขั้นแล้ว"
+    },
+    "form": {
+      "title": "โอกาสการขายใหม่",
+      "customer": "ลูกค้า",
+      "selectCustomer": "เลือกลูกค้า",
+      "oppTitle": "ชื่อโอกาส",
+      "value": "มูลค่า (฿)",
+      "nextStep": "ขั้นถัดไป",
+      "save": "สร้างโอกาส",
+      "required": "ต้องระบุลูกค้าและชื่อโอกาส"
+    }
   }
 }
