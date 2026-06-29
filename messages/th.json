@@ -470,6 +470,18 @@
       "gradesNote": "เกรดคือช่วงต่ำสุดที่รายได้ถึงเกณฑ์ขั้นต่ำ โดย F เป็นระดับพื้นฐานเสมอ"
     }
   },
+  "import": {
+    "title": "นำเข้าลูกค้า",
+    "subtitle": "วาง CSV หรืออัปโหลดไฟล์ .csv",
+    "columns": "คอลัมน์: name, tax_id, province, industry, source, annual_revenue, contact_name, contact_email, contact_phone (แถวแรก = หัวตาราง)",
+    "placeholder": "name,tax_id,province,annual_revenue\\nAcme Co.,0105551023417,Bangkok,8400000",
+    "upload": "อัปโหลด CSV",
+    "preview": "ตัวอย่าง ({count} แถว)",
+    "import": "นำเข้า {count} ลูกค้า",
+    "noRows": "ไม่พบแถวที่ถูกต้อง",
+    "done": "นำเข้า {inserted} ลูกค้า (ข้าม {skipped})",
+    "forbidden": "เฉพาะผู้ดูแลระบบ"
+  },
   "gates": {
     "req": {
       "customerName": "ชื่อลูกค้า",

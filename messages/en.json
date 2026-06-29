@@ -470,6 +470,18 @@
       "gradesNote": "Grade is the lowest band whose minimum the revenue meets. F is always the floor."
     }
   },
+  "import": {
+    "title": "Import Customers",
+    "subtitle": "Paste CSV or upload a .csv file",
+    "columns": "Columns: name, tax_id, province, industry, source, annual_revenue, contact_name, contact_email, contact_phone (first row = header).",
+    "placeholder": "name,tax_id,province,annual_revenue\\nAcme Co.,0105551023417,Bangkok,8400000",
+    "upload": "Upload CSV",
+    "preview": "Preview ({count} rows)",
+    "import": "Import {count} customers",
+    "noRows": "No valid rows detected.",
+    "done": "Imported {inserted} customers ({skipped} skipped).",
+    "forbidden": "Admin only."
+  },
   "gates": {
     "req": {
       "customerName": "Customer name",
