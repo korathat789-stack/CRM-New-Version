@@ -58,4 +58,11 @@ begin
     (siam, 'Call', 'procurement — requested revised BOQ', now() - interval '5 days'),
     (siam, 'Presentation', 'read-rate results review', now() - interval '9 days'),
     (siam, 'Quotation', 'Q6906008 issued', now() - interval '11 days');
+
+  -- Invoices (Accounting / Reports — real money; due dates relative to today)
+  insert into public.invoices (number, customer_id, amount, received, due_date, status) values
+    ('INV-6905533', medi,    185000000, 185000000, current_date - interval '20 days', 'paid'),
+    ('INV-6906008', siam,    285000000, 100000000, current_date + interval '18 days', 'partial'),
+    ('INV-6907221', laem,    540000000,         0, current_date + interval '24 days', 'sent'),
+    ('INV-6904018', garment, 260000000,         0, current_date - interval '70 days', 'overdue');
 end $$;

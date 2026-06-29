@@ -281,5 +281,97 @@
       "sameTable": "Same table as Customers page",
       "newCustomer": "New customer"
     }
+  },
+  "reports": {
+    "title": "Reports",
+    "hubSubtitle": "Figures roll up from Project Tracking · Accounting uses real invoices",
+    "ready": "Ready",
+    "hub": {
+      "sales": { "title": "Sales Report", "desc": "Won vs target by owner, stage funnel, ฿ booked" },
+      "cost": { "title": "Cost Budgeting", "desc": "Budget vs actual cost per project, variance" },
+      "accounting": { "title": "Accounting", "desc": "Invoices, receivables, tax — by quotation" },
+      "pnl": { "title": "Profit & Loss", "desc": "Revenue − COGS − Opex = net, by period" }
+    },
+    "sales": {
+      "title": "Sales Report",
+      "kpi": {
+        "booked": "Booked (Won)",
+        "target": "Target",
+        "attainment": "Attainment",
+        "winRate": "Win rate",
+        "pipeline": "Pipeline"
+      },
+      "byOwner": "Won vs target — by owner",
+      "byStage": "Open pipeline — by stage",
+      "estimate": "Sales estimate — Quotation + Invoice",
+      "combined": "Combined",
+      "split": "Split",
+      "combinedEst": "Combined est.",
+      "quotationOpen": "Quotation (open, est.)",
+      "invoiceActual": "Invoice (actual)",
+      "openQuotes": "{count} open quotes · not yet invoiced",
+      "fromAccounting": "issued invoices · from Accounting",
+      "estimateNote": "Invoices are real (from Accounting); quotations are the open-pipeline estimate.",
+      "closedWon": "Closed-won this period",
+      "deal": "Deal",
+      "customer": "Customer",
+      "value": "Value",
+      "owner": "Owner",
+      "noWon": "No closed-won deals this period."
+    },
+    "cost": {
+      "title": "Cost Budgeting",
+      "subtitle": "Budget vs actual · per project",
+      "kpi": {
+        "totalBudget": "Total budget",
+        "actualCost": "Actual cost",
+        "variance": "Variance",
+        "overBudget": "Over budget"
+      },
+      "project": "Project",
+      "budget": "Budget",
+      "actual": "Actual",
+      "varianceCol": "Variance",
+      "used": "Used",
+      "total": "Total · {count}"
+    },
+    "accounting": {
+      "title": "Accounting",
+      "subtitle": "Invoices & receivables · by quotation",
+      "kpi": {
+        "invoiced": "Invoiced",
+        "received": "Received",
+        "outstanding": "Outstanding",
+        "overdue": "Overdue"
+      },
+      "aging": {
+        "current": "Current",
+        "d1_30": "1–30d",
+        "d31_60": "31–60d",
+        "d60plus": "60d+"
+      },
+      "quotation": "Invoice",
+      "customer": "Customer",
+      "amount": "Amount",
+      "due": "Due",
+      "status": "Status",
+      "noInvoices": "No invoices yet."
+    },
+    "pnl": {
+      "title": "Profit & Loss",
+      "subtitle": "฿ thousands",
+      "month": "Month",
+      "quarter": "Quarter",
+      "revenue": "Revenue (booked)",
+      "cogs": "− Cost of goods (COGS)",
+      "gross": "Gross profit",
+      "opex": "− Operating expense",
+      "ebit": "Operating profit (EBIT)",
+      "tax": "− Tax (est. 20%)",
+      "net": "Net profit",
+      "netMargin": "Net margin",
+      "legendRevenue": "Revenue",
+      "legendNet": "Net"
+    }
   }
 }
