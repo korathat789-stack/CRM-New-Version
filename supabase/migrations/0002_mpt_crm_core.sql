@@ -440,6 +440,52 @@ create table if not exists public.audit_log (
 );
 create index if not exists audit_log_row_idx on public.audit_log (table_name, row_id);
 
+-- ---------------------------------------------------------------------------
+-- Privilege guards (defence-in-depth alongside RLS)
+-- ---------------------------------------------------------------------------
+
+-- A user may edit their own profile (e.g. name) but only an admin may change a
+-- profile's role or status — blocks self-escalation to admin via the anon
+-- client. Non-admin attempts to change those columns are silently ignored.
+create or replace function public.guard_profile_privileges()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  if (new.role is distinct from old.role
+      or new.status is distinct from old.status)
+     and not public.is_admin() then
+    new.role := old.role;
+    new.status := old.status;
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists profiles_guard_privileges on public.profiles;
+create trigger profiles_guard_privileges before update on public.profiles
+  for each row execute function public.guard_profile_privileges();
+
+-- Soft delete (setting/clearing deleted_at) is a privileged action: only
+-- manager/admin may do it. The broad UPDATE policy still allows normal edits,
+-- but a Sales user cannot soft-delete a row by writing deleted_at directly.
+create or replace function public.guard_soft_delete()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  if (new.deleted_at is distinct from old.deleted_at)
+     and not public.is_manager_or_admin() then
+    raise exception 'Only a manager or admin may delete records';
+  end if;
+  return new;
+end;
+$$;
+do $$
+declare t text;
+begin
+  foreach t in array array['customers','contacts','opportunities','projects','quotations','invoices']
+  loop
+    execute format('drop trigger if exists %I_guard_soft_delete on public.%I', t, t);
+    execute format('create trigger %I_guard_soft_delete before update on public.%I for each row execute function public.guard_soft_delete()', t, t);
+  end loop;
+end $$;
+
 -- ============================================================================
 -- Row Level Security
 -- RLS is the source of truth. Server actions repeat these checks.

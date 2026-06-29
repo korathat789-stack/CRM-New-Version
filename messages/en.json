@@ -79,5 +79,92 @@
     "subtitle": "Overview",
     "welcome": "Welcome to MatchPoint CRM",
     "foundationNote": "Foundation ready. Feature pages arrive in the next phases."
+  },
+  "customers": {
+    "title": "Customers",
+    "subtitle": "{count} shown",
+    "searchPlaceholder": "Search by Customer ID or name…",
+    "newCustomer": "New Customer",
+    "openFull": "Open full page",
+    "selectHint": "Select a customer to preview their 360.",
+    "open": "open",
+    "noOpenValue": "no open value",
+    "gradeFilter": "Grade",
+    "all": "All",
+    "addActivity": "Add Activity",
+    "tabs": {
+      "overview": "Overview",
+      "projects": "Projects",
+      "opportunities": "Opportunities",
+      "activity": "Activity",
+      "tasks": "Tasks",
+      "contacts": "Contacts"
+    },
+    "insight": {
+      "title": "Grade & Revenue Insight",
+      "lifetimeRevenue": "Lifetime Revenue",
+      "openPipeline": "Open Pipeline",
+      "winRate": "Win Rate",
+      "lastActivity": "Last Activity",
+      "openOpps": "Open Opps",
+      "never": "—"
+    },
+    "details": {
+      "title": "Company Details",
+      "taxId": "Tax ID",
+      "owner": "Owner",
+      "type": "Type",
+      "created": "Created",
+      "province": "Province",
+      "source": "Source",
+      "industry": "Industry"
+    },
+    "contact": {
+      "title": "Primary Contact",
+      "call": "Call",
+      "email": "Email",
+      "line": "LINE",
+      "none": "No contact yet"
+    },
+    "linkedProjects": "Linked Projects",
+    "recentActivity": "Recent Activity",
+    "noProjects": "No linked projects yet.",
+    "noActivity": "No activity recorded yet.",
+    "noContacts": "No contacts yet.",
+    "noCustomers": "No customers match your search.",
+    "form": {
+      "newTitle": "New Customer",
+      "editTitle": "Edit Customer",
+      "name": "Customer Name",
+      "customerId": "Customer ID",
+      "auto": "auto",
+      "taxId": "Tax ID",
+      "taxIdHint": "13 digits",
+      "type": "Type",
+      "province": "Province",
+      "select": "Select…",
+      "salesInsight": "Sales Insight",
+      "annualRevenue": "Annual Revenue (฿)",
+      "lifetimeRevenue": "Lifetime Revenue (฿)",
+      "grade": "Grade",
+      "gradeAuto": "auto",
+      "source": "Source",
+      "industry": "Industry",
+      "notes": "Notes",
+      "save": "Save Customer",
+      "errRequired": "Required",
+      "errTaxId": "Tax ID must be 13 digits",
+      "dupWarning": "Possible duplicate customer — same Tax ID found ({name}).",
+      "saveAnyway": "Save anyway",
+      "saveFailed": "Could not save. Please try again."
+    },
+    "delete": {
+      "title": "Delete this customer?",
+      "body": "Deleting {name} ({code}) will unlink its projects and opportunities. Activity history is kept for the audit log. This cannot be undone.",
+      "typeToConfirm": "Type {code} to confirm",
+      "confirm": "Delete",
+      "mismatch": "The ID does not match.",
+      "restricted": "Only a Manager or Admin can delete records."
+    }
   }
 }
