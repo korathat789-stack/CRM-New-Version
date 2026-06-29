@@ -81,10 +81,12 @@ export default async function ProjectsPage({
             {t("subtitle", { count: totals.count })}
           </p>
         </div>
-        <Button disabled title="">
-          <Plus className="h-4 w-4" aria-hidden />
-          {t("newProject")}
-        </Button>
+        <Link href="/projects/new">
+          <Button>
+            <Plus className="h-4 w-4" aria-hidden />
+            {t("newProject")}
+          </Button>
+        </Link>
       </div>
 
       <Card className="mt-4 overflow-hidden">

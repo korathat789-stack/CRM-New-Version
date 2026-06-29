@@ -202,6 +202,20 @@
     },
     "total": "Total · {count} projects",
     "blended": "blended",
+    "form": {
+      "title": "New Project",
+      "customer": "Customer",
+      "selectCustomer": "Select a customer",
+      "name": "Project name",
+      "stage": "Stage",
+      "value": "Value (฿)",
+      "cost": "Cost (฿)",
+      "budget": "Budget (฿)",
+      "dueDate": "Due date",
+      "estDate": "Estimated date",
+      "save": "Create Project",
+      "required": "Customer and project name are required."
+    },
     "insight": {
       "valueCostMargin": "Value · Cost · Margin",
       "value": "Value",
@@ -494,5 +508,18 @@
       "save": "Create Opportunity",
       "required": "Customer and title are required."
     }
+  },
+  "tasks": {
+    "title": "Tasks",
+    "subtitle": "{count} shown",
+    "addPlaceholder": "Add a task…",
+    "add": "Add",
+    "noTasks": "No tasks.",
+    "filter": { "all": "All", "open": "Open", "done": "Done" },
+    "priority": { "high": "HIGH", "medium": "MED", "low": "LOW" },
+    "due": "Due",
+    "overdue": "overdue",
+    "noDue": "No due date",
+    "delete": "Delete"
   }
 }
