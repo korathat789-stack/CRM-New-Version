@@ -42,7 +42,8 @@ $files = @(
   "supabase/migrations/0001_init.sql",
   "supabase/migrations/0002_mpt_crm_core.sql",
   "supabase/migrations/0003_reports.sql",
-  "supabase/migrations/0004_stage_gates.sql"
+  "supabase/migrations/0004_stage_gates.sql",
+  "supabase/migrations/0005_v1_fixes.sql"
 )
 if (-not $SkipSeed) { $files += "supabase/seed.sql" }
 

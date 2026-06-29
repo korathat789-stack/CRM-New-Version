@@ -66,6 +66,7 @@ server-side checks in Server Actions. Hidden menus are UX only.
    - `supabase/migrations/0002_mpt_crm_core.sql` ← full MatchPoint schema + RLS
    - `supabase/migrations/0003_reports.sql` ← sales target + report views
    - `supabase/migrations/0004_stage_gates.sql` ← opportunity gate fields
+   - `supabase/migrations/0005_v1_fixes.sql` ← address, tasks, indexes
 
    Or apply them all (plus seed) from your own machine with PowerShell + psql:
 
