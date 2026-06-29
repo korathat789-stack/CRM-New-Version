@@ -1,0 +1,92 @@
+// Role model + navigation gating. This is UX only — the source of truth for
+// permissions is Supabase Row-Level Security plus server-side checks in Server
+// Actions. Hiding a menu never grants security.
+//
+// Admin   — everything, including managing users & permissions and settings.
+// Manager — all data, reports and sign-off; NOT permissions or settings.
+// Sales   — daily work only; no Reports, no settings.
+
+export type Role = "admin" | "manager" | "sales";
+
+export const ROLES: Role[] = ["admin", "manager", "sales"];
+
+export function isRole(value: string | null | undefined): value is Role {
+  return value === "admin" || value === "manager" || value === "sales";
+}
+
+export type NavGroupId = "main" | "reports" | "admin";
+
+export interface NavItem {
+  /** route href */
+  href: string;
+  /** i18n key under `nav.*` */
+  labelKey: string;
+  /** lucide-react icon name */
+  icon: string;
+}
+
+export interface NavGroup {
+  id: NavGroupId;
+  labelKey: string;
+  /** roles allowed to SEE this group */
+  roles: Role[];
+  items: NavItem[];
+}
+
+export const NAV: NavGroup[] = [
+  {
+    id: "main",
+    labelKey: "nav.group.main",
+    roles: ["admin", "manager", "sales"],
+    items: [
+      { href: "/dashboard", labelKey: "nav.dashboard", icon: "LayoutDashboard" },
+      { href: "/customers", labelKey: "nav.customers", icon: "Building2" },
+      { href: "/opportunities", labelKey: "nav.opportunities", icon: "Target" },
+      { href: "/projects", labelKey: "nav.projects", icon: "FolderKanban" },
+      { href: "/quotations", labelKey: "nav.quotations", icon: "FileText" },
+      { href: "/tasks", labelKey: "nav.tasks", icon: "CheckSquare" },
+    ],
+  },
+  {
+    id: "reports",
+    labelKey: "nav.group.reports",
+    roles: ["admin", "manager"],
+    items: [
+      { href: "/reports/sales", labelKey: "nav.salesReport", icon: "TrendingUp" },
+      { href: "/reports/cost", labelKey: "nav.costBudgeting", icon: "Wallet" },
+      { href: "/reports/accounting", labelKey: "nav.accounting", icon: "Receipt" },
+      { href: "/reports/pnl", labelKey: "nav.pnl", icon: "PieChart" },
+    ],
+  },
+  {
+    id: "admin",
+    labelKey: "nav.group.admin",
+    roles: ["admin"],
+    items: [
+      { href: "/settings/users", labelKey: "nav.users", icon: "Users" },
+      { href: "/settings/import", labelKey: "nav.import", icon: "Upload" },
+      { href: "/settings", labelKey: "nav.settings", icon: "Settings" },
+    ],
+  },
+];
+
+export function visibleNav(role: Role): NavGroup[] {
+  return NAV.filter((group) => group.roles.includes(role));
+}
+
+export function canSeeReports(role: Role): boolean {
+  return role === "admin" || role === "manager";
+}
+
+export function canManageUsers(role: Role): boolean {
+  return role === "admin";
+}
+
+export function canDelete(role: Role): boolean {
+  return role === "admin" || role === "manager";
+}
+
+/** Can authorize / sign off a Won opportunity. */
+export function canAuthorize(role: Role): boolean {
+  return role === "admin" || role === "manager";
+}

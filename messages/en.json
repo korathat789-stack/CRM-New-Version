@@ -1,0 +1,83 @@
+{
+  "app": {
+    "name": "MatchPoint CRM"
+  },
+  "nav": {
+    "group": {
+      "main": "Main",
+      "reports": "Reports",
+      "admin": "Admin"
+    },
+    "dashboard": "Dashboard",
+    "customers": "Customers",
+    "opportunities": "Opportunities",
+    "projects": "Projects",
+    "quotations": "Quotations",
+    "tasks": "Tasks",
+    "salesReport": "Sales Report",
+    "costBudgeting": "Cost Budgeting",
+    "accounting": "Accounting",
+    "pnl": "Profit & Loss",
+    "users": "Users & Roles",
+    "import": "Import",
+    "settings": "Settings"
+  },
+  "common": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "search": "Search",
+    "retry": "Retry",
+    "signOut": "Sign Out",
+    "language": "Language",
+    "comingSoon": "Coming Soon"
+  },
+  "states": {
+    "loading": "Loading",
+    "emptyTitle": "Nothing Here Yet",
+    "emptyBody": "Records will appear here once added.",
+    "errorTitle": "Something Went Wrong",
+    "errorBody": "An error occurred. Please try again.",
+    "noAccessTitle": "Restricted",
+    "noAccessBody": "You do not have access to this page. Ask an admin for access.",
+    "notFoundTitle": "Page Not Found",
+    "notFoundBody": "The page you are looking for does not exist."
+  },
+  "roles": {
+    "admin": "Admin",
+    "manager": "Manager",
+    "sales": "Sales"
+  },
+  "stages": {
+    "inquiry": "Inquiry",
+    "presentation": "Presentation",
+    "quotation": "Quotation",
+    "poc": "POC",
+    "negotiation": "Negotiation",
+    "won": "Won",
+    "lost": "Lost"
+  },
+  "grade": {
+    "label": "Grade",
+    "basisAnnual": "Annual",
+    "basisLifetime": "Lifetime"
+  },
+  "auth": {
+    "signInTitle": "Sign In",
+    "signInSubtitle": "MatchPoint CRM",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "google": "Continue with Google",
+    "invalid": "Invalid email or password.",
+    "notConfigured": "Supabase is not configured. Set the environment variables to enable sign in.",
+    "sessionExpired": "Session expired, please log in again."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview",
+    "welcome": "Welcome to MatchPoint CRM",
+    "foundationNote": "Foundation ready. Feature pages arrive in the next phases."
+  }
+}
