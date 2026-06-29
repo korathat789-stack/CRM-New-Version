@@ -220,5 +220,66 @@
       "editProject": "แก้ไขโครงการ",
       "backToList": "กลับไปที่รายการโครงการ"
     }
+  },
+  "quotations": {
+    "title": "ใบเสนอราคา",
+    "subtitle": "แสดง {count} รายการ",
+    "newQuotation": "สร้างใบเสนอราคา",
+    "noQuotations": "ยังไม่มีใบเสนอราคา",
+    "cols": {
+      "number": "เลขที่",
+      "customer": "ลูกค้า",
+      "total": "ยอดรวม",
+      "status": "สถานะ",
+      "date": "วันที่"
+    },
+    "status": {
+      "draft": "ร่าง",
+      "sent": "ส่งแล้ว",
+      "partial": "ชำระบางส่วน",
+      "paid": "ชำระแล้ว",
+      "overdue": "เกินกำหนด",
+      "cancelled": "ยกเลิก"
+    },
+    "form": {
+      "title": "ใบเสนอราคาใหม่",
+      "autoNumber": "อัตโนมัติ",
+      "saveDraft": "บันทึกร่าง",
+      "issue": "ออกใบเสนอราคา",
+      "customer": "ลูกค้า",
+      "customerLinkNote": "เชื่อมจากตารางลูกค้า",
+      "change": "เปลี่ยน",
+      "selectCustomer": "เลือกลูกค้า",
+      "autofillNote": "เลขผู้เสียภาษี จังหวัด และผู้ดูแล จะเติมอัตโนมัติจากข้อมูลลูกค้า",
+      "quotationDate": "วันที่ออก",
+      "expiringDate": "วันหมดอายุ",
+      "creditTerm": "เครดิต (วัน)",
+      "lineNo": "#",
+      "description": "รายละเอียด",
+      "unitPrice": "ราคาต่อหน่วย",
+      "qty": "จำนวน",
+      "discount": "ส่วนลด %",
+      "amount": "จำนวนเงิน",
+      "addLine": "เพิ่มรายการ",
+      "removeLine": "ลบรายการ",
+      "subtotal": "ยอดรวมย่อย",
+      "vat": "ภาษี {rate}%",
+      "vatExcluded": "ไม่รวม",
+      "vatIncluded": "รวมแล้ว",
+      "total": "ราคารวมทั้งสิ้น",
+      "remark": "หมายเหตุ",
+      "terms": "เงื่อนไขและข้อตกลง",
+      "remarkPlaceholder": "ข้อความอิสระ — หมายเหตุสำหรับใบเสนอราคานี้…",
+      "termsPlaceholder": "ข้อความอิสระ — เงื่อนไขการชำระเงิน / การรับประกัน / การส่งมอบ…",
+      "customerRequired": "กรุณาเลือกลูกค้า",
+      "noLines": "เพิ่มรายการอย่างน้อยหนึ่งรายการ",
+      "saveFailed": "ไม่สามารถบันทึกใบเสนอราคาได้ กรุณาลองใหม่"
+    },
+    "picker": {
+      "title": "เชื่อมโยงลูกค้า",
+      "searchPlaceholder": "ค้นหาลูกค้า…",
+      "sameTable": "ตารางเดียวกับหน้าลูกค้า",
+      "newCustomer": "เพิ่มลูกค้าใหม่"
+    }
   }
 }

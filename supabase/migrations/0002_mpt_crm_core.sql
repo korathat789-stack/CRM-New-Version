@@ -388,7 +388,8 @@ create table if not exists public.quotation_items (
   description  text not null,
   unit_price   bigint not null default 0,             -- satang
   qty          numeric(12,2) not null default 1,
-  amount       bigint not null default 0              -- satang (unit_price * qty)
+  discount_pct numeric(5,2) not null default 0 check (discount_pct between 0 and 100),
+  amount       bigint not null default 0              -- satang: round(unit_price*qty*(1-discount_pct/100))
 );
 create index if not exists quotation_items_quotation_idx on public.quotation_items (quotation_id);
 

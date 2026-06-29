@@ -67,3 +67,17 @@ export const getDefaultGradeBasis = cache(async (): Promise<GradeBasis> => {
     return "annual";
   }
 });
+
+export const getVatRatePct = cache(async (): Promise<number> => {
+  if (!isSupabaseConfigured()) return 7;
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("app_config")
+      .select("vat_rate_pct")
+      .single();
+    return data?.vat_rate_pct ?? 7;
+  } catch {
+    return 7;
+  }
+});
