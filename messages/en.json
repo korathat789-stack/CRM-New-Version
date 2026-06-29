@@ -1,0 +1,490 @@
+{
+  "app": {
+    "name": "MatchPoint CRM"
+  },
+  "nav": {
+    "group": {
+      "main": "Main",
+      "reports": "Reports",
+      "admin": "Admin"
+    },
+    "dashboard": "Dashboard",
+    "customers": "Customers",
+    "opportunities": "Opportunities",
+    "projects": "Projects",
+    "quotations": "Quotations",
+    "tasks": "Tasks",
+    "salesReport": "Sales Report",
+    "costBudgeting": "Cost Budgeting",
+    "accounting": "Accounting",
+    "pnl": "Profit & Loss",
+    "users": "Users & Roles",
+    "import": "Import",
+    "settings": "Settings"
+  },
+  "common": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "search": "Search",
+    "retry": "Retry",
+    "signOut": "Sign Out",
+    "language": "Language",
+    "comingSoon": "Coming Soon",
+    "saved": "Saved"
+  },
+  "states": {
+    "loading": "Loading",
+    "emptyTitle": "Nothing Here Yet",
+    "emptyBody": "Records will appear here once added.",
+    "errorTitle": "Something Went Wrong",
+    "errorBody": "An error occurred. Please try again.",
+    "noAccessTitle": "Restricted",
+    "noAccessBody": "You do not have access to this page. Ask an admin for access.",
+    "notFoundTitle": "Page Not Found",
+    "notFoundBody": "The page you are looking for does not exist."
+  },
+  "roles": {
+    "admin": "Admin",
+    "manager": "Manager",
+    "sales": "Sales"
+  },
+  "stages": {
+    "inquiry": "Inquiry",
+    "presentation": "Presentation",
+    "quotation": "Quotation",
+    "poc": "POC",
+    "negotiation": "Negotiation",
+    "won": "Won",
+    "lost": "Lost"
+  },
+  "grade": {
+    "label": "Grade",
+    "basisAnnual": "Annual",
+    "basisLifetime": "Lifetime"
+  },
+  "auth": {
+    "signInTitle": "Sign In",
+    "signInSubtitle": "MatchPoint CRM",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "google": "Continue with Google",
+    "invalid": "Invalid email or password.",
+    "notConfigured": "Supabase is not configured. Set the environment variables to enable sign in.",
+    "sessionExpired": "Session expired, please log in again."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview",
+    "welcome": "Welcome to MatchPoint CRM",
+    "foundationNote": "Foundation ready. Feature pages arrive in the next phases."
+  },
+  "customers": {
+    "title": "Customers",
+    "subtitle": "{count} shown",
+    "searchPlaceholder": "Search by Customer ID or name…",
+    "newCustomer": "New Customer",
+    "openFull": "Open full page",
+    "selectHint": "Select a customer to preview their 360.",
+    "open": "open",
+    "noOpenValue": "no open value",
+    "gradeFilter": "Grade",
+    "all": "All",
+    "addActivity": "Add Activity",
+    "tabs": {
+      "overview": "Overview",
+      "projects": "Projects",
+      "opportunities": "Opportunities",
+      "activity": "Activity",
+      "tasks": "Tasks",
+      "contacts": "Contacts"
+    },
+    "insight": {
+      "title": "Grade & Revenue Insight",
+      "lifetimeRevenue": "Lifetime Revenue",
+      "openPipeline": "Open Pipeline",
+      "winRate": "Win Rate",
+      "lastActivity": "Last Activity",
+      "openOpps": "Open Opps",
+      "never": "—"
+    },
+    "details": {
+      "title": "Company Details",
+      "taxId": "Tax ID",
+      "owner": "Owner",
+      "type": "Type",
+      "created": "Created",
+      "province": "Province",
+      "source": "Source",
+      "industry": "Industry"
+    },
+    "contact": {
+      "title": "Primary Contact",
+      "call": "Call",
+      "email": "Email",
+      "line": "LINE",
+      "none": "No contact yet"
+    },
+    "linkedProjects": "Linked Projects",
+    "recentActivity": "Recent Activity",
+    "noProjects": "No linked projects yet.",
+    "noActivity": "No activity recorded yet.",
+    "noContacts": "No contacts yet.",
+    "noCustomers": "No customers match your search.",
+    "form": {
+      "newTitle": "New Customer",
+      "editTitle": "Edit Customer",
+      "name": "Customer Name",
+      "customerId": "Customer ID",
+      "auto": "auto",
+      "taxId": "Tax ID",
+      "taxIdHint": "13 digits",
+      "type": "Type",
+      "province": "Province",
+      "select": "Select…",
+      "salesInsight": "Sales Insight",
+      "annualRevenue": "Annual Revenue (฿)",
+      "lifetimeRevenue": "Lifetime Revenue (฿)",
+      "grade": "Grade",
+      "gradeAuto": "auto",
+      "source": "Source",
+      "industry": "Industry",
+      "notes": "Notes",
+      "save": "Save Customer",
+      "errRequired": "Required",
+      "errTaxId": "Tax ID must be 13 digits",
+      "dupWarning": "Possible duplicate customer — same Tax ID found ({name}).",
+      "saveAnyway": "Save anyway",
+      "saveFailed": "Could not save. Please try again."
+    },
+    "delete": {
+      "title": "Delete this customer?",
+      "body": "Deleting {name} ({code}) will unlink its projects and opportunities. Activity history is kept for the audit log. This cannot be undone.",
+      "typeToConfirm": "Type {code} to confirm",
+      "confirm": "Delete",
+      "mismatch": "The ID does not match.",
+      "restricted": "Only a Manager or Admin can delete records."
+    }
+  },
+  "projects": {
+    "title": "Project Tracking",
+    "subtitle": "All projects · {count} shown",
+    "newProject": "New Project",
+    "searchPlaceholder": "Search project or customer…",
+    "noProjects": "No projects match your filters.",
+    "filters": {
+      "status": "Status",
+      "owner": "Owner",
+      "value": "Value",
+      "due": "Due",
+      "sort": "Sort",
+      "all": "All",
+      "valueAny": "Any value",
+      "value1m": "≥ ฿1M",
+      "value5m": "≥ ฿5M",
+      "dueAll": "Any due",
+      "dueOverdue": "Overdue",
+      "dueQuarter": "This quarter",
+      "sortValue": "Value ↓",
+      "sortMargin": "Margin ↓",
+      "sortDue": "Due ↑"
+    },
+    "cols": {
+      "project": "Project",
+      "customer": "Customer",
+      "value": "Value",
+      "due": "Due",
+      "estDate": "Est. date",
+      "cost": "Cost",
+      "margin": "Margin"
+    },
+    "total": "Total · {count} projects",
+    "blended": "blended",
+    "insight": {
+      "valueCostMargin": "Value · Cost · Margin",
+      "value": "Value",
+      "cost": "Cost",
+      "margin": "Margin",
+      "timeline": "Timeline — Due vs Estimated",
+      "dueDate": "Due date",
+      "estClose": "Estimated close",
+      "slip": "{days}d slip",
+      "onTrack": "on track",
+      "linkedRecords": "Linked Records",
+      "customer": "Customer",
+      "opportunity": "Opportunity",
+      "quotation": "Quotation",
+      "view360": "360",
+      "none": "—",
+      "editProject": "Edit Project",
+      "backToList": "Back to projects"
+    }
+  },
+  "quotations": {
+    "title": "Quotations",
+    "subtitle": "{count} shown",
+    "newQuotation": "New Quotation",
+    "noQuotations": "No quotations yet.",
+    "cols": {
+      "number": "Quotation",
+      "customer": "Customer",
+      "total": "Total",
+      "status": "Status",
+      "date": "Date"
+    },
+    "status": {
+      "draft": "Draft",
+      "sent": "Sent",
+      "partial": "Partial",
+      "paid": "Paid",
+      "overdue": "Overdue",
+      "cancelled": "Cancelled"
+    },
+    "form": {
+      "title": "New Quotation",
+      "autoNumber": "auto",
+      "saveDraft": "Save draft",
+      "issue": "Issue quotation",
+      "customer": "Customer",
+      "customerLinkNote": "linked from Customers table",
+      "change": "Change",
+      "selectCustomer": "Select a customer",
+      "autofillNote": "Tax ID, province & owner auto-fill from the customer record.",
+      "quotationDate": "Quotation date",
+      "expiringDate": "Expiring date",
+      "creditTerm": "Credit term (days)",
+      "lineNo": "#",
+      "description": "Description",
+      "unitPrice": "Unit price",
+      "qty": "Qty",
+      "discount": "Disc %",
+      "amount": "Amount",
+      "addLine": "Add line",
+      "removeLine": "Remove line",
+      "subtotal": "Subtotal",
+      "vat": "VAT {rate}%",
+      "vatExcluded": "Excluded",
+      "vatIncluded": "Included",
+      "total": "Total Price",
+      "remark": "Remark",
+      "terms": "Terms & conditions",
+      "remarkPlaceholder": "Free text — notes for this quotation…",
+      "termsPlaceholder": "Free text — payment / warranty / delivery conditions…",
+      "customerRequired": "Please select a customer.",
+      "noLines": "Add at least one line item.",
+      "saveFailed": "Could not save the quotation. Please try again."
+    },
+    "picker": {
+      "title": "Link customer",
+      "searchPlaceholder": "Search customer…",
+      "sameTable": "Same table as Customers page",
+      "newCustomer": "New customer"
+    }
+  },
+  "reports": {
+    "title": "Reports",
+    "hubSubtitle": "Figures roll up from Project Tracking · Accounting uses real invoices",
+    "ready": "Ready",
+    "hub": {
+      "sales": { "title": "Sales Report", "desc": "Won vs target by owner, stage funnel, ฿ booked" },
+      "cost": { "title": "Cost Budgeting", "desc": "Budget vs actual cost per project, variance" },
+      "accounting": { "title": "Accounting", "desc": "Invoices, receivables, tax — by quotation" },
+      "pnl": { "title": "Profit & Loss", "desc": "Revenue − COGS − Opex = net, by period" }
+    },
+    "sales": {
+      "title": "Sales Report",
+      "kpi": {
+        "booked": "Booked (Won)",
+        "target": "Target",
+        "attainment": "Attainment",
+        "winRate": "Win rate",
+        "pipeline": "Pipeline"
+      },
+      "byOwner": "Won vs target — by owner",
+      "byStage": "Open pipeline — by stage",
+      "estimate": "Sales estimate — Quotation + Invoice",
+      "combined": "Combined",
+      "split": "Split",
+      "combinedEst": "Combined est.",
+      "quotationOpen": "Quotation (open, est.)",
+      "invoiceActual": "Invoice (actual)",
+      "openQuotes": "{count} open quotes · not yet invoiced",
+      "fromAccounting": "issued invoices · from Accounting",
+      "estimateNote": "Invoices are real (from Accounting); quotations are the open-pipeline estimate.",
+      "closedWon": "Closed-won this period",
+      "deal": "Deal",
+      "customer": "Customer",
+      "value": "Value",
+      "owner": "Owner",
+      "noWon": "No closed-won deals this period."
+    },
+    "cost": {
+      "title": "Cost Budgeting",
+      "subtitle": "Budget vs actual · per project",
+      "kpi": {
+        "totalBudget": "Total budget",
+        "actualCost": "Actual cost",
+        "variance": "Variance",
+        "overBudget": "Over budget"
+      },
+      "project": "Project",
+      "budget": "Budget",
+      "actual": "Actual",
+      "varianceCol": "Variance",
+      "used": "Used",
+      "total": "Total · {count}"
+    },
+    "accounting": {
+      "title": "Accounting",
+      "subtitle": "Invoices & receivables · by quotation",
+      "kpi": {
+        "invoiced": "Invoiced",
+        "received": "Received",
+        "outstanding": "Outstanding",
+        "overdue": "Overdue"
+      },
+      "aging": {
+        "current": "Current",
+        "d1_30": "1–30d",
+        "d31_60": "31–60d",
+        "d60plus": "60d+"
+      },
+      "quotation": "Invoice",
+      "customer": "Customer",
+      "amount": "Amount",
+      "due": "Due",
+      "status": "Status",
+      "noInvoices": "No invoices yet."
+    },
+    "pnl": {
+      "title": "Profit & Loss",
+      "subtitle": "฿ thousands",
+      "month": "Month",
+      "quarter": "Quarter",
+      "revenue": "Revenue (booked)",
+      "cogs": "− Cost of goods (COGS)",
+      "gross": "Gross profit",
+      "opex": "− Operating expense",
+      "ebit": "Operating profit (EBIT)",
+      "tax": "− Tax (est. 20%)",
+      "net": "Net profit",
+      "netMargin": "Net margin",
+      "legendRevenue": "Revenue",
+      "legendNet": "Net"
+    }
+  },
+  "users": {
+    "title": "Users & Roles",
+    "count": "{count} users · {admins} admin",
+    "searchPlaceholder": "Search user…",
+    "newUser": "New User",
+    "noUsers": "No users match your search.",
+    "cols": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "lastLogin": "Last login",
+      "actions": "Actions"
+    },
+    "status": { "active": "Active", "inactive": "Inactive" },
+    "never": "—",
+    "dialog": {
+      "newTitle": "New user",
+      "editTitle": "Edit user",
+      "fullName": "Full name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "capabilities": "Role capabilities",
+      "reference": "reference",
+      "cap": {
+        "viewEdit": "View & edit records",
+        "delete": "Delete records",
+        "authorize": "Authorize / sign-off (Won)",
+        "viewReports": "View Reports",
+        "settings": "Settings / config",
+        "manageUsers": "Manage users & permissions"
+      },
+      "rolesNote": "Admin = full control + assigns rights. Manager = all data, reports & sign-off, but not permissions/settings. Sales = daily work only — no Reports, no settings.",
+      "save": "Save user",
+      "errEmailRequired": "Email is required.",
+      "errServiceRole": "Inviting users requires the Supabase service role key (SUPABASE_SERVICE_ROLE_KEY).",
+      "errForbidden": "Only an admin can manage users.",
+      "errSelf": "You cannot delete your own account.",
+      "errFailed": "Could not save. Please try again."
+    },
+    "delete": { "confirm": "Delete this user?" }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Administration",
+    "usersCard": "Users & Roles",
+    "usersDesc": "Add, edit and remove users; assign roles and permissions."
+  },
+  "gates": {
+    "req": {
+      "customerName": "Customer name",
+      "customerType": "Customer type",
+      "customerOwner": "Owner assigned",
+      "oppValue": "Opportunity value",
+      "presentationLogged": "Presentation activity logged",
+      "quoteNumber": "Quotation No.",
+      "quoteAmount": "Quotation amount",
+      "quoteSent": "Quotation sent date",
+      "pocScheduled": "POC schedule",
+      "pocResult": "POC test result",
+      "pocPassed": "POC passed",
+      "signedQuote": "Signed quotation attached",
+      "authorized": "Manager / Admin authorize"
+    }
+  },
+  "opportunities": {
+    "title": "Opportunities",
+    "subtitle": "{count} shown",
+    "newOpportunity": "New Opportunity",
+    "noOpportunities": "No opportunities yet.",
+    "cols": {
+      "title": "Opportunity",
+      "customer": "Customer",
+      "stage": "Stage",
+      "value": "Value",
+      "nextStep": "Next step"
+    },
+    "detail": {
+      "completeness": "Completeness",
+      "blockersBeforeWon": "{count} blockers before Won",
+      "complete": "{percent}% complete",
+      "nextStep": "Next step",
+      "advanceTo": "Advance to {stage}",
+      "markWon": "Mark Won",
+      "markLost": "Mark Lost",
+      "authorize": "Authorize (sign-off)",
+      "authorized": "Authorized",
+      "pocTitle": "POC",
+      "pocSchedule": "POC schedule date",
+      "pocResult": "POC test result",
+      "savePoc": "Save POC",
+      "logPresentation": "Log presentation",
+      "presentationDone": "Presentation logged",
+      "blockTitle": "Can't advance yet",
+      "blockBody": "{count} required steps are incomplete. Finish these or ask a Manager to override.",
+      "managerOverride": "Manager override",
+      "overrideOnly": "Only a Manager or Admin can override.",
+      "close": "Close",
+      "stageUpdated": "Stage updated."
+    },
+    "form": {
+      "title": "New Opportunity",
+      "customer": "Customer",
+      "selectCustomer": "Select a customer",
+      "oppTitle": "Opportunity title",
+      "value": "Value (฿)",
+      "nextStep": "Next step",
+      "save": "Create Opportunity",
+      "required": "Customer and title are required."
+    }
+  }
+}

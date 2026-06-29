@@ -1,0 +1,490 @@
+{
+  "app": {
+    "name": "MatchPoint CRM"
+  },
+  "nav": {
+    "group": {
+      "main": "หลัก",
+      "reports": "รายงาน",
+      "admin": "ผู้ดูแลระบบ"
+    },
+    "dashboard": "แดชบอร์ด",
+    "customers": "ลูกค้า",
+    "opportunities": "โอกาสการขาย",
+    "projects": "โครงการ",
+    "quotations": "ใบเสนอราคา",
+    "tasks": "งาน",
+    "salesReport": "รายงานการขาย",
+    "costBudgeting": "งบประมาณต้นทุน",
+    "accounting": "บัญชี",
+    "pnl": "กำไรขาดทุน",
+    "users": "ผู้ใช้และสิทธิ์",
+    "import": "นำเข้าข้อมูล",
+    "settings": "ตั้งค่า"
+  },
+  "common": {
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "cancel": "ยกเลิก",
+    "save": "บันทึก",
+    "search": "ค้นหา",
+    "retry": "ลองใหม่",
+    "signOut": "ออกจากระบบ",
+    "language": "ภาษา",
+    "comingSoon": "เร็วๆ นี้",
+    "saved": "บันทึกแล้ว"
+  },
+  "states": {
+    "loading": "กำลังโหลด",
+    "emptyTitle": "ยังไม่มีข้อมูล",
+    "emptyBody": "ข้อมูลจะแสดงที่นี่เมื่อมีการเพิ่ม",
+    "errorTitle": "เกิดข้อผิดพลาด",
+    "errorBody": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+    "noAccessTitle": "ไม่มีสิทธิ์เข้าถึง",
+    "noAccessBody": "คุณไม่มีสิทธิ์เข้าถึงหน้านี้ กรุณาติดต่อผู้ดูแลระบบ",
+    "notFoundTitle": "ไม่พบหน้านี้",
+    "notFoundBody": "ไม่พบหน้าที่คุณกำลังค้นหา"
+  },
+  "roles": {
+    "admin": "ผู้ดูแลระบบ",
+    "manager": "ผู้จัดการ",
+    "sales": "พนักงานขาย"
+  },
+  "stages": {
+    "inquiry": "สอบถาม",
+    "presentation": "นำเสนอ",
+    "quotation": "ใบเสนอราคา",
+    "poc": "ทดสอบ",
+    "negotiation": "เจรจา",
+    "won": "ปิดการขาย",
+    "lost": "ไม่สำเร็จ"
+  },
+  "grade": {
+    "label": "เกรด",
+    "basisAnnual": "รายปี",
+    "basisLifetime": "ตลอดอายุ"
+  },
+  "auth": {
+    "signInTitle": "เข้าสู่ระบบ",
+    "signInSubtitle": "MatchPoint CRM",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "signIn": "เข้าสู่ระบบ",
+    "google": "เข้าสู่ระบบด้วย Google",
+    "invalid": "อีเมลหรือรหัสผ่านไม่ถูกต้อง",
+    "notConfigured": "ยังไม่ได้ตั้งค่า Supabase กรุณาตั้งค่า environment variables เพื่อเปิดใช้งานการเข้าสู่ระบบ",
+    "sessionExpired": "เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่"
+  },
+  "dashboard": {
+    "title": "แดชบอร์ด",
+    "subtitle": "ภาพรวม",
+    "welcome": "ยินดีต้อนรับสู่ MatchPoint CRM",
+    "foundationNote": "วางโครงสร้างพื้นฐานเรียบร้อย หน้าฟีเจอร์จะมาในเฟสถัดไป"
+  },
+  "customers": {
+    "title": "ลูกค้า",
+    "subtitle": "แสดง {count} รายการ",
+    "searchPlaceholder": "ค้นหาด้วยรหัสลูกค้าหรือชื่อ…",
+    "newCustomer": "เพิ่มลูกค้า",
+    "openFull": "เปิดหน้าเต็ม",
+    "selectHint": "เลือกลูกค้าเพื่อดูข้อมูล 360 องศา",
+    "open": "ค้างอยู่",
+    "noOpenValue": "ไม่มีมูลค่าค้างอยู่",
+    "gradeFilter": "เกรด",
+    "all": "ทั้งหมด",
+    "addActivity": "เพิ่มกิจกรรม",
+    "tabs": {
+      "overview": "ภาพรวม",
+      "projects": "โครงการ",
+      "opportunities": "โอกาสการขาย",
+      "activity": "กิจกรรม",
+      "tasks": "งาน",
+      "contacts": "ผู้ติดต่อ"
+    },
+    "insight": {
+      "title": "เกรดและข้อมูลรายได้",
+      "lifetimeRevenue": "รายได้ตลอดอายุ",
+      "openPipeline": "ไปป์ไลน์ที่ค้างอยู่",
+      "winRate": "อัตราชนะ",
+      "lastActivity": "กิจกรรมล่าสุด",
+      "openOpps": "โอกาสที่ค้างอยู่",
+      "never": "—"
+    },
+    "details": {
+      "title": "ข้อมูลบริษัท",
+      "taxId": "เลขประจำตัวผู้เสียภาษี",
+      "owner": "ผู้ดูแล",
+      "type": "ประเภท",
+      "created": "สร้างเมื่อ",
+      "province": "จังหวัด",
+      "source": "แหล่งที่มา",
+      "industry": "อุตสาหกรรม"
+    },
+    "contact": {
+      "title": "ผู้ติดต่อหลัก",
+      "call": "โทร",
+      "email": "อีเมล",
+      "line": "LINE",
+      "none": "ยังไม่มีผู้ติดต่อ"
+    },
+    "linkedProjects": "โครงการที่เชื่อมโยง",
+    "recentActivity": "กิจกรรมล่าสุด",
+    "noProjects": "ยังไม่มีโครงการที่เชื่อมโยง",
+    "noActivity": "ยังไม่มีการบันทึกกิจกรรม",
+    "noContacts": "ยังไม่มีผู้ติดต่อ",
+    "noCustomers": "ไม่พบลูกค้าที่ตรงกับการค้นหา",
+    "form": {
+      "newTitle": "เพิ่มลูกค้า",
+      "editTitle": "แก้ไขลูกค้า",
+      "name": "ชื่อลูกค้า",
+      "customerId": "รหัสลูกค้า",
+      "auto": "อัตโนมัติ",
+      "taxId": "เลขประจำตัวผู้เสียภาษี",
+      "taxIdHint": "13 หลัก",
+      "type": "ประเภท",
+      "province": "จังหวัด",
+      "select": "เลือก…",
+      "salesInsight": "ข้อมูลการขาย",
+      "annualRevenue": "รายได้ต่อปี (฿)",
+      "lifetimeRevenue": "รายได้ตลอดอายุ (฿)",
+      "grade": "เกรด",
+      "gradeAuto": "อัตโนมัติ",
+      "source": "แหล่งที่มา",
+      "industry": "อุตสาหกรรม",
+      "notes": "หมายเหตุ",
+      "save": "บันทึกลูกค้า",
+      "errRequired": "จำเป็นต้องกรอก",
+      "errTaxId": "เลขผู้เสียภาษีต้องมี 13 หลัก",
+      "dupWarning": "อาจเป็นลูกค้าซ้ำ — พบเลขผู้เสียภาษีเดียวกัน ({name})",
+      "saveAnyway": "บันทึกต่อไป",
+      "saveFailed": "ไม่สามารถบันทึกได้ กรุณาลองใหม่"
+    },
+    "delete": {
+      "title": "ลบลูกค้ารายนี้?",
+      "body": "การลบ {name} ({code}) จะยกเลิกการเชื่อมโยงโครงการและโอกาสการขาย ประวัติกิจกรรมจะถูกเก็บไว้ในบันทึกการตรวจสอบ การกระทำนี้ไม่สามารถย้อนกลับได้",
+      "typeToConfirm": "พิมพ์ {code} เพื่อยืนยัน",
+      "confirm": "ลบ",
+      "mismatch": "รหัสไม่ตรงกัน",
+      "restricted": "เฉพาะผู้จัดการหรือผู้ดูแลระบบเท่านั้นที่ลบได้"
+    }
+  },
+  "projects": {
+    "title": "การติดตามโครงการ",
+    "subtitle": "โครงการทั้งหมด · แสดง {count} รายการ",
+    "newProject": "เพิ่มโครงการ",
+    "searchPlaceholder": "ค้นหาโครงการหรือลูกค้า…",
+    "noProjects": "ไม่พบโครงการที่ตรงกับตัวกรอง",
+    "filters": {
+      "status": "สถานะ",
+      "owner": "ผู้ดูแล",
+      "value": "มูลค่า",
+      "due": "กำหนดส่ง",
+      "sort": "เรียง",
+      "all": "ทั้งหมด",
+      "valueAny": "ทุกมูลค่า",
+      "value1m": "≥ ฿1M",
+      "value5m": "≥ ฿5M",
+      "dueAll": "ทุกกำหนด",
+      "dueOverdue": "เกินกำหนด",
+      "dueQuarter": "ไตรมาสนี้",
+      "sortValue": "มูลค่า ↓",
+      "sortMargin": "มาร์จิน ↓",
+      "sortDue": "กำหนดส่ง ↑"
+    },
+    "cols": {
+      "project": "โครงการ",
+      "customer": "ลูกค้า",
+      "value": "มูลค่า",
+      "due": "กำหนดส่ง",
+      "estDate": "วันที่ประเมิน",
+      "cost": "ต้นทุน",
+      "margin": "มาร์จิน"
+    },
+    "total": "รวม · {count} โครงการ",
+    "blended": "เฉลี่ย",
+    "insight": {
+      "valueCostMargin": "มูลค่า · ต้นทุน · มาร์จิน",
+      "value": "มูลค่า",
+      "cost": "ต้นทุน",
+      "margin": "มาร์จิน",
+      "timeline": "ไทม์ไลน์ — กำหนดส่ง vs ประเมิน",
+      "dueDate": "วันที่กำหนดส่ง",
+      "estClose": "วันที่ประเมินปิด",
+      "slip": "ช้า {days} วัน",
+      "onTrack": "ตามแผน",
+      "linkedRecords": "รายการที่เชื่อมโยง",
+      "customer": "ลูกค้า",
+      "opportunity": "โอกาสการขาย",
+      "quotation": "ใบเสนอราคา",
+      "view360": "360",
+      "none": "—",
+      "editProject": "แก้ไขโครงการ",
+      "backToList": "กลับไปที่รายการโครงการ"
+    }
+  },
+  "quotations": {
+    "title": "ใบเสนอราคา",
+    "subtitle": "แสดง {count} รายการ",
+    "newQuotation": "สร้างใบเสนอราคา",
+    "noQuotations": "ยังไม่มีใบเสนอราคา",
+    "cols": {
+      "number": "เลขที่",
+      "customer": "ลูกค้า",
+      "total": "ยอดรวม",
+      "status": "สถานะ",
+      "date": "วันที่"
+    },
+    "status": {
+      "draft": "ร่าง",
+      "sent": "ส่งแล้ว",
+      "partial": "ชำระบางส่วน",
+      "paid": "ชำระแล้ว",
+      "overdue": "เกินกำหนด",
+      "cancelled": "ยกเลิก"
+    },
+    "form": {
+      "title": "ใบเสนอราคาใหม่",
+      "autoNumber": "อัตโนมัติ",
+      "saveDraft": "บันทึกร่าง",
+      "issue": "ออกใบเสนอราคา",
+      "customer": "ลูกค้า",
+      "customerLinkNote": "เชื่อมจากตารางลูกค้า",
+      "change": "เปลี่ยน",
+      "selectCustomer": "เลือกลูกค้า",
+      "autofillNote": "เลขผู้เสียภาษี จังหวัด และผู้ดูแล จะเติมอัตโนมัติจากข้อมูลลูกค้า",
+      "quotationDate": "วันที่ออก",
+      "expiringDate": "วันหมดอายุ",
+      "creditTerm": "เครดิต (วัน)",
+      "lineNo": "#",
+      "description": "รายละเอียด",
+      "unitPrice": "ราคาต่อหน่วย",
+      "qty": "จำนวน",
+      "discount": "ส่วนลด %",
+      "amount": "จำนวนเงิน",
+      "addLine": "เพิ่มรายการ",
+      "removeLine": "ลบรายการ",
+      "subtotal": "ยอดรวมย่อย",
+      "vat": "ภาษี {rate}%",
+      "vatExcluded": "ไม่รวม",
+      "vatIncluded": "รวมแล้ว",
+      "total": "ราคารวมทั้งสิ้น",
+      "remark": "หมายเหตุ",
+      "terms": "เงื่อนไขและข้อตกลง",
+      "remarkPlaceholder": "ข้อความอิสระ — หมายเหตุสำหรับใบเสนอราคานี้…",
+      "termsPlaceholder": "ข้อความอิสระ — เงื่อนไขการชำระเงิน / การรับประกัน / การส่งมอบ…",
+      "customerRequired": "กรุณาเลือกลูกค้า",
+      "noLines": "เพิ่มรายการอย่างน้อยหนึ่งรายการ",
+      "saveFailed": "ไม่สามารถบันทึกใบเสนอราคาได้ กรุณาลองใหม่"
+    },
+    "picker": {
+      "title": "เชื่อมโยงลูกค้า",
+      "searchPlaceholder": "ค้นหาลูกค้า…",
+      "sameTable": "ตารางเดียวกับหน้าลูกค้า",
+      "newCustomer": "เพิ่มลูกค้าใหม่"
+    }
+  },
+  "reports": {
+    "title": "รายงาน",
+    "hubSubtitle": "ตัวเลขรวมจากการติดตามโครงการ · บัญชีใช้ใบแจ้งหนี้จริง",
+    "ready": "พร้อม",
+    "hub": {
+      "sales": { "title": "รายงานการขาย", "desc": "ชนะเทียบเป้าตามผู้ดูแล, ช่องทางตามขั้น, ยอดจอง ฿" },
+      "cost": { "title": "งบประมาณต้นทุน", "desc": "งบประมาณเทียบต้นทุนจริงต่อโครงการ, ผลต่าง" },
+      "accounting": { "title": "บัญชี", "desc": "ใบแจ้งหนี้, ลูกหนี้, ภาษี — ตามใบเสนอราคา" },
+      "pnl": { "title": "กำไรขาดทุน", "desc": "รายได้ − ต้นทุน − ค่าใช้จ่าย = สุทธิ ตามช่วงเวลา" }
+    },
+    "sales": {
+      "title": "รายงานการขาย",
+      "kpi": {
+        "booked": "ยอดจอง (ชนะ)",
+        "target": "เป้าหมาย",
+        "attainment": "บรรลุเป้า",
+        "winRate": "อัตราชนะ",
+        "pipeline": "ไปป์ไลน์"
+      },
+      "byOwner": "ชนะเทียบเป้า — ตามผู้ดูแล",
+      "byStage": "ไปป์ไลน์ที่ค้าง — ตามขั้น",
+      "estimate": "ประมาณการขาย — ใบเสนอราคา + ใบแจ้งหนี้",
+      "combined": "รวม",
+      "split": "แยก",
+      "combinedEst": "ประมาณการรวม",
+      "quotationOpen": "ใบเสนอราคา (ค้าง, ประมาณ)",
+      "invoiceActual": "ใบแจ้งหนี้ (จริง)",
+      "openQuotes": "{count} ใบเสนอราคาค้าง · ยังไม่ออกใบแจ้งหนี้",
+      "fromAccounting": "ใบแจ้งหนี้ที่ออกแล้ว · จากบัญชี",
+      "estimateNote": "ใบแจ้งหนี้เป็นยอดจริง (จากบัญชี) ส่วนใบเสนอราคาเป็นประมาณการไปป์ไลน์",
+      "closedWon": "ปิดการขายสำเร็จในช่วงนี้",
+      "deal": "ดีล",
+      "customer": "ลูกค้า",
+      "value": "มูลค่า",
+      "owner": "ผู้ดูแล",
+      "noWon": "ยังไม่มีดีลที่ปิดสำเร็จในช่วงนี้"
+    },
+    "cost": {
+      "title": "งบประมาณต้นทุน",
+      "subtitle": "งบประมาณเทียบจริง · ต่อโครงการ",
+      "kpi": {
+        "totalBudget": "งบประมาณรวม",
+        "actualCost": "ต้นทุนจริง",
+        "variance": "ผลต่าง",
+        "overBudget": "เกินงบ"
+      },
+      "project": "โครงการ",
+      "budget": "งบประมาณ",
+      "actual": "จริง",
+      "varianceCol": "ผลต่าง",
+      "used": "ใช้ไป",
+      "total": "รวม · {count}"
+    },
+    "accounting": {
+      "title": "บัญชี",
+      "subtitle": "ใบแจ้งหนี้และลูกหนี้ · ตามใบเสนอราคา",
+      "kpi": {
+        "invoiced": "ออกใบแจ้งหนี้",
+        "received": "รับชำระแล้ว",
+        "outstanding": "คงค้าง",
+        "overdue": "เกินกำหนด"
+      },
+      "aging": {
+        "current": "ปัจจุบัน",
+        "d1_30": "1–30 วัน",
+        "d31_60": "31–60 วัน",
+        "d60plus": "60 วัน+"
+      },
+      "quotation": "ใบแจ้งหนี้",
+      "customer": "ลูกค้า",
+      "amount": "จำนวนเงิน",
+      "due": "ครบกำหนด",
+      "status": "สถานะ",
+      "noInvoices": "ยังไม่มีใบแจ้งหนี้"
+    },
+    "pnl": {
+      "title": "กำไรขาดทุน",
+      "subtitle": "฿ พันบาท",
+      "month": "เดือน",
+      "quarter": "ไตรมาส",
+      "revenue": "รายได้ (จอง)",
+      "cogs": "− ต้นทุนขาย (COGS)",
+      "gross": "กำไรขั้นต้น",
+      "opex": "− ค่าใช้จ่ายดำเนินงาน",
+      "ebit": "กำไรจากการดำเนินงาน (EBIT)",
+      "tax": "− ภาษี (ประมาณ 20%)",
+      "net": "กำไรสุทธิ",
+      "netMargin": "อัตรากำไรสุทธิ",
+      "legendRevenue": "รายได้",
+      "legendNet": "สุทธิ"
+    }
+  },
+  "users": {
+    "title": "ผู้ใช้และสิทธิ์",
+    "count": "{count} ผู้ใช้ · ผู้ดูแล {admins} คน",
+    "searchPlaceholder": "ค้นหาผู้ใช้…",
+    "newUser": "เพิ่มผู้ใช้",
+    "noUsers": "ไม่พบผู้ใช้ที่ตรงกับการค้นหา",
+    "cols": {
+      "name": "ชื่อ",
+      "email": "อีเมล",
+      "role": "บทบาท",
+      "status": "สถานะ",
+      "lastLogin": "เข้าระบบล่าสุด",
+      "actions": "การจัดการ"
+    },
+    "status": { "active": "ใช้งาน", "inactive": "ปิดใช้งาน" },
+    "never": "—",
+    "dialog": {
+      "newTitle": "ผู้ใช้ใหม่",
+      "editTitle": "แก้ไขผู้ใช้",
+      "fullName": "ชื่อเต็ม",
+      "email": "อีเมล",
+      "role": "บทบาท",
+      "status": "สถานะ",
+      "capabilities": "สิทธิ์ตามบทบาท",
+      "reference": "อ้างอิง",
+      "cap": {
+        "viewEdit": "ดูและแก้ไขข้อมูล",
+        "delete": "ลบข้อมูล",
+        "authorize": "อนุมัติ / ปิดการขาย (Won)",
+        "viewReports": "ดูรายงาน",
+        "settings": "ตั้งค่า / กำหนดค่า",
+        "manageUsers": "จัดการผู้ใช้และสิทธิ์"
+      },
+      "rolesNote": "ผู้ดูแลระบบ = ควบคุมทั้งหมด + กำหนดสิทธิ์ · ผู้จัดการ = ข้อมูลทั้งหมด รายงาน และอนุมัติ แต่ไม่สามารถตั้งค่าสิทธิ์/ระบบ · พนักงานขาย = งานประจำวันเท่านั้น ไม่มีรายงาน ไม่มีการตั้งค่า",
+      "save": "บันทึกผู้ใช้",
+      "errEmailRequired": "กรุณากรอกอีเมล",
+      "errServiceRole": "การเชิญผู้ใช้ต้องใช้ service role key ของ Supabase (SUPABASE_SERVICE_ROLE_KEY)",
+      "errForbidden": "เฉพาะผู้ดูแลระบบเท่านั้นที่จัดการผู้ใช้ได้",
+      "errSelf": "ไม่สามารถลบบัญชีของตัวเองได้",
+      "errFailed": "ไม่สามารถบันทึกได้ กรุณาลองใหม่"
+    },
+    "delete": { "confirm": "ลบผู้ใช้รายนี้?" }
+  },
+  "settings": {
+    "title": "ตั้งค่า",
+    "subtitle": "การดูแลระบบ",
+    "usersCard": "ผู้ใช้และสิทธิ์",
+    "usersDesc": "เพิ่ม แก้ไข และลบผู้ใช้ กำหนดบทบาทและสิทธิ์"
+  },
+  "gates": {
+    "req": {
+      "customerName": "ชื่อลูกค้า",
+      "customerType": "ประเภทลูกค้า",
+      "customerOwner": "กำหนดผู้ดูแล",
+      "oppValue": "มูลค่าโอกาส",
+      "presentationLogged": "บันทึกกิจกรรมนำเสนอแล้ว",
+      "quoteNumber": "เลขที่ใบเสนอราคา",
+      "quoteAmount": "จำนวนเงินใบเสนอราคา",
+      "quoteSent": "วันที่ส่งใบเสนอราคา",
+      "pocScheduled": "กำหนดการทดสอบ POC",
+      "pocResult": "ผลการทดสอบ POC",
+      "pocPassed": "POC ผ่าน",
+      "signedQuote": "แนบใบเสนอราคาที่เซ็นแล้ว",
+      "authorized": "ผู้จัดการ / ผู้ดูแลอนุมัติ"
+    }
+  },
+  "opportunities": {
+    "title": "โอกาสการขาย",
+    "subtitle": "แสดง {count} รายการ",
+    "newOpportunity": "เพิ่มโอกาสการขาย",
+    "noOpportunities": "ยังไม่มีโอกาสการขาย",
+    "cols": {
+      "title": "โอกาส",
+      "customer": "ลูกค้า",
+      "stage": "ขั้น",
+      "value": "มูลค่า",
+      "nextStep": "ขั้นถัดไป"
+    },
+    "detail": {
+      "completeness": "ความครบถ้วน",
+      "blockersBeforeWon": "{count} อุปสรรคก่อนปิดการขาย",
+      "complete": "ครบถ้วน {percent}%",
+      "nextStep": "ขั้นถัดไป",
+      "advanceTo": "เลื่อนไปยัง {stage}",
+      "markWon": "ทำเครื่องหมายชนะ",
+      "markLost": "ทำเครื่องหมายไม่สำเร็จ",
+      "authorize": "อนุมัติ (เซ็นรับรอง)",
+      "authorized": "อนุมัติแล้ว",
+      "pocTitle": "POC",
+      "pocSchedule": "วันที่กำหนดทดสอบ POC",
+      "pocResult": "ผลการทดสอบ POC",
+      "savePoc": "บันทึก POC",
+      "logPresentation": "บันทึกการนำเสนอ",
+      "presentationDone": "บันทึกการนำเสนอแล้ว",
+      "blockTitle": "ยังเลื่อนขั้นไม่ได้",
+      "blockBody": "มี {count} ขั้นตอนที่จำเป็นยังไม่เสร็จ กรุณาทำให้เสร็จหรือขอให้ผู้จัดการอนุมัติข้าม",
+      "managerOverride": "ผู้จัดการอนุมัติข้าม",
+      "overrideOnly": "เฉพาะผู้จัดการหรือผู้ดูแลเท่านั้นที่ข้ามได้",
+      "close": "ปิด",
+      "stageUpdated": "อัปเดตขั้นแล้ว"
+    },
+    "form": {
+      "title": "โอกาสการขายใหม่",
+      "customer": "ลูกค้า",
+      "selectCustomer": "เลือกลูกค้า",
+      "oppTitle": "ชื่อโอกาส",
+      "value": "มูลค่า (฿)",
+      "nextStep": "ขั้นถัดไป",
+      "save": "สร้างโอกาส",
+      "required": "ต้องระบุลูกค้าและชื่อโอกาส"
+    }
+  }
+}

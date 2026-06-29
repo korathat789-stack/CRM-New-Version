@@ -1,17 +1,18 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-export default function NotFound() {
+export default async function NotFound() {
+  const t = await getTranslations("states");
+  const nav = await getTranslations("nav");
   return (
     <div className="mx-auto max-w-md px-6 py-24 text-center">
-      <h1 className="text-3xl font-semibold text-gray-900">Not found</h1>
-      <p className="mt-2 text-sm text-gray-500">
-        We couldn’t find what you were looking for.
-      </p>
+      <h1 className="text-2xl font-bold text-gray-900">{t("notFoundTitle")}</h1>
+      <p className="mt-2 text-sm text-gray-500">{t("notFoundBody")}</p>
       <Link
-        href="/customers"
-        className="mt-6 inline-flex rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+        href="/dashboard"
+        className="mt-6 inline-flex rounded-md bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-white"
       >
-        Back to customers
+        {nav("dashboard")}
       </Link>
     </div>
   );

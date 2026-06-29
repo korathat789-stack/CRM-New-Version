@@ -1,24 +1,117 @@
 @import "tailwindcss";
 
-:root {
-  --background: #f7f8fa;
-  --foreground: #111827;
+/* ------------------------------------------------------------------ */
+/* MatchPoint CRM design system — Tailwind v4 theme tokens.            */
+/* Enforce these everywhere; do not hard-code hexes in components.     */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Brand + surfaces */
+  --color-primary: #2563eb;
+  --color-primary-fg: #ffffff;
+  --color-app-bg: #f3f4f6;
+  --color-sidebar: #111827;
+  --color-sidebar-muted: #9ca3af;
+  --color-ink: #374151;
+  --color-card: #ffffff;
+  --color-line: #e5e7eb;
+  --color-line-soft: #f1f5f9;
+
+  /* Fonts — Sarabun (Thai-first) then Inter, wired via next/font */
+  --font-sans: var(--font-sarabun), var(--font-inter), ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Card radius + the one allowed card shadow (NO border on cards) */
+  --radius-card: 0.65rem;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+  /* Locked pipeline stage colors (background / foreground pairs).
+     Pills always carry a TEXT label — never color-only. */
+  --color-stage-inquiry-bg: #e0f2fe;
+  --color-stage-inquiry-fg: #0369a1;
+  --color-stage-presentation-bg: #ede9fe;
+  --color-stage-presentation-fg: #6d28d9;
+  --color-stage-quotation-bg: #fef9c3;
+  --color-stage-quotation-fg: #a16207;
+  --color-stage-poc-bg: #fae8ff;
+  --color-stage-poc-fg: #a21caf;
+  --color-stage-negotiation-bg: #ffedd5;
+  --color-stage-negotiation-fg: #c2410c;
+  --color-stage-won-bg: #dcfce7;
+  --color-stage-won-fg: #15803d;
+  --color-stage-lost-bg: #fee2e2;
+  --color-stage-lost-fg: #b91c1c;
+
+  /* Grade colors A–F */
+  --color-grade-a: #16a34a;
+  --color-grade-b: #2563eb;
+  --color-grade-c: #d97706;
+  --color-grade-d: #ea580c;
+  --color-grade-f: #dc2626;
 }
 
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
+  color: var(--color-ink);
+  background: var(--color-app-bg);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Visible keyboard focus ring (a11y guardrail). */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Card primitive — rounded, soft shadow, no border. */
+@utility card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* Pill primitive — fully rounded. */
+@utility pill {
+  border-radius: 999px;
+}
+
+/* Form input primitive. */
+@utility input {
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  font-size: 0.8125rem;
+  color: var(--color-ink);
+  background: #ffffff;
+}
+@utility input {
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+}
+
+@keyframes mpt-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.skeleton {
+  background: #e5e7eb;
+  border-radius: 6px;
+  animation: mpt-pulse 1.4s ease-in-out infinite;
 }
