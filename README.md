@@ -61,8 +61,14 @@ server-side checks in Server Actions. Hidden menus are UX only.
 ### 1. Supabase
 
 1. Create a project at [supabase.com](https://supabase.com).
-2. In **SQL Editor**, run the migrations in order:
-   - `supabase/migrations/0001_init.sql`
+2. In **SQL Editor**, set up the database. **Easiest:** paste the entire
+   **`supabase/setup.sql`** and run it once — it runs every migration in order
+   (0002→0006) plus optional sample data, ideal for the SQL editor. Copy from
+   the raw file (`cat supabase/setup.sql`), not a rendered Git view, to avoid
+   stray characters.
+
+   Or run the individual migrations in order:
+   - `supabase/migrations/0001_init.sql` *(legacy demo — optional; 0002 rebuilds it)*
    - `supabase/migrations/0002_mpt_crm_core.sql` ← full MatchPoint schema + RLS
    - `supabase/migrations/0003_reports.sql` ← sales target + report views
    - `supabase/migrations/0004_stage_gates.sql` ← opportunity gate fields
