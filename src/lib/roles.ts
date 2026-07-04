@@ -90,3 +90,22 @@ export function canDelete(role: Role): boolean {
 export function canAuthorize(role: Role): boolean {
   return role === "admin" || role === "manager";
 }
+
+/**
+ * Map a pathname to the i18n label key of the nav item it belongs to, using a
+ * longest-prefix match so nested routes (e.g. /customers/123) resolve to their
+ * section. Falls back to the dashboard label for unknown routes.
+ */
+export function navTitleKey(pathname: string): string {
+  let best: NavItem | null = null;
+  for (const group of NAV) {
+    for (const item of group.items) {
+      const match =
+        pathname === item.href || pathname.startsWith(`${item.href}/`);
+      if (match && (!best || item.href.length > best.href.length)) {
+        best = item;
+      }
+    }
+  }
+  return best ? best.labelKey : "nav.dashboard";
+}

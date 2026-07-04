@@ -132,3 +132,37 @@ test("gates: linear advance order", () => {
   assert.equal(nextStage("negotiation"), "won");
   assert.equal(nextStage("won"), null);
 });
+
+import { navTitleKey } from "../roles";
+import { initialsFrom } from "../initials";
+
+// ---------------------------------------------------------------- navTitleKey
+test("navTitleKey: exact and nested routes map to the nav label", () => {
+  assert.equal(navTitleKey("/dashboard"), "nav.dashboard");
+  assert.equal(navTitleKey("/customers"), "nav.customers");
+  assert.equal(navTitleKey("/customers/CUS-000001"), "nav.customers");
+  assert.equal(navTitleKey("/customers/CUS-000001/edit"), "nav.customers");
+});
+
+test("navTitleKey: longest prefix wins for nested settings routes", () => {
+  assert.equal(navTitleKey("/settings"), "nav.settings");
+  assert.equal(navTitleKey("/settings/users"), "nav.users");
+  assert.equal(navTitleKey("/settings/import"), "nav.import");
+});
+
+test("navTitleKey: unknown route falls back to dashboard", () => {
+  assert.equal(navTitleKey("/nope"), "nav.dashboard");
+});
+
+// ---------------------------------------------------------------- initialsFrom
+test("initialsFrom: uses up to two name words, uppercased", () => {
+  assert.equal(initialsFrom("Somchai Prasert", "a@b.co"), "SP");
+  assert.equal(initialsFrom("madonna", "a@b.co"), "M");
+  assert.equal(initialsFrom("  ก ข ค ", "a@b.co"), "กข");
+});
+
+test("initialsFrom: falls back to email, then '?'", () => {
+  assert.equal(initialsFrom(null, "korat@example.com"), "K");
+  assert.equal(initialsFrom("", ""), "?");
+  assert.equal(initialsFrom(null, null), "?");
+});
