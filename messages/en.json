@@ -1,7 +1,5 @@
 {
-  "app": {
-    "name": "MatchPoint CRM"
-  },
+  "app": { "name": "MatchPoint CRM", "subtitle": "RFID · Solution Sales" },
   "nav": {
     "group": {
       "main": "Main",
