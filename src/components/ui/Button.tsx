@@ -9,7 +9,7 @@ const VARIANTS: Record<Variant, string> = {
     "border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-blue-50",
   ghost:
     "border border-[var(--color-line)] text-[var(--color-ink)] hover:bg-gray-50",
-  danger: "bg-[#dc2626] text-white hover:opacity-90",
+  danger: "bg-[var(--color-danger)] text-white hover:opacity-90",
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
