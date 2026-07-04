@@ -152,7 +152,7 @@ git commit -m "feat(shell): add navTitleKey + initialsFrom helpers"
 **Interfaces:**
 - Consumes: `navTitleKey` (Task 1).
 - Produces: `<ScreenTitle />` — a client component rendering the localized current-screen title.
-- Produces: updated `Topbar` that no longer renders logout or the user block (both move to the Sidebar in Task 3).
+- Produces: updated `Topbar` that takes no props and no longer renders logout or the user block (both move to the Sidebar in Task 3). The layout call site (`<Topbar user={user} />` → `<Topbar />`) is updated in Task 3, Step 3, alongside the Sidebar change.
 
 - [ ] **Step 1: Create `src/components/shell/ScreenTitle.tsx`**
 
@@ -183,12 +183,11 @@ Full new file contents:
 ```tsx
 import { LocaleToggle } from "./LocaleToggle";
 import { ScreenTitle } from "./ScreenTitle";
-import type { CurrentUser } from "@/lib/auth";
 
 // App top bar: screen title on the left, language switch on the right. The
 // signed-in user and logout now live in the Sidebar footer. Space to the right
 // of LocaleToggle is intentionally reserved for a future notifications control.
-export function Topbar(_props: { user: CurrentUser }) {
+export function Topbar() {
   return (
     <header className="sticky top-0 z-10 flex h-[58px] items-center gap-4 border-b border-[var(--color-line)] bg-white px-6">
       <ScreenTitle />
@@ -198,7 +197,7 @@ export function Topbar(_props: { user: CurrentUser }) {
 }
 ```
 
-Note: `Topbar` keeps its `{ user }` prop signature so the layout call site in Task 3 stays valid; the value is unused here (prefixed `_props`) because the user now renders in the Sidebar.
+Note: `Topbar` now takes no props. Its call site in `src/app/(app)/layout.tsx` is updated from `<Topbar user={user} />` to `<Topbar />` in Task 3, Step 3 (the same task that edits the layout for the Sidebar), so the build stays green there.
 
 - [ ] **Step 3: Verify build + types**
 
@@ -375,7 +374,7 @@ export function Sidebar({ user }: { user: CurrentUser }) {
 }
 ```
 
-- [ ] **Step 3: Update the layout call site**
+- [ ] **Step 3: Update the layout call sites**
 
 In `src/app/(app)/layout.tsx`, change:
 
@@ -389,7 +388,19 @@ to:
           <Sidebar user={user} />
 ```
 
-(No other layout changes — `user` is already resolved above.)
+and change:
+
+```tsx
+        <Topbar user={user} />
+```
+
+to:
+
+```tsx
+        <Topbar />
+```
+
+(No other layout changes — `user` is already resolved above and still used for the `Sidebar` and the auth redirect.)
 
 - [ ] **Step 4: Verify build + tests**
 
