@@ -53,3 +53,13 @@ export function parseBahtToSatang(input: string): number | null {
   if (!Number.isFinite(baht)) return null;
   return bahtToSatang(baht);
 }
+
+/** Satang → baht string with grouped thousands and exactly 2 decimals, no ฿.
+ *  For the quotation PDF (the app UI uses formatBaht). */
+export function formatMoney2(satang: number): string {
+  const baht = (satang || 0) / 100;
+  return baht.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
