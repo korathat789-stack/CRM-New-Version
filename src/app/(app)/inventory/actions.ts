@@ -31,7 +31,7 @@ function readProduct(formData: FormData) {
     sell_price: parseBahtToSatang(String(formData.get("sell_price") ?? "")) ?? 0,
     safety_stock: Math.max(0, parseInt(String(formData.get("safety_stock") ?? "0"), 10) || 0),
     description: String(formData.get("description") ?? "").trim() || null,
-    is_active: String(formData.get("is_active") ?? "true") !== "false",
+    is_active: (formData.getAll("is_active").at(-1) ?? "true") !== "false",
   };
 }
 
