@@ -227,6 +227,7 @@
     "subtitle": "{count} shown",
     "newQuotation": "New Quotation",
     "noQuotations": "No quotations yet.",
+    "download": "Download PDF",
     "cols": {
       "number": "Quotation",
       "customer": "Customer",

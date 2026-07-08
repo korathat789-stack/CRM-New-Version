@@ -227,6 +227,7 @@
     "subtitle": "แสดง {count} รายการ",
     "newQuotation": "สร้างใบเสนอราคา",
     "noQuotations": "ยังไม่มีใบเสนอราคา",
+    "download": "ดาวน์โหลด PDF",
     "cols": {
       "number": "เลขที่",
       "customer": "ลูกค้า",
