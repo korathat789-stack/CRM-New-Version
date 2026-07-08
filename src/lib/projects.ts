@@ -139,6 +139,7 @@ export interface ProjectDetail extends ProjectRow {
   opportunity_code: string | null;
   customer_code: string | null;
   quotation_number: string | null;
+  fulfillment: string;
 }
 
 export async function getProject(id: string): Promise<ProjectDetail | null> {
@@ -146,7 +147,7 @@ export async function getProject(id: string): Promise<ProjectDetail | null> {
   const { data, error } = await supabase
     .from("projects")
     .select(
-      "id, code, name, stage, value, cost, budget, due_date, est_date, progress, customer_id, owner_id, opportunity_id, customers(name, code), profiles!projects_owner_id_fkey(full_name), opportunities(code)"
+      "id, code, name, stage, value, cost, budget, due_date, est_date, progress, fulfillment, customer_id, owner_id, opportunity_id, customers(name, code), profiles!projects_owner_id_fkey(full_name), opportunities(code)"
     )
     .eq("id", id)
     .is("deleted_at", null)
@@ -194,6 +195,7 @@ export async function getProject(id: string): Promise<ProjectDetail | null> {
     opportunity_id: (row.opportunity_id as string) ?? null,
     opportunity_code: row.opportunities?.code ?? null,
     quotation_number: quotationNumber,
+    fulfillment: (row.fulfillment as string) ?? "pending",
     margin_pct: marginPct(value, cost),
     margin_amount: marginAmount(value, cost),
   };

@@ -52,10 +52,14 @@ export function QuotationForm({
   vatRate,
   autoNumber,
   today,
+  initialCustomer = null,
+  opportunityId,
 }: {
   vatRate: number;
   autoNumber: string;
   today: string;
+  initialCustomer?: PickerCustomer | null;
+  opportunityId?: string;
 }) {
   const t = useTranslations("quotations.form");
   const tc = useTranslations("common");
@@ -63,7 +67,7 @@ export function QuotationForm({
   const formRef = useRef<HTMLFormElement>(null);
 
   const [state, formAction, pending] = useActionState(createQuotation, INITIAL);
-  const [customer, setCustomer] = useState<PickerCustomer | null>(null);
+  const [customer, setCustomer] = useState<PickerCustomer | null>(initialCustomer);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [vatMode, setVatMode] = useState<VatMode>("excluded");
   const [creditTerm, setCreditTerm] = useState(30);
@@ -105,6 +109,7 @@ export function QuotationForm({
   return (
     <form ref={formRef} action={formAction} className="mx-auto max-w-3xl">
       <input type="hidden" name="customer_id" value={customer?.id ?? ""} />
+      <input type="hidden" name="opportunity_id" value={opportunityId ?? ""} />
       <input type="hidden" name="vat_mode" value={vatMode} />
       <input type="hidden" name="credit_term" value={creditTerm} />
       <input type="hidden" name="intent" value={intent} />

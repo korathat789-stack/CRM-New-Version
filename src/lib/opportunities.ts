@@ -56,6 +56,7 @@ export interface OpportunityDetail {
   poc_result: string | null;
   signed_quote_url: string | null;
   authorized_by: string | null;
+  next_action_date: string | null;
   ctx: GateContext;
   completeness: ReturnType<typeof completeness>;
   next: StageCode | null;
@@ -70,7 +71,7 @@ export async function getOpportunity(
   const { data, error } = await supabase
     .from("opportunities")
     .select(
-      "id, code, title, stage, value, next_step, customer_id, poc_scheduled_at, poc_result, signed_quote_url, authorized_by, customers(name, type_id, owner_id)"
+      "id, code, title, stage, value, next_step, next_action_date, customer_id, poc_scheduled_at, poc_result, signed_quote_url, authorized_by, customers(name, type_id, owner_id)"
     )
     .eq("id", id)
     .is("deleted_at", null)
@@ -90,6 +91,7 @@ export async function getOpportunity(
     poc_result: string | null;
     signed_quote_url: string | null;
     authorized_by: string | null;
+    next_action_date: string | null;
     customers: { name: string; type_id: string | null; owner_id: string | null } | null;
   };
 
@@ -140,6 +142,7 @@ export async function getOpportunity(
     poc_result: row.poc_result,
     signed_quote_url: row.signed_quote_url,
     authorized_by: row.authorized_by,
+    next_action_date: row.next_action_date,
     ctx,
     completeness: completeness(ctx),
     next,

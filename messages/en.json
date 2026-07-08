@@ -76,8 +76,22 @@
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Overview",
-    "welcome": "Welcome to MatchPoint CRM",
-    "foundationNote": "Foundation ready. Feature pages arrive in the next phases."
+    "period": { "month": "Month", "quarter": "Quarter", "year": "Year" },
+    "kpi": {
+      "quotationTotal": "Quotation value",
+      "wonTotal": "Closed-won",
+      "openPipeline": "Open (not closed)",
+      "profit": "Profit"
+    },
+    "funnel": "Pipeline by stage",
+    "bottleneck": "Bottleneck: {stage}",
+    "count": "{count} deals",
+    "notifications": "Notifications",
+    "pendingApproval": "{count} opportunities awaiting sign-off",
+    "overdueTasks": "{count} overdue tasks",
+    "followupsDue": "{count} follow-ups due",
+    "allClear": "All clear — nothing needs attention.",
+    "viewTasks": "View tasks"
   },
   "customers": {
     "title": "Customers",
@@ -141,8 +155,14 @@
       "taxIdHint": "13 digits",
       "type": "Type",
       "province": "Province",
-      "address": "Address",
       "addressHint": "No., street, sub-district, district, province, postal code",
+      "segment": "Segment",
+      "segmentProject": "Project",
+      "segmentGeneral": "General",
+      "buyerRole": "Buyer role",
+      "roleEndUser": "End user",
+      "roleReseller": "Reseller",
+      "partnerName": "Reseller / partner name",
       "select": "Select…",
       "salesInsight": "Sales Insight",
       "annualRevenue": "Annual Revenue (฿)",
@@ -152,6 +172,12 @@
       "source": "Source",
       "industry": "Industry",
       "notes": "Notes",
+      "address": "Address",
+      "contactTitle": "Primary contact",
+      "contactName": "Contact name",
+      "contactEmail": "Email",
+      "contactPhone": "Phone",
+      "contactLine": "LINE ID",
       "save": "Save Customer",
       "errRequired": "Required",
       "errTaxId": "Tax ID must be 13 digits",
@@ -202,6 +228,20 @@
     },
     "total": "Total · {count} projects",
     "blended": "blended",
+    "form": {
+      "title": "New Project",
+      "customer": "Customer",
+      "selectCustomer": "Select a customer",
+      "name": "Project name",
+      "stage": "Stage",
+      "value": "Value (฿)",
+      "cost": "Cost (฿)",
+      "budget": "Budget (฿)",
+      "dueDate": "Due date",
+      "estDate": "Estimated date",
+      "save": "Create Project",
+      "required": "Customer and project name are required."
+    },
     "insight": {
       "valueCostMargin": "Value · Cost · Margin",
       "value": "Value",
@@ -220,6 +260,13 @@
       "none": "—",
       "editProject": "Edit Project",
       "backToList": "Back to projects"
+    },
+    "fulfillment": {
+      "label": "Fulfillment",
+      "pending": "Pending",
+      "delivering": "Delivering",
+      "installing": "Installing",
+      "closed": "Closed"
     }
   },
   "quotations": {
@@ -289,6 +336,14 @@
       "searchPlaceholder": "Search customer…",
       "sameTable": "Same table as Customers page",
       "newCustomer": "New customer"
+    },
+    "detail": {
+      "date": "Quotation date",
+      "expiring": "Expiring date",
+      "creditTerm": "Credit term",
+      "days": "days",
+      "customer": "Customer",
+      "back": "Back to quotations"
     }
   },
   "reports": {
@@ -430,7 +485,37 @@
     "title": "Settings",
     "subtitle": "Administration",
     "usersCard": "Users & Roles",
-    "usersDesc": "Add, edit and remove users; assign roles and permissions."
+    "usersDesc": "Add, edit and remove users; assign roles and permissions.",
+    "catalogCard": "Categories & Grades",
+    "catalogDesc": "Manage customer types and the A–F grade thresholds.",
+    "catalog": {
+      "title": "Categories & Grades",
+      "customerTypes": "Customer types",
+      "code": "Code",
+      "labelEn": "Label (EN)",
+      "labelTh": "Label (TH)",
+      "addType": "Add type",
+      "inUse": "This type is in use and cannot be deleted.",
+      "gradeBands": "Grade thresholds (฿, minimum)",
+      "basisAnnual": "Annual",
+      "basisLifetime": "Lifetime",
+      "grade": "Grade",
+      "minBaht": "Minimum (฿)",
+      "saveGrades": "Save thresholds",
+      "gradesNote": "Grade is the lowest band whose minimum the revenue meets. F is always the floor."
+    }
+  },
+  "import": {
+    "title": "Import Customers",
+    "subtitle": "Paste CSV or upload a .csv file",
+    "columns": "Columns: name, tax_id, province, industry, source, annual_revenue, contact_name, contact_email, contact_phone (first row = header).",
+    "placeholder": "name,tax_id,province,annual_revenue\\nAcme Co.,0105551023417,Bangkok,8400000",
+    "upload": "Upload CSV",
+    "preview": "Preview ({count} rows)",
+    "import": "Import {count} customers",
+    "noRows": "No valid rows detected.",
+    "done": "Imported {inserted} customers ({skipped} skipped).",
+    "forbidden": "Admin only."
   },
   "gates": {
     "req": {
@@ -482,7 +567,8 @@
       "managerOverride": "Manager override",
       "overrideOnly": "Only a Manager or Admin can override.",
       "close": "Close",
-      "stageUpdated": "Stage updated."
+      "stageUpdated": "Stage updated.",
+      "createQuotation": "Create Quotation"
     },
     "form": {
       "title": "New Opportunity",
@@ -491,8 +577,42 @@
       "oppTitle": "Opportunity title",
       "value": "Value (฿)",
       "nextStep": "Next step",
+      "nextActionDate": "Follow-up date",
       "save": "Create Opportunity",
       "required": "Customer and title are required."
+    }
+  },
+  "tasks": {
+    "title": "Tasks",
+    "subtitle": "{count} shown",
+    "addPlaceholder": "Add a task…",
+    "add": "Add",
+    "noTasks": "No tasks.",
+    "filter": { "all": "All", "open": "Open", "done": "Done" },
+    "priority": { "high": "HIGH", "medium": "MED", "low": "LOW" },
+    "due": "Due",
+    "overdue": "overdue",
+    "noDue": "No due date",
+    "delete": "Delete"
+  },
+  "activity": {
+    "title": "Log activity",
+    "add": "Add Activity",
+    "type": "Type",
+    "date": "Date",
+    "summary": "Detail",
+    "nextStep": "Next step",
+    "quotationNo": "Quotation No.",
+    "types": {
+      "call": "Call",
+      "email": "Email",
+      "meeting": "Meeting",
+      "presentation": "Presentation",
+      "zoom": "Online / Zoom",
+      "quotation": "Quotation",
+      "poc": "POC",
+      "line": "LINE",
+      "note": "Note"
     }
   }
 }

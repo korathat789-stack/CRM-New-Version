@@ -165,6 +165,17 @@ export async function createQuotation(
     .insert(items);
   if (itemsError) return { ok: false, error: itemsError.message };
 
+  // Revenue link: when issued for an opportunity, push the total back so the
+  // opportunity value reflects the real quoted amount (their tracking weakness).
+  const oppId = String(formData.get("opportunity_id") ?? "");
+  if (oppId && intent !== "draft") {
+    await supabase
+      .from("opportunities")
+      .update({ value: totals.total })
+      .eq("id", oppId);
+    revalidatePath(`/opportunities/${oppId}`);
+  }
+
   revalidatePath("/quotations");
   redirect("/quotations");
 }

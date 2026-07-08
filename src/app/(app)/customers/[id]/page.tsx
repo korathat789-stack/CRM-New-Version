@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations, getLocale } from "next-intl/server";
-import { Phone, Mail, MessageCircle, Plus } from "lucide-react";
+import { Phone, Mail, MessageCircle } from "lucide-react";
 import { Card, CardBody } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { GradeBadge } from "@/components/ui/GradeBadge";
 import { StageBadge } from "@/components/ui/StageBadge";
 import { GradeBasisToggle } from "@/components/customers/GradeBasisToggle";
 import { DeleteCustomerDialog } from "@/components/customers/DeleteCustomerDialog";
+import { AddActivityButton } from "@/components/activities/AddActivityButton";
 import { getCustomer } from "@/lib/customers";
-import { isSupabaseConfigured } from "@/lib/config";
+import { isSupabaseConfigured, getGradeBands } from "@/lib/config";
 import { gradeForCustomer, type GradeBasis } from "@/lib/grade";
 import { formatBahtShort } from "@/lib/money";
 
@@ -31,7 +32,8 @@ export default async function CustomerPage({
   const tc = await getTranslations("common");
   const locale = await getLocale();
   const basis: GradeBasis = basisParam === "lifetime" ? "lifetime" : "annual";
-  const grade = gradeForCustomer(customer, basis);
+  const bands = await getGradeBands(basis);
+  const grade = gradeForCustomer(customer, basis, bands);
 
   const typeLabel = customer.type
     ? locale === "th"
@@ -77,10 +79,7 @@ export default async function CustomerPage({
               code={customer.code ?? ""}
               name={customer.name}
             />
-            <Button disabled title={tc("comingSoon")}>
-              <Plus className="h-4 w-4" aria-hidden />
-              {t("addActivity")}
-            </Button>
+            <AddActivityButton customerId={customer.id} />
           </div>
         </div>
 

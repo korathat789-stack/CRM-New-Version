@@ -7,10 +7,9 @@ import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/states/StateViews";
 import { CustomerSearch } from "@/components/customers/CustomerSearch";
 import { GradeBasisToggle } from "@/components/customers/GradeBasisToggle";
-import { listCustomers } from "@/lib/customers";
+import { listCustomers, type CustomerListItem } from "@/lib/customers";
 import { isSupabaseConfigured } from "@/lib/config";
-import { getCustomer } from "@/lib/customers";
-import { gradeForCustomer, type Grade, type GradeBasis } from "@/lib/grade";
+import { type Grade, type GradeBasis } from "@/lib/grade";
 import { formatBahtShort } from "@/lib/money";
 
 type SP = {
@@ -29,9 +28,7 @@ export default async function CustomersPage({
   const t = await getTranslations("customers");
   const locale = await getLocale();
   const basis: GradeBasis = sp.basis === "lifetime" ? "lifetime" : "annual";
-  const grade = (["A", "B", "C", "D", "F"] as Grade[]).includes(
-    sp.grade as Grade
-  )
+  const grade = (["A", "B", "C", "D", "F"] as Grade[]).includes(sp.grade as Grade)
     ? (sp.grade as Grade)
     : null;
 
@@ -46,8 +43,10 @@ export default async function CustomersPage({
     );
   }
 
+  // One round-trip for the list (incl. open-pipeline rollup). The right-hand
+  // preview reuses a row from this list — no extra per-selection query.
   const customers = await listCustomers({ q: sp.q, grade: grade ?? undefined, basis });
-  const selected = sp.sel ? await getCustomer(sp.sel) : null;
+  const selected = sp.sel ? customers.find((c) => c.id === sp.sel) ?? null : null;
 
   const buildHref = (sel: string) => {
     const next = new URLSearchParams();
@@ -106,15 +105,10 @@ export default async function CustomersPage({
           </div>
         </Card>
 
-        {/* Right: detail preview */}
+        {/* Right: detail preview (reuses the selected list row) */}
         <div className="hidden flex-1 lg:block">
           {selected ? (
-            <Preview
-              customer={selected}
-              basis={basis}
-              t={t}
-              locale={locale}
-            />
+            <Preview customer={selected} t={t} locale={locale} />
           ) : (
             <Card>
               <CardBody className="flex min-h-[300px] items-center justify-center text-sm text-gray-400">
@@ -158,31 +152,23 @@ function Header({
 
 function Preview({
   customer,
-  basis,
   t,
   locale,
 }: {
-  customer: NonNullable<Awaited<ReturnType<typeof getCustomer>>>;
-  basis: GradeBasis;
+  customer: CustomerListItem;
   t: Awaited<ReturnType<typeof getTranslations>>;
   locale: string;
 }) {
-  const grade = gradeForCustomer(customer, basis);
-  const typeLabel = customer.type
-    ? locale === "th"
-      ? customer.type.label_th
-      : customer.type.label_en
-    : null;
+  const typeLabel =
+    locale === "th" ? customer.type_label_th : customer.type_label_en;
 
   return (
     <Card>
       <CardBody className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
-          <GradeBadge grade={grade} size="md" />
+          <GradeBadge grade={customer.grade} size="md" />
           <div className="min-w-0 flex-1">
-            <div className="truncate font-bold text-gray-900">
-              {customer.name}
-            </div>
+            <div className="truncate font-bold text-gray-900">{customer.name}</div>
             <div className="truncate text-xs text-gray-500">
               {customer.code}
               {typeLabel ? ` · ${typeLabel}` : ""}
@@ -194,15 +180,9 @@ function Preview({
         </div>
 
         <div className="grid grid-cols-3 gap-2.5">
-          <Stat
-            label={t("insight.lifetimeRevenue")}
-            value={formatBahtShort(customer.lifetime_revenue)}
-          />
-          <Stat
-            label={t("insight.openPipeline")}
-            value={formatBahtShort(customer.open_pipeline)}
-          />
-          <Stat label={t("tabs.projects")} value={String(customer.projects.length)} />
+          <Stat label={t("insight.lifetimeRevenue")} value={formatBahtShort(customer.lifetime_revenue)} />
+          <Stat label={t("insight.openPipeline")} value={formatBahtShort(customer.open_pipeline)} />
+          <Stat label={t("details.owner")} value={customer.owner_name ?? "—"} />
         </div>
       </CardBody>
     </Card>
@@ -213,7 +193,7 @@ function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-md border border-dashed border-gray-300 p-2.5">
       <div className="text-[10px] uppercase text-gray-500">{label}</div>
-      <div className="text-base font-bold text-gray-900">{value}</div>
+      <div className="truncate text-base font-bold text-gray-900">{value}</div>
     </div>
   );
 }

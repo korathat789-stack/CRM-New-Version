@@ -41,6 +41,13 @@ export default async function EditCustomerPage({
         source: customer.source ?? "",
         industry: customer.industry ?? "",
         notes: customer.notes ?? "",
+        segment: customer.segment ?? "",
+        buyer_role: customer.buyer_role ?? "",
+        partner_name: customer.partner_name ?? "",
+        contact_name: customer.primary_contact?.name ?? "",
+        contact_email: customer.primary_contact?.email ?? "",
+        contact_phone: customer.primary_contact?.phone ?? "",
+        contact_line: customer.primary_contact?.line_id ?? "",
       }}
     />
   );

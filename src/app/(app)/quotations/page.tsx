@@ -63,27 +63,32 @@ export default async function QuotationsPage() {
               return (
                 <div
                   key={r.id}
-                  className="grid grid-cols-[1.2fr_1.6fr_1fr_0.9fr_1fr_auto] items-center gap-2 border-b border-[var(--color-line-soft)] px-4 py-2.5 text-xs"
+                  className="grid grid-cols-[1.2fr_1.6fr_1fr_0.9fr_1fr_auto] items-center gap-2 border-b border-[var(--color-line-soft)] px-4 py-2.5 text-xs hover:bg-gray-50"
                 >
-                  <div className="font-semibold text-gray-900">{r.number}</div>
-                  <div className="text-gray-700">{r.customer_name ?? "—"}</div>
-                  <div className="text-right font-bold text-gray-900">
-                    {formatBahtShort(r.total)}
-                  </div>
-                  <div className="text-gray-500">
-                    {new Date(r.quotation_date).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "short",
-                    })}
-                  </div>
-                  <div>
-                    <span
-                      className="pill inline-flex px-2 py-0.5 text-[10px] font-medium"
-                      style={{ background: color.bg, color: color.fg }}
-                    >
-                      {t(`status.${r.status}`)}
-                    </span>
-                  </div>
+                  <Link
+                    href={`/quotations/${r.id}`}
+                    className="col-span-5 grid grid-cols-subgrid items-center"
+                  >
+                    <div className="font-semibold text-gray-900">{r.number}</div>
+                    <div className="text-gray-700">{r.customer_name ?? "—"}</div>
+                    <div className="text-right font-bold text-gray-900">
+                      {formatBahtShort(r.total)}
+                    </div>
+                    <div className="text-gray-500">
+                      {new Date(r.quotation_date).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                      })}
+                    </div>
+                    <div>
+                      <span
+                        className="pill inline-flex px-2 py-0.5 text-[10px] font-medium"
+                        style={{ background: color.bg, color: color.fg }}
+                      >
+                        {t(`status.${r.status}`)}
+                      </span>
+                    </div>
+                  </Link>
                   <a
                     href={`/quotations/${r.id}/pdf`}
                     download

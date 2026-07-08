@@ -7,17 +7,19 @@ import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { GradeBadge } from "@/components/ui/GradeBadge";
 import { CustomerPicker } from "@/components/quotations/CustomerPicker";
-import { createOpportunity } from "@/app/(app)/opportunities/actions";
+import { createProject } from "@/app/(app)/projects/actions";
 import type { PickerCustomer } from "@/app/(app)/quotations/actions";
+import { ALL_STAGES, STAGES } from "@/lib/stages";
 import type { Grade } from "@/lib/grade";
 
 const INITIAL: { ok: boolean; error?: string } = { ok: false };
 
-export function OpportunityForm() {
-  const t = useTranslations("opportunities.form");
+export function ProjectForm() {
+  const t = useTranslations("projects.form");
   const tc = useTranslations("common");
+  const ts = useTranslations();
   const router = useRouter();
-  const [state, formAction, pending] = useActionState(createOpportunity, INITIAL);
+  const [state, formAction, pending] = useActionState(createProject, INITIAL);
   const [customer, setCustomer] = useState<PickerCustomer | null>(null);
   const [pickerOpen, setPickerOpen] = useState(false);
 
@@ -60,23 +62,36 @@ export function OpportunityForm() {
 
           <label className="flex flex-col gap-1">
             <span className="text-xs font-semibold text-gray-600">
-              {t("oppTitle")} <span className="text-[#dc2626]">*</span>
+              {t("name")} <span className="text-[#dc2626]">*</span>
             </span>
-            <input name="title" className="input" />
+            <input name="name" className="input" />
+          </label>
+
+          <label className="flex flex-col gap-1">
+            <span className="text-xs font-semibold text-gray-600">{t("stage")}</span>
+            <select name="stage" defaultValue="inquiry" className="input">
+              {ALL_STAGES.map((s) => (
+                <option key={s} value={s}>
+                  {ts(STAGES[s].labelKey)}
+                </option>
+              ))}
+            </select>
           </label>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <NumField name="value" label={t("value")} />
+            <NumField name="cost" label={t("cost")} />
+            <NumField name="budget" label={t("budget")} />
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-semibold text-gray-600">{t("value")}</span>
-              <input name="value" inputMode="numeric" placeholder="0" className="input" />
+              <span className="text-xs font-semibold text-gray-600">{t("dueDate")}</span>
+              <input type="date" name="due_date" className="input" />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-semibold text-gray-600">{t("nextStep")}</span>
-              <input name="next_step" className="input" />
-            </label>
-            <label className="flex flex-col gap-1">
-              <span className="text-xs font-semibold text-gray-600">{t("nextActionDate")}</span>
-              <input type="date" name="next_action_date" className="input" />
+              <span className="text-xs font-semibold text-gray-600">{t("estDate")}</span>
+              <input type="date" name="est_date" className="input" />
             </label>
           </div>
 
@@ -106,5 +121,14 @@ export function OpportunityForm() {
         />
       )}
     </form>
+  );
+}
+
+function NumField({ name, label }: { name: string; label: string }) {
+  return (
+    <label className="flex flex-col gap-1">
+      <span className="text-xs font-semibold text-gray-600">{label}</span>
+      <input name={name} inputMode="numeric" placeholder="0" className="input text-right" />
+    </label>
   );
 }

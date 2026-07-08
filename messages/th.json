@@ -76,8 +76,22 @@
   "dashboard": {
     "title": "แดชบอร์ด",
     "subtitle": "ภาพรวม",
-    "welcome": "ยินดีต้อนรับสู่ MatchPoint CRM",
-    "foundationNote": "วางโครงสร้างพื้นฐานเรียบร้อย หน้าฟีเจอร์จะมาในเฟสถัดไป"
+    "period": { "month": "รายเดือน", "quarter": "รายไตรมาส", "year": "รายปี" },
+    "kpi": {
+      "quotationTotal": "มูลค่าใบเสนอราคา",
+      "wonTotal": "ปิดการขายได้",
+      "openPipeline": "ยังไม่ปิด (ค้างอยู่)",
+      "profit": "กำไร"
+    },
+    "funnel": "ไปป์ไลน์ตามขั้น",
+    "bottleneck": "คอขวด: {stage}",
+    "count": "{count} ดีล",
+    "notifications": "การแจ้งเตือน",
+    "pendingApproval": "{count} โอกาสรอการอนุมัติ",
+    "overdueTasks": "{count} งานเกินกำหนด",
+    "followupsDue": "{count} รายการถึงกำหนดติดตาม",
+    "allClear": "เรียบร้อย — ไม่มีรายการที่ต้องดำเนินการ",
+    "viewTasks": "ดูงาน"
   },
   "customers": {
     "title": "ลูกค้า",
@@ -141,8 +155,14 @@
       "taxIdHint": "13 หลัก",
       "type": "ประเภท",
       "province": "จังหวัด",
-      "address": "ที่อยู่",
       "addressHint": "เลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์",
+      "segment": "ลักษณะ",
+      "segmentProject": "โครงการ",
+      "segmentGeneral": "ทั่วไป",
+      "buyerRole": "บทบาท",
+      "roleEndUser": "ผู้ใช้งาน (End user)",
+      "roleReseller": "ขายต่อ (Reseller)",
+      "partnerName": "ชื่อผู้ขายต่อ / พาร์ทเนอร์",
       "select": "เลือก…",
       "salesInsight": "ข้อมูลการขาย",
       "annualRevenue": "รายได้ต่อปี (฿)",
@@ -152,6 +172,12 @@
       "source": "แหล่งที่มา",
       "industry": "อุตสาหกรรม",
       "notes": "หมายเหตุ",
+      "address": "ที่อยู่",
+      "contactTitle": "ผู้ติดต่อหลัก",
+      "contactName": "ชื่อผู้ติดต่อ",
+      "contactEmail": "อีเมล",
+      "contactPhone": "เบอร์โทร",
+      "contactLine": "LINE ID",
       "save": "บันทึกลูกค้า",
       "errRequired": "จำเป็นต้องกรอก",
       "errTaxId": "เลขผู้เสียภาษีต้องมี 13 หลัก",
@@ -202,6 +228,20 @@
     },
     "total": "รวม · {count} โครงการ",
     "blended": "เฉลี่ย",
+    "form": {
+      "title": "เพิ่มโครงการ",
+      "customer": "ลูกค้า",
+      "selectCustomer": "เลือกลูกค้า",
+      "name": "ชื่อโครงการ",
+      "stage": "ขั้น",
+      "value": "มูลค่า (฿)",
+      "cost": "ต้นทุน (฿)",
+      "budget": "งบประมาณ (฿)",
+      "dueDate": "วันที่กำหนดส่ง",
+      "estDate": "วันที่ประเมิน",
+      "save": "สร้างโครงการ",
+      "required": "ต้องระบุลูกค้าและชื่อโครงการ"
+    },
     "insight": {
       "valueCostMargin": "มูลค่า · ต้นทุน · มาร์จิน",
       "value": "มูลค่า",
@@ -220,6 +260,13 @@
       "none": "—",
       "editProject": "แก้ไขโครงการ",
       "backToList": "กลับไปที่รายการโครงการ"
+    },
+    "fulfillment": {
+      "label": "การส่งมอบงาน",
+      "pending": "รอดำเนินการ",
+      "delivering": "รอส่งของ",
+      "installing": "รอติดตั้ง",
+      "closed": "ปิดงาน"
     }
   },
   "quotations": {
@@ -289,6 +336,14 @@
       "searchPlaceholder": "ค้นหาลูกค้า…",
       "sameTable": "ตารางเดียวกับหน้าลูกค้า",
       "newCustomer": "เพิ่มลูกค้าใหม่"
+    },
+    "detail": {
+      "date": "วันที่ออก",
+      "expiring": "วันหมดอายุ",
+      "creditTerm": "เครดิต",
+      "days": "วัน",
+      "customer": "ลูกค้า",
+      "back": "กลับไปที่ใบเสนอราคา"
     }
   },
   "reports": {
@@ -430,7 +485,37 @@
     "title": "ตั้งค่า",
     "subtitle": "การดูแลระบบ",
     "usersCard": "ผู้ใช้และสิทธิ์",
-    "usersDesc": "เพิ่ม แก้ไข และลบผู้ใช้ กำหนดบทบาทและสิทธิ์"
+    "usersDesc": "เพิ่ม แก้ไข และลบผู้ใช้ กำหนดบทบาทและสิทธิ์",
+    "catalogCard": "ประเภทและเกรด",
+    "catalogDesc": "จัดการประเภทลูกค้าและเกณฑ์เกรด A–F",
+    "catalog": {
+      "title": "ประเภทและเกรด",
+      "customerTypes": "ประเภทลูกค้า",
+      "code": "รหัส",
+      "labelEn": "ชื่อ (EN)",
+      "labelTh": "ชื่อ (TH)",
+      "addType": "เพิ่มประเภท",
+      "inUse": "ประเภทนี้มีการใช้งานอยู่ ไม่สามารถลบได้",
+      "gradeBands": "เกณฑ์เกรด (฿, ขั้นต่ำ)",
+      "basisAnnual": "รายปี",
+      "basisLifetime": "ตลอดอายุ",
+      "grade": "เกรด",
+      "minBaht": "ขั้นต่ำ (฿)",
+      "saveGrades": "บันทึกเกณฑ์",
+      "gradesNote": "เกรดคือช่วงต่ำสุดที่รายได้ถึงเกณฑ์ขั้นต่ำ โดย F เป็นระดับพื้นฐานเสมอ"
+    }
+  },
+  "import": {
+    "title": "นำเข้าลูกค้า",
+    "subtitle": "วาง CSV หรืออัปโหลดไฟล์ .csv",
+    "columns": "คอลัมน์: name, tax_id, province, industry, source, annual_revenue, contact_name, contact_email, contact_phone (แถวแรก = หัวตาราง)",
+    "placeholder": "name,tax_id,province,annual_revenue\\nAcme Co.,0105551023417,Bangkok,8400000",
+    "upload": "อัปโหลด CSV",
+    "preview": "ตัวอย่าง ({count} แถว)",
+    "import": "นำเข้า {count} ลูกค้า",
+    "noRows": "ไม่พบแถวที่ถูกต้อง",
+    "done": "นำเข้า {inserted} ลูกค้า (ข้าม {skipped})",
+    "forbidden": "เฉพาะผู้ดูแลระบบ"
   },
   "gates": {
     "req": {
@@ -482,7 +567,8 @@
       "managerOverride": "ผู้จัดการอนุมัติข้าม",
       "overrideOnly": "เฉพาะผู้จัดการหรือผู้ดูแลเท่านั้นที่ข้ามได้",
       "close": "ปิด",
-      "stageUpdated": "อัปเดตขั้นแล้ว"
+      "stageUpdated": "อัปเดตขั้นแล้ว",
+      "createQuotation": "สร้างใบเสนอราคา"
     },
     "form": {
       "title": "โอกาสการขายใหม่",
@@ -491,8 +577,42 @@
       "oppTitle": "ชื่อโอกาส",
       "value": "มูลค่า (฿)",
       "nextStep": "ขั้นถัดไป",
+      "nextActionDate": "วันติดตามถัดไป",
       "save": "สร้างโอกาส",
       "required": "ต้องระบุลูกค้าและชื่อโอกาส"
+    }
+  },
+  "tasks": {
+    "title": "งาน",
+    "subtitle": "แสดง {count} รายการ",
+    "addPlaceholder": "เพิ่มงาน…",
+    "add": "เพิ่ม",
+    "noTasks": "ไม่มีงาน",
+    "filter": { "all": "ทั้งหมด", "open": "ค้างอยู่", "done": "เสร็จแล้ว" },
+    "priority": { "high": "สูง", "medium": "กลาง", "low": "ต่ำ" },
+    "due": "กำหนด",
+    "overdue": "เกินกำหนด",
+    "noDue": "ไม่มีกำหนด",
+    "delete": "ลบ"
+  },
+  "activity": {
+    "title": "บันทึกกิจกรรม",
+    "add": "เพิ่มกิจกรรม",
+    "type": "ประเภท",
+    "date": "วันที่",
+    "summary": "รายละเอียด",
+    "nextStep": "สิ่งที่ต้องทำต่อ",
+    "quotationNo": "เลขใบเสนอราคา",
+    "types": {
+      "call": "โทร",
+      "email": "อีเมล",
+      "meeting": "ประชุม",
+      "presentation": "นำเสนอ",
+      "zoom": "ออนไลน์ / Zoom",
+      "quotation": "ใบเสนอราคา",
+      "poc": "ทดสอบ POC",
+      "line": "LINE",
+      "note": "บันทึก"
     }
   }
 }
