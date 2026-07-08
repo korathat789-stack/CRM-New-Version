@@ -11,6 +11,7 @@ import {
   paymentRowAmount,
   pdfFilename,
 } from "../quotationPdfModel";
+import { stockStatus, stockValue } from "../inventory";
 
 // ---------------------------------------------------------------- money
 test("money: short form uses M/K and trims zeros", () => {
@@ -203,4 +204,19 @@ test("groupLinesByCategory: subheader on category change; items numbered sequent
     rows.map((r) => (r.kind === "subheader" ? `#${r.category}` : `${r.no}:${r.description}`)),
     ["#RFID", "1:A", "2:B", "#Software", "3:C", "4:D"]
   );
+});
+
+// ---------------------------------------------------------------- inventory
+test("inventory: stock status from qty vs safety", () => {
+  assert.equal(stockStatus(0, 3), "out");   // zero → out
+  assert.equal(stockStatus(3, 3), "low");   // at safety → low
+  assert.equal(stockStatus(2, 3), "low");   // below safety → low
+  assert.equal(stockStatus(4, 3), "in_stock");
+  assert.equal(stockStatus(5, 0), "in_stock"); // no safety set
+  assert.equal(stockStatus(0, 0), "out");
+});
+
+test("inventory: stock value is qty x cost in satang", () => {
+  assert.equal(stockValue(8, 5_200_000), 41_600_000);
+  assert.equal(stockValue(0, 5_200_000), 0);
 });
