@@ -4,7 +4,8 @@
     "group": {
       "main": "หลัก",
       "reports": "รายงาน",
-      "admin": "ผู้ดูแลระบบ"
+      "admin": "ผู้ดูแลระบบ",
+      "warehouse": "คลังสินค้า"
     },
     "dashboard": "แดชบอร์ด",
     "customers": "ลูกค้า",
@@ -12,6 +13,7 @@
     "projects": "โครงการ",
     "quotations": "ใบเสนอราคา",
     "tasks": "งาน",
+    "inventory": "คลังสินค้า",
     "salesReport": "รายงานการขาย",
     "costBudgeting": "งบประมาณต้นทุน",
     "accounting": "บัญชี",
@@ -614,5 +616,69 @@
       "line": "LINE",
       "note": "บันทึก"
     }
+  },
+  "inventory": {
+    "title": "คลังสินค้า",
+    "subtitle": "{count} รายการสินค้า",
+    "newProduct": "เพิ่มสินค้า",
+    "editProduct": "แก้ไขสินค้า",
+    "noProducts": "ยังไม่มีสินค้า",
+    "search": "ค้นหา SKU หรือชื่อ",
+    "summary": {
+      "skus": "จำนวน SKU",
+      "lowOut": "ใกล้หมด / หมด",
+      "stockValue": "มูลค่าสต็อก"
+    },
+    "cols": {
+      "sku": "SKU",
+      "name": "สินค้า",
+      "category": "หมวด",
+      "qty": "คงเหลือ",
+      "status": "สถานะ",
+      "value": "มูลค่าสต็อก",
+      "cost": "ต้นทุน",
+      "sell": "ราคาขาย"
+    },
+    "status": {
+      "all": "ทุกสถานะ",
+      "in_stock": "มีสต็อก",
+      "low": "ใกล้หมด",
+      "out": "หมดสต็อก"
+    },
+    "category": {
+      "all": "ทุกหมวด",
+      "rfid_readers": "เครื่องอ่าน RFID",
+      "antennas": "เสาอากาศ",
+      "tags": "แท็ก",
+      "printers": "เครื่องพิมพ์",
+      "networking": "อุปกรณ์เครือข่าย",
+      "accessories": "อุปกรณ์เสริม",
+      "software": "ซอฟต์แวร์"
+    },
+    "form": {
+      "title": "สินค้า",
+      "code": "SKU",
+      "name": "ชื่อ",
+      "category": "หมวด",
+      "unit": "หน่วย",
+      "cost": "ต้นทุน (฿)",
+      "sell": "ราคาขาย (฿)",
+      "safety": "สต็อกปลอดภัย",
+      "description": "รายละเอียด",
+      "active": "ใช้งาน",
+      "save": "บันทึกสินค้า",
+      "required": "กรุณากรอก SKU ชื่อ และหมวด",
+      "duplicate": "SKU นี้มีอยู่แล้ว"
+    },
+    "adjust": {
+      "title": "ปรับสต็อก",
+      "action": "ปรับ",
+      "delta": "จำนวนที่เปลี่ยน (+/-)",
+      "note": "เหตุผล / หมายเหตุ",
+      "save": "ยืนยัน",
+      "insufficient": "สต็อกไม่พอสำหรับการปรับนี้",
+      "invalid": "กรอกจำนวนเต็มที่ไม่ใช่ศูนย์"
+    },
+    "deleteConfirm": "ลบสินค้านี้?"
   }
 }

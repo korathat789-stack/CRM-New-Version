@@ -4,7 +4,8 @@
     "group": {
       "main": "Main",
       "reports": "Reports",
-      "admin": "Admin"
+      "admin": "Admin",
+      "warehouse": "Warehouse"
     },
     "dashboard": "Dashboard",
     "customers": "Customers",
@@ -12,6 +13,7 @@
     "projects": "Projects",
     "quotations": "Quotations",
     "tasks": "Tasks",
+    "inventory": "Inventory",
     "salesReport": "Sales Report",
     "costBudgeting": "Cost Budgeting",
     "accounting": "Accounting",
@@ -614,5 +616,69 @@
       "line": "LINE",
       "note": "Note"
     }
+  },
+  "inventory": {
+    "title": "Inventory",
+    "subtitle": "{count} products",
+    "newProduct": "New product",
+    "editProduct": "Edit product",
+    "noProducts": "No products yet.",
+    "search": "Search SKU or name",
+    "summary": {
+      "skus": "Total SKUs",
+      "lowOut": "Low / Out",
+      "stockValue": "Stock Value"
+    },
+    "cols": {
+      "sku": "SKU",
+      "name": "Product",
+      "category": "Category",
+      "qty": "On hand",
+      "status": "Status",
+      "value": "Stock value",
+      "cost": "Cost",
+      "sell": "Sell"
+    },
+    "status": {
+      "all": "All statuses",
+      "in_stock": "In Stock",
+      "low": "Low",
+      "out": "Out of stock"
+    },
+    "category": {
+      "all": "All categories",
+      "rfid_readers": "RFID Readers",
+      "antennas": "Antennas",
+      "tags": "Tags",
+      "printers": "Printers",
+      "networking": "Networking",
+      "accessories": "Accessories",
+      "software": "Software"
+    },
+    "form": {
+      "title": "Product",
+      "code": "SKU",
+      "name": "Name",
+      "category": "Category",
+      "unit": "Unit",
+      "cost": "Cost (฿)",
+      "sell": "Sell price (฿)",
+      "safety": "Safety stock",
+      "description": "Description",
+      "active": "Active",
+      "save": "Save product",
+      "required": "Please fill in SKU, name and category.",
+      "duplicate": "That SKU already exists."
+    },
+    "adjust": {
+      "title": "Adjust stock",
+      "action": "Adjust",
+      "delta": "Change (+/-)",
+      "note": "Reason / note",
+      "save": "Apply",
+      "insufficient": "Not enough stock for this change.",
+      "invalid": "Enter a non-zero whole number."
+    },
+    "deleteConfirm": "Delete this product?"
   }
 }
