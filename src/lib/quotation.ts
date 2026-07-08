@@ -7,6 +7,9 @@ export interface QuotationLineInput {
   unit_price: number; // satang
   qty: number;
   discount_pct: number; // 0..100
+  model?: string | null;
+  uom?: string | null;
+  category?: string | null;
 }
 
 export type VatMode = "excluded" | "included";

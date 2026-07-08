@@ -55,9 +55,30 @@ export async function searchCustomersForPicker(
 
 interface RawLine {
   description: string;
+  model?: string;
+  uom?: string;
+  category?: string;
   unit_price: string; // baht string
   qty: string;
   discount_pct: string;
+}
+
+interface RawPaymentTerm {
+  percent: string;
+  condition: string;
+}
+
+/** Parse the serialized payment-term rows: keep only rows with a condition,
+ *  coerce percent to a number. Returns [] when unparseable/empty. */
+function parsePaymentTerms(raw: string): { percent: number; condition: string }[] {
+  try {
+    const rows = JSON.parse(raw || "[]") as RawPaymentTerm[];
+    return rows
+      .filter((p) => p.condition?.trim())
+      .map((p) => ({ percent: Number(p.percent) || 0, condition: p.condition.trim() }));
+  } catch {
+    return [];
+  }
 }
 
 export async function createQuotation(
@@ -86,6 +107,9 @@ export async function createQuotation(
     .filter((l) => l.description?.trim())
     .map((l) => ({
       description: l.description.trim(),
+      model: l.model?.trim() || null,
+      uom: l.uom?.trim() || null,
+      category: l.category?.trim() || null,
       unit_price: parseBahtToSatang(l.unit_price) ?? 0,
       qty: Number(l.qty) || 0,
       discount_pct: Number(l.discount_pct) || 0,
@@ -113,6 +137,8 @@ export async function createQuotation(
       total: totals.total,
       remark: String(formData.get("remark") ?? "") || null,
       terms: String(formData.get("terms") ?? "") || null,
+      validity_days: Number(formData.get("validity_days") ?? 30) || 30,
+      payment_terms: parsePaymentTerms(String(formData.get("payment_terms") ?? "[]")),
       status: intent === "draft" ? "draft" : "sent",
       sent_at: intent === "draft" ? null : new Date().toISOString(),
       created_by: user.id,
@@ -126,6 +152,9 @@ export async function createQuotation(
     quotation_id: quote.id,
     line_no: i + 1,
     description: l.description,
+    model: l.model ?? null,
+    uom: l.uom ?? null,
+    category: l.category ?? null,
     unit_price: l.unit_price,
     qty: l.qty,
     discount_pct: l.discount_pct,
