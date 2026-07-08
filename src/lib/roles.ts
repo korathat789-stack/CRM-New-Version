@@ -14,7 +14,7 @@ export function isRole(value: string | null | undefined): value is Role {
   return value === "admin" || value === "manager" || value === "sales";
 }
 
-export type NavGroupId = "main" | "reports" | "admin";
+export type NavGroupId = "main" | "warehouse" | "reports" | "admin";
 
 export interface NavItem {
   /** route href */
@@ -45,6 +45,14 @@ export const NAV: NavGroup[] = [
       { href: "/projects", labelKey: "nav.projects", icon: "FolderKanban" },
       { href: "/quotations", labelKey: "nav.quotations", icon: "FileText" },
       { href: "/tasks", labelKey: "nav.tasks", icon: "CheckSquare" },
+    ],
+  },
+  {
+    id: "warehouse",
+    labelKey: "nav.group.warehouse",
+    roles: ["admin", "manager", "sales"],
+    items: [
+      { href: "/inventory", labelKey: "nav.inventory", icon: "Package" },
     ],
   },
   {
@@ -83,6 +91,11 @@ export function canManageUsers(role: Role): boolean {
 }
 
 export function canDelete(role: Role): boolean {
+  return role === "admin" || role === "manager";
+}
+
+/** Can create/edit products and adjust stock. */
+export function canManageInventory(role: Role): boolean {
   return role === "admin" || role === "manager";
 }
 

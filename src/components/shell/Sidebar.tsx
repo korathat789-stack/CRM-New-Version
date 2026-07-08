@@ -17,6 +17,7 @@ import {
   PieChart,
   Users,
   Upload,
+  Package,
   Settings,
   LogOut,
   type LucideIcon,
@@ -39,6 +40,7 @@ const ICONS: Record<string, LucideIcon> = {
   PieChart,
   Users,
   Upload,
+  Package,
   Settings,
 };
 
