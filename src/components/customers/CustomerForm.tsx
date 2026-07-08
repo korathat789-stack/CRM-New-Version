@@ -27,6 +27,7 @@ interface Props {
     tax_id: string;
     type_id: string;
     province: string;
+    address: string;
     annual_revenue: string;
     lifetime_revenue: string;
     source: string;
@@ -117,6 +118,16 @@ export function CustomerForm({
               </select>
             </Field>
           </div>
+
+          <Field label={t("address")}>
+            <textarea
+              name="address"
+              defaultValue={initial?.address}
+              rows={2}
+              className="input"
+              placeholder={t("addressHint")}
+            />
+          </Field>
 
           {/* Sales insight + auto grade (read-only) */}
           <div className="rounded-md border border-dashed border-gray-300 bg-gray-50 p-3">

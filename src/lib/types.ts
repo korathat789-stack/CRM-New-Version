@@ -16,6 +16,7 @@ export interface Customer {
   tax_id: string | null;
   type_id: string | null;
   province: string | null;
+  address: string | null;
   owner_id: string | null;
   annual_revenue: number; // satang
   lifetime_revenue: number; // satang
@@ -74,6 +75,7 @@ export interface CustomerInput {
   tax_id: string | null;
   type_id: string | null;
   province: string | null;
+  address: string | null;
   annual_revenue: number;
   lifetime_revenue: number;
   source: string | null;

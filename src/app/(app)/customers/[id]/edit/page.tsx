@@ -35,6 +35,7 @@ export default async function EditCustomerPage({
         tax_id: customer.tax_id ?? "",
         type_id: customer.type_id ?? "",
         province: customer.province ?? "",
+        address: customer.address ?? "",
         annual_revenue: toBaht(customer.annual_revenue),
         lifetime_revenue: toBaht(customer.lifetime_revenue),
         source: customer.source ?? "",

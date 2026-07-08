@@ -141,6 +141,8 @@
       "taxIdHint": "13 digits",
       "type": "Type",
       "province": "Province",
+      "address": "Address",
+      "addressHint": "No., street, sub-district, district, province, postal code",
       "select": "Select…",
       "salesInsight": "Sales Insight",
       "annualRevenue": "Annual Revenue (฿)",
