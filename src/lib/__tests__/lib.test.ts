@@ -12,6 +12,11 @@ import {
   pdfFilename,
 } from "../quotationPdfModel";
 import { stockStatus, stockValue } from "../inventory";
+import {
+  receiptTotalQty,
+  canEditReceipt,
+  canApproveReceipt,
+} from "../goodsReceipts-shared";
 
 // ---------------------------------------------------------------- money
 test("money: short form uses M/K and trims zeros", () => {
@@ -219,4 +224,18 @@ test("inventory: stock status from qty vs safety", () => {
 test("inventory: stock value is qty x cost in satang", () => {
   assert.equal(stockValue(8, 5_200_000), 41_600_000);
   assert.equal(stockValue(0, 5_200_000), 0);
+});
+
+// ---------------------------------------------------------------- goods receipt
+test("goodsReceipt: total qty sums line quantities", () => {
+  assert.equal(receiptTotalQty([{ qty: 3 }, { qty: 5 }, { qty: 2 }]), 10);
+  assert.equal(receiptTotalQty([]), 0);
+});
+
+test("goodsReceipt: only pending is editable / approvable", () => {
+  assert.equal(canEditReceipt("pending"), true);
+  assert.equal(canEditReceipt("approved"), false);
+  assert.equal(canEditReceipt("rejected"), false);
+  assert.equal(canApproveReceipt("pending"), true);
+  assert.equal(canApproveReceipt("approved"), false);
 });
