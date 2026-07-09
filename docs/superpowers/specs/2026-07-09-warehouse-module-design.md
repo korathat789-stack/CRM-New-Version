@@ -215,3 +215,38 @@ forward-compatible; do **not** create these tables now.
 - Rollback: drop `stock_movements`, `products`, and the `product_category` enum
   (migration is self-contained; no new sequences — SKU is user-entered); revert
   the roles/Sidebar/messages edits.
+
+## QA outcome (Phase 1)
+
+**Date:** 2026-07-09 · **Status:** automated gate PASS; manual/staging QA PENDING.
+
+Built via subagent-driven-development (9 tasks, each implemented + independently
+reviewed). Commits `cd6abb8`..`2fbe4f5` on `claude/quotation-pdf-integrate`.
+
+Automated gate (run on the merged tree):
+
+- `npm test` — 24/24 passing (incl. new `stockStatus`/`stockValue` unit tests),
+  output pristine.
+- `npx tsc --noEmit` — clean.
+- `npx next build` — succeeds; route list includes `/inventory`,
+  `/inventory/new`, `/inventory/[id]/edit`.
+
+Notable implementation note: during Task 8, `src/lib/inventory.ts` was found to
+mix client-safe constants with server-only Supabase loaders, which broke the
+client bundle (`next build`) once a client component imported a constant. Fixed
+by extracting the pure pieces into `src/lib/inventory-shared.ts` and re-exporting
+from `inventory.ts` (public API unchanged), mirroring the repo's `stages.ts` vs
+`opportunities.ts` split. Reviewed and confirmed correct/minimal.
+
+Still PENDING (ops / not doable in this session — no live DB or auth session):
+
+- Apply migration `0008_warehouse.sql` to dev/staging Supabase (never prod
+  directly).
+- Manual browser QA per the plan's Task 9 Step 2: create product → status Out;
+  adjust +/− → status/value/summary update; over-disburse blocked
+  (negative-stock guard); duplicate SKU error; edit + active toggle; filters +
+  search; and `sales` sees read-only (no New/Edit/Adjust, `/inventory/new`
+  redirects).
+
+Deferred to later phases (not in Phase 1): Goods Receipt, Disbursement,
+Approval, quotation↔catalog integration.
