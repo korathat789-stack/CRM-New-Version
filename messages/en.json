@@ -14,6 +14,8 @@
     "quotations": "Quotations",
     "tasks": "Tasks",
     "inventory": "Inventory",
+    "goodsReceipt": "Goods Receipt",
+    "approvals": "Approval",
     "salesReport": "Sales Report",
     "costBudgeting": "Cost Budgeting",
     "accounting": "Accounting",
@@ -680,5 +682,64 @@
       "invalid": "Enter a non-zero whole number."
     },
     "deleteConfirm": "Delete this product?"
+  },
+  "goodsReceipts": {
+    "title": "Goods Receipt",
+    "subtitle": "{count} receipts",
+    "new": "New receipt",
+    "edit": "Edit receipt",
+    "detail": "Receipt",
+    "none": "No goods receipts yet.",
+    "cols": {
+      "code": "No.",
+      "supplier": "Supplier",
+      "date": "Date",
+      "lines": "Items",
+      "qty": "Total qty",
+      "status": "Status",
+      "received_by": "Received by"
+    },
+    "status": {
+      "all": "All statuses",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "form": {
+      "supplier": "Supplier",
+      "po_ref": "PO reference",
+      "date": "Receipt date",
+      "note": "Note",
+      "lines": "Items",
+      "product": "Product",
+      "qty": "Quantity",
+      "addLine": "Add item",
+      "removeLine": "Remove",
+      "save": "Save receipt",
+      "required": "Enter a supplier and at least one item with quantity."
+    },
+    "detailView": {
+      "poRef": "PO reference",
+      "receivedBy": "Received by",
+      "approvedBy": "Decided by",
+      "approvedAt": "Decided at"
+    },
+    "toast": {
+      "notPending": "This receipt is no longer pending.",
+      "deleted": "Receipt deleted"
+    },
+    "deleteConfirm": "Delete this pending receipt?"
+  },
+  "approvals": {
+    "title": "Approval",
+    "subtitle": "{count} pending",
+    "none": "Nothing to approve.",
+    "receiptsHeading": "Goods receipts",
+    "approve": "Approve",
+    "reject": "Reject",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "confirmApprove": "Approve {code}? This adds the items to stock.",
+    "confirmReject": "Reject {code}?"
   }
 }

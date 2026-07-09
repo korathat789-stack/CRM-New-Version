@@ -14,6 +14,8 @@
     "quotations": "ใบเสนอราคา",
     "tasks": "งาน",
     "inventory": "คลังสินค้า",
+    "goodsReceipt": "รับสินค้าเข้า",
+    "approvals": "อนุมัติ",
     "salesReport": "รายงานการขาย",
     "costBudgeting": "งบประมาณต้นทุน",
     "accounting": "บัญชี",
@@ -680,5 +682,64 @@
       "invalid": "กรอกจำนวนเต็มที่ไม่ใช่ศูนย์"
     },
     "deleteConfirm": "ลบสินค้านี้?"
+  },
+  "goodsReceipts": {
+    "title": "รับสินค้าเข้า",
+    "subtitle": "{count} รายการ",
+    "new": "สร้างใบรับสินค้า",
+    "edit": "แก้ไขใบรับสินค้า",
+    "detail": "ใบรับสินค้า",
+    "none": "ยังไม่มีใบรับสินค้า",
+    "cols": {
+      "code": "เลขที่",
+      "supplier": "ผู้ขาย",
+      "date": "วันที่",
+      "lines": "รายการ",
+      "qty": "จำนวนรวม",
+      "status": "สถานะ",
+      "received_by": "ผู้รับ"
+    },
+    "status": {
+      "all": "ทุกสถานะ",
+      "pending": "รออนุมัติ",
+      "approved": "อนุมัติแล้ว",
+      "rejected": "ปฏิเสธ"
+    },
+    "form": {
+      "supplier": "ผู้ขาย",
+      "po_ref": "อ้างอิง PO",
+      "date": "วันที่รับ",
+      "note": "หมายเหตุ",
+      "lines": "รายการสินค้า",
+      "product": "สินค้า",
+      "qty": "จำนวน",
+      "addLine": "เพิ่มรายการ",
+      "removeLine": "ลบ",
+      "save": "บันทึกใบรับสินค้า",
+      "required": "กรอกผู้ขายและอย่างน้อย 1 รายการพร้อมจำนวน"
+    },
+    "detailView": {
+      "poRef": "อ้างอิง PO",
+      "receivedBy": "ผู้รับ",
+      "approvedBy": "ผู้ตัดสิน",
+      "approvedAt": "เวลาตัดสิน"
+    },
+    "toast": {
+      "notPending": "ใบรับสินค้านี้ไม่ได้อยู่สถานะรออนุมัติแล้ว",
+      "deleted": "ลบใบรับสินค้าแล้ว"
+    },
+    "deleteConfirm": "ลบใบรับสินค้าที่รออนุมัตินี้?"
+  },
+  "approvals": {
+    "title": "อนุมัติ",
+    "subtitle": "รออนุมัติ {count} รายการ",
+    "none": "ไม่มีรายการรออนุมัติ",
+    "receiptsHeading": "ใบรับสินค้า",
+    "approve": "อนุมัติ",
+    "reject": "ปฏิเสธ",
+    "approved": "อนุมัติแล้ว",
+    "rejected": "ปฏิเสธแล้ว",
+    "confirmApprove": "อนุมัติ {code}? ระบบจะเพิ่มสินค้าเข้าสต็อก",
+    "confirmReject": "ปฏิเสธ {code}?"
   }
 }
