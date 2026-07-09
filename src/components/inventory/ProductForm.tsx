@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { PRODUCT_CATEGORIES } from "@/lib/inventory";
+import { PRODUCT_CATEGORIES } from "@/lib/inventory-shared";
 import {
   createProduct,
   updateProduct,
