@@ -23,6 +23,8 @@ export interface NavItem {
   labelKey: string;
   /** lucide-react icon name */
   icon: string;
+  /** roles allowed to SEE this item; defaults to the group's roles */
+  roles?: Role[];
 }
 
 export interface NavGroup {
@@ -53,6 +55,18 @@ export const NAV: NavGroup[] = [
     roles: ["admin", "manager", "sales"],
     items: [
       { href: "/inventory", labelKey: "nav.inventory", icon: "Package" },
+      {
+        href: "/goods-receipts",
+        labelKey: "nav.goodsReceipt",
+        icon: "PackagePlus",
+        roles: ["admin", "manager"],
+      },
+      {
+        href: "/approvals",
+        labelKey: "nav.approvals",
+        icon: "ShieldCheck",
+        roles: ["admin", "manager"],
+      },
     ],
   },
   {
@@ -79,7 +93,14 @@ export const NAV: NavGroup[] = [
 ];
 
 export function visibleNav(role: Role): NavGroup[] {
-  return NAV.filter((group) => group.roles.includes(role));
+  return NAV.filter((group) => group.roles.includes(role))
+    .map((group) => ({
+      ...group,
+      items: group.items.filter(
+        (item) => !item.roles || item.roles.includes(role)
+      ),
+    }))
+    .filter((group) => group.items.length > 0);
 }
 
 export function canSeeReports(role: Role): boolean {

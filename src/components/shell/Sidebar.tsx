@@ -18,6 +18,8 @@ import {
   Users,
   Upload,
   Package,
+  PackagePlus,
+  ShieldCheck,
   Settings,
   LogOut,
   type LucideIcon,
@@ -41,6 +43,8 @@ const ICONS: Record<string, LucideIcon> = {
   Users,
   Upload,
   Package,
+  PackagePlus,
+  ShieldCheck,
   Settings,
 };
 
