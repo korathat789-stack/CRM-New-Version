@@ -29,3 +29,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# local env backups (contain secrets — never commit)
+*.cloud.bak
