@@ -1,27 +1,41 @@
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { Card, CardBody, CardHeader } from "@/components/ui/Card";
+import { PackagePlus } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth";
 import { canManageInventory } from "@/lib/roles";
 import { isSupabaseConfigured } from "@/lib/config";
-import { listPendingReceipts, receiptTotalQty } from "@/lib/goodsReceipts";
-import { ApprovalActions } from "@/components/goods-receipts/ApprovalActions";
+import { listPendingReceipts } from "@/lib/goodsReceipts";
+import { ApprovalReceiptCard } from "@/components/goods-receipts/ApprovalReceiptCard";
 
 export default async function ApprovalsPage() {
   const user = await getCurrentUser();
   if (!user || !canManageInventory(user.role)) redirect("/inventory");
   const t = await getTranslations("approvals");
-  const tg = await getTranslations("goodsReceipts");
 
   const pending = isSupabaseConfigured() ? await listPendingReceipts() : [];
 
   return (
     <div className="mx-auto max-w-4xl">
       <h1 className="text-xl font-bold text-gray-900">{t("title")}</h1>
-      <p className="text-sm text-gray-500">{t("subtitle", { count: pending.length })}</p>
+      <p className="text-sm text-gray-500">
+        {t("subtitle", { count: pending.length })}
+      </p>
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        <div className="rounded-[.65rem] border-l-4 border-[#059669] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
+          <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-gray-500">
+            <PackagePlus className="h-4 w-4 text-[#059669]" aria-hidden />
+            {t("kpi.title")}
+          </div>
+          <div className="mt-1 text-3xl font-extrabold text-[#059669]">
+            {pending.length}
+          </div>
+          <div className="mt-0.5 text-xs text-[#047857]">{t("kpi.hint")}</div>
+        </div>
+      </div>
 
       {pending.length === 0 ? (
-        <div className="mt-6 rounded-md border border-dashed border-gray-300 p-8 text-center text-sm text-gray-500">
+        <div className="mt-4 rounded-md border border-dashed border-gray-300 p-8 text-center text-sm text-gray-500">
           {t("none")}
         </div>
       ) : (
@@ -30,41 +44,7 @@ export default async function ApprovalsPage() {
             {t("receiptsHeading")}
           </h2>
           {pending.map((r) => (
-            <Card key={r.id}>
-              <CardHeader className="justify-between">
-                <div>
-                  <span className="text-sm font-bold text-gray-900">
-                    {r.code ?? tg("detail")}
-                  </span>
-                  <span className="ml-2 text-xs text-gray-500">{r.supplier}</span>
-                </div>
-                <ApprovalActions receiptId={r.id} code={r.code ?? ""} />
-              </CardHeader>
-              <CardBody className="text-xs text-gray-600">
-                <div className="mb-2 flex gap-4 text-gray-500">
-                  <span>{r.receipt_date}</span>
-                  <span>
-                    {tg("cols.qty")}: <b className="text-gray-800">{receiptTotalQty(r.items)}</b>
-                  </span>
-                  <span>
-                    {tg("detailView.receivedBy")}: {r.received_by_name ?? "—"}
-                  </span>
-                </div>
-                <ul className="flex flex-col gap-1">
-                  {r.items.map((it) => (
-                    <li key={it.id} className="flex justify-between">
-                      <span className="text-gray-800">
-                        {it.product_name}{" "}
-                        <span className="text-gray-400">({it.product_code})</span>
-                      </span>
-                      <span className="font-semibold text-gray-900">
-                        {it.qty} {it.unit}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </CardBody>
-            </Card>
+            <ApprovalReceiptCard key={r.id} receipt={r} />
           ))}
         </div>
       )}

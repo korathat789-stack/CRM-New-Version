@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { Plus, ArrowUpRight } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { EmptyState } from "@/components/states/StateViews";
 import { getCurrentUser } from "@/lib/auth";
 import { canManageInventory } from "@/lib/roles";
 import { isSupabaseConfigured } from "@/lib/config";
@@ -12,7 +13,7 @@ import { ReceiptFilters } from "@/components/goods-receipts/ReceiptFilters";
 import { ReceiptStatusBadge } from "@/components/goods-receipts/ReceiptStatusBadge";
 
 const GRID =
-  "grid grid-cols-[1fr_2fr_1fr_0.8fr_1fr_0.4fr] gap-2 items-center";
+  "grid grid-cols-[0.9fr_0.9fr_2fr_1.3fr_1fr_0.8fr_0.9fr] gap-2 items-center";
 
 type SP = { status?: string };
 
@@ -30,7 +31,9 @@ export default async function GoodsReceiptsPage({
     return (
       <div className="mx-auto max-w-5xl">
         <h1 className="text-xl font-bold text-gray-900">{t("title")}</h1>
-        <p className="mt-4 text-sm text-gray-500">{t("none")}</p>
+        <div className="mt-4">
+          <EmptyState body={t("none")} />
+        </div>
       </div>
     );
   }
@@ -47,7 +50,7 @@ export default async function GoodsReceiptsPage({
           </p>
         </div>
         <Link href="/goods-receipts/new">
-          <Button>
+          <Button variant="success">
             <Plus className="h-4 w-4" aria-hidden />
             {t("new")}
           </Button>
@@ -65,11 +68,12 @@ export default async function GoodsReceiptsPage({
           <div className="hidden md:block">
             <div className={`${GRID} border-b border-[var(--color-line)] bg-gray-50 px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-gray-500`}>
               <div>{t("cols.code")}</div>
-              <div>{t("cols.supplier")}</div>
               <div>{t("cols.date")}</div>
-              <div className="text-right">{t("cols.qty")}</div>
+              <div>{t("cols.lines")}</div>
+              <div>{t("cols.supplier")}</div>
+              <div>{t("cols.po_ref")}</div>
+              <div>{t("cols.received_by")}</div>
               <div>{t("cols.status")}</div>
-              <div />
             </div>
             {rows.map((r) => (
               <Link
@@ -77,15 +81,18 @@ export default async function GoodsReceiptsPage({
                 href={`/goods-receipts/${r.id}`}
                 className={`${GRID} border-b border-[var(--color-line-soft)] px-4 py-2.5 text-xs hover:bg-gray-50`}
               >
-                <div className="font-semibold text-gray-900">{r.code ?? "—"}</div>
-                <div className="text-gray-700">{r.supplier}</div>
+                <div className="font-semibold text-[#059669]">{r.code ?? "—"}</div>
                 <div className="text-gray-500">{r.receipt_date}</div>
-                <div className="text-right font-bold text-gray-900">{r.total_qty}</div>
+                <div className="truncate text-gray-700">{r.item_summary || "—"}</div>
+                <div className="truncate text-gray-700">{r.supplier}</div>
+                <div className="truncate font-mono text-[11px] text-gray-500">
+                  {r.po_ref ?? "—"}
+                </div>
+                <div className="truncate text-gray-500">
+                  {r.received_by_name ?? "—"}
+                </div>
                 <div>
                   <ReceiptStatusBadge status={r.status} />
-                </div>
-                <div className="text-right text-[var(--color-primary)]">
-                  <ArrowUpRight className="ml-auto h-3.5 w-3.5" aria-hidden />
                 </div>
               </Link>
             ))}
@@ -101,13 +108,13 @@ export default async function GoodsReceiptsPage({
                 className="flex flex-col gap-1 border-b border-[var(--color-line-soft)] p-3 text-xs"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-semibold text-gray-900">{r.code ?? "—"}</span>
+                  <span className="font-semibold text-[#059669]">{r.code ?? "—"}</span>
                   <ReceiptStatusBadge status={r.status} />
                 </div>
-                <div className="text-gray-700">{r.supplier}</div>
+                <div className="truncate text-gray-700">{r.item_summary || "—"}</div>
                 <div className="flex justify-between text-gray-500">
+                  <span>{r.supplier}</span>
                   <span>{r.receipt_date}</span>
-                  <span>{r.total_qty}</span>
                 </div>
               </Link>
             ))}

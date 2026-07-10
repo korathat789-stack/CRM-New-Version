@@ -1,6 +1,6 @@
 import { type ButtonHTMLAttributes } from "react";
 
-type Variant = "primary" | "outline" | "ghost" | "danger";
+type Variant = "primary" | "outline" | "ghost" | "danger" | "success";
 
 const VARIANTS: Record<Variant, string> = {
   primary:
@@ -10,6 +10,7 @@ const VARIANTS: Record<Variant, string> = {
   ghost:
     "border border-[var(--color-line)] text-[var(--color-ink)] hover:bg-gray-50",
   danger: "bg-[var(--color-danger)] text-white hover:opacity-90",
+  success: "bg-[#059669] text-white hover:opacity-90",
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

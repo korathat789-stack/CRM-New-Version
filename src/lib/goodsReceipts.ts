@@ -1,7 +1,6 @@
 import { createClient } from "./supabase/server";
 import {
   isGoodsReceiptStatus,
-  receiptTotalQty,
   type GoodsReceiptStatus,
 } from "./goodsReceipts-shared";
 
@@ -19,10 +18,10 @@ export interface GoodsReceiptRow {
   id: string;
   code: string | null;
   supplier: string;
+  po_ref: string | null;
   receipt_date: string;
   status: GoodsReceiptStatus;
-  line_count: number;
-  total_qty: number;
+  item_summary: string;
   received_by_name: string | null;
 }
 
@@ -63,9 +62,9 @@ export async function listGoodsReceipts(filters: {
   let query = supabase
     .from("goods_receipts")
     .select(
-      `id, code, supplier, receipt_date, status,
+      `id, code, supplier, po_ref, receipt_date, status,
        receiver:profiles!goods_receipts_received_by_fkey(full_name),
-       goods_receipt_items(qty)`
+       goods_receipt_items(qty, products(name))`
     )
     .is("deleted_at", null)
     .order("receipt_date", { ascending: false });
@@ -82,20 +81,23 @@ export async function listGoodsReceipts(filters: {
       id: string;
       code: string | null;
       supplier: string;
+      po_ref: string | null;
       receipt_date: string;
       status: GoodsReceiptStatus;
       receiver: { full_name: string | null } | null;
-      goods_receipt_items: { qty: number }[];
+      goods_receipt_items: { qty: number; products: { name: string } | null }[];
     };
     const items = row.goods_receipt_items ?? [];
     return {
       id: row.id,
       code: row.code,
       supplier: row.supplier,
+      po_ref: row.po_ref,
       receipt_date: row.receipt_date,
       status: row.status,
-      line_count: items.length,
-      total_qty: receiptTotalQty(items),
+      item_summary: items
+        .map((i) => `${i.products?.name ?? ""} ×${i.qty}`)
+        .join(" + "),
       received_by_name: row.receiver?.full_name ?? null,
     };
   });

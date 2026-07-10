@@ -78,7 +78,7 @@ export function GoodsReceiptForm({
       <Card>
         <CardHeader>
           <span className="text-base font-bold text-gray-900">
-            {mode === "new" ? t("save") : t("save")}
+            {t("title")}
           </span>
         </CardHeader>
         <CardBody className="flex flex-col gap-3">
@@ -167,7 +167,7 @@ export function GoodsReceiptForm({
           <Button type="button" variant="ghost" onClick={() => router.back()}>
             {tc("cancel")}
           </Button>
-          <Button type="submit" disabled={pending}>
+          <Button type="submit" variant="success" disabled={pending}>
             {t("save")}
           </Button>
         </div>

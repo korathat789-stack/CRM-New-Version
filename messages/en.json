@@ -697,7 +697,8 @@
       "lines": "Items",
       "qty": "Total qty",
       "status": "Status",
-      "received_by": "Received by"
+      "received_by": "Received by",
+      "po_ref": "PO Ref."
     },
     "status": {
       "all": "All statuses",
@@ -706,6 +707,7 @@
       "rejected": "Rejected"
     },
     "form": {
+      "title": "Receipt details",
       "supplier": "Supplier",
       "po_ref": "PO reference",
       "date": "Receipt date",
@@ -740,6 +742,10 @@
     "approved": "Approved",
     "rejected": "Rejected",
     "confirmApprove": "Approve {code}? This adds the items to stock.",
-    "confirmReject": "Reject {code}?"
+    "confirmReject": "Reject {code}?",
+    "kpi": {
+      "title": "Awaiting approval — Goods Receipt",
+      "hint": "Goods Receipt adds stock"
+    }
   }
 }

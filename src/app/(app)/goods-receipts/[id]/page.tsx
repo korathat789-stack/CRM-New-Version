@@ -28,7 +28,7 @@ export default async function GoodsReceiptDetailPage({
     <div className="mx-auto max-w-3xl">
       <div className="mb-4 flex items-center gap-3">
         <div className="flex-1">
-          <h1 className="text-xl font-bold text-gray-900">
+          <h1 className="text-xl font-bold text-[#059669]">
             {receipt.code ?? t("detail")}
           </h1>
           <div className="mt-1">
@@ -58,6 +58,12 @@ export default async function GoodsReceiptDetailPage({
               label={tv("approvedBy")}
               value={receipt.approved_by_name ?? "—"}
             />
+            {receipt.approved_at && (
+              <Info
+                label={tv("approvedAt")}
+                value={receipt.approved_at.slice(0, 16).replace("T", " ")}
+              />
+            )}
           </div>
           <div className="mt-2 overflow-hidden rounded-md border border-[var(--color-line)]">
             <div className="grid grid-cols-[2fr_1fr] bg-gray-50 px-3 py-2 text-[10px] font-bold uppercase tracking-wide text-gray-500">

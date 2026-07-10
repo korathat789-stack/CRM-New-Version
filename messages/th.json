@@ -697,7 +697,8 @@
       "lines": "รายการ",
       "qty": "จำนวนรวม",
       "status": "สถานะ",
-      "received_by": "ผู้รับ"
+      "received_by": "ผู้รับ",
+      "po_ref": "อ้างอิง PO"
     },
     "status": {
       "all": "ทุกสถานะ",
@@ -706,6 +707,7 @@
       "rejected": "ปฏิเสธ"
     },
     "form": {
+      "title": "รายละเอียดใบรับสินค้า",
       "supplier": "ผู้ขาย",
       "po_ref": "อ้างอิง PO",
       "date": "วันที่รับ",
@@ -740,6 +742,10 @@
     "approved": "อนุมัติแล้ว",
     "rejected": "ปฏิเสธแล้ว",
     "confirmApprove": "อนุมัติ {code}? ระบบจะเพิ่มสินค้าเข้าสต็อก",
-    "confirmReject": "ปฏิเสธ {code}?"
+    "confirmReject": "ปฏิเสธ {code}?",
+    "kpi": {
+      "title": "รอ Approve — รับสินค้าเข้า",
+      "hint": "Goods Receipt เพิ่ม stock"
+    }
   }
 }
