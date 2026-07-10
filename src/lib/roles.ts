@@ -14,7 +14,7 @@ export function isRole(value: string | null | undefined): value is Role {
   return value === "admin" || value === "manager" || value === "sales";
 }
 
-export type NavGroupId = "main" | "reports" | "admin";
+export type NavGroupId = "main" | "warehouse" | "reports" | "admin";
 
 export interface NavItem {
   /** route href */
@@ -23,6 +23,8 @@ export interface NavItem {
   labelKey: string;
   /** lucide-react icon name */
   icon: string;
+  /** roles allowed to SEE this item; defaults to the group's roles */
+  roles?: Role[];
 }
 
 export interface NavGroup {
@@ -45,6 +47,26 @@ export const NAV: NavGroup[] = [
       { href: "/projects", labelKey: "nav.projects", icon: "FolderKanban" },
       { href: "/quotations", labelKey: "nav.quotations", icon: "FileText" },
       { href: "/tasks", labelKey: "nav.tasks", icon: "CheckSquare" },
+    ],
+  },
+  {
+    id: "warehouse",
+    labelKey: "nav.group.warehouse",
+    roles: ["admin", "manager", "sales"],
+    items: [
+      { href: "/inventory", labelKey: "nav.inventory", icon: "Package" },
+      {
+        href: "/goods-receipts",
+        labelKey: "nav.goodsReceipt",
+        icon: "PackagePlus",
+        roles: ["admin", "manager"],
+      },
+      {
+        href: "/approvals",
+        labelKey: "nav.approvals",
+        icon: "ShieldCheck",
+        roles: ["admin", "manager"],
+      },
     ],
   },
   {
@@ -71,7 +93,14 @@ export const NAV: NavGroup[] = [
 ];
 
 export function visibleNav(role: Role): NavGroup[] {
-  return NAV.filter((group) => group.roles.includes(role));
+  return NAV.filter((group) => group.roles.includes(role))
+    .map((group) => ({
+      ...group,
+      items: group.items.filter(
+        (item) => !item.roles || item.roles.includes(role)
+      ),
+    }))
+    .filter((group) => group.items.length > 0);
 }
 
 export function canSeeReports(role: Role): boolean {
@@ -86,7 +115,31 @@ export function canDelete(role: Role): boolean {
   return role === "admin" || role === "manager";
 }
 
+/** Can create/edit products and adjust stock. */
+export function canManageInventory(role: Role): boolean {
+  return role === "admin" || role === "manager";
+}
+
 /** Can authorize / sign off a Won opportunity. */
 export function canAuthorize(role: Role): boolean {
   return role === "admin" || role === "manager";
+}
+
+/**
+ * Map a pathname to the i18n label key of the nav item it belongs to, using a
+ * longest-prefix match so nested routes (e.g. /customers/123) resolve to their
+ * section. Falls back to the dashboard label for unknown routes.
+ */
+export function navTitleKey(pathname: string): string {
+  let best: NavItem | null = null;
+  for (const group of NAV) {
+    for (const item of group.items) {
+      const match =
+        pathname === item.href || pathname.startsWith(`${item.href}/`);
+      if (match && (!best || item.href.length > best.href.length)) {
+        best = item;
+      }
+    }
+  }
+  return best ? best.labelKey : "nav.dashboard";
 }

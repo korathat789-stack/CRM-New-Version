@@ -16,13 +16,13 @@ export interface Customer {
   tax_id: string | null;
   type_id: string | null;
   province: string | null;
+  address: string | null;
   owner_id: string | null;
   annual_revenue: number; // satang
   lifetime_revenue: number; // satang
   source: string | null;
   industry: string | null;
   notes: string | null;
-  address: string | null;
   segment: string | null; // 'project' | 'general'
   buyer_role: string | null; // 'end_user' | 'reseller'
   partner_name: string | null;
@@ -78,6 +78,7 @@ export interface CustomerInput {
   tax_id: string | null;
   type_id: string | null;
   province: string | null;
+  address: string | null;
   annual_revenue: number;
   lifetime_revenue: number;
   source: string | null;

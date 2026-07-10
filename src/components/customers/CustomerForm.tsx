@@ -27,12 +27,12 @@ interface Props {
     tax_id: string;
     type_id: string;
     province: string;
+    address: string;
     annual_revenue: string;
     lifetime_revenue: string;
     source: string;
     industry: string;
     notes: string;
-    address: string;
     segment: string;
     buyer_role: string;
     partner_name: string;
@@ -126,6 +126,16 @@ export function CustomerForm({
             </Field>
           </div>
 
+          <Field label={t("address")}>
+            <textarea
+              name="address"
+              defaultValue={initial?.address}
+              rows={2}
+              className="input"
+              placeholder={t("addressHint")}
+            />
+          </Field>
+
           {/* 2-axis classification (matches the team's tracking sheet) */}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             <Field label={t("segment")}>
@@ -194,10 +204,6 @@ export function CustomerForm({
               </Field>
             </div>
           </div>
-
-          <Field label={t("address")}>
-            <textarea name="address" defaultValue={initial?.address} rows={2} className="input" />
-          </Field>
 
           {/* Primary contact */}
           <div className="rounded-md border border-dashed border-gray-300 p-3">

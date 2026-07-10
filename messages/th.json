@@ -1,12 +1,11 @@
 {
-  "app": {
-    "name": "MatchPoint CRM"
-  },
+  "app": { "name": "MatchPoint CRM", "subtitle": "RFID · Solution Sales" },
   "nav": {
     "group": {
       "main": "หลัก",
       "reports": "รายงาน",
-      "admin": "ผู้ดูแลระบบ"
+      "admin": "ผู้ดูแลระบบ",
+      "warehouse": "คลังสินค้า"
     },
     "dashboard": "แดชบอร์ด",
     "customers": "ลูกค้า",
@@ -14,6 +13,9 @@
     "projects": "โครงการ",
     "quotations": "ใบเสนอราคา",
     "tasks": "งาน",
+    "inventory": "คลังสินค้า",
+    "goodsReceipt": "รับสินค้าเข้า",
+    "approvals": "อนุมัติ",
     "salesReport": "รายงานการขาย",
     "costBudgeting": "งบประมาณต้นทุน",
     "accounting": "บัญชี",
@@ -157,6 +159,7 @@
       "taxIdHint": "13 หลัก",
       "type": "ประเภท",
       "province": "จังหวัด",
+      "addressHint": "เลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์",
       "segment": "ลักษณะ",
       "segmentProject": "โครงการ",
       "segmentGeneral": "ทั่วไป",
@@ -275,6 +278,7 @@
     "subtitle": "แสดง {count} รายการ",
     "newQuotation": "สร้างใบเสนอราคา",
     "noQuotations": "ยังไม่มีใบเสนอราคา",
+    "download": "ดาวน์โหลด PDF",
     "cols": {
       "number": "เลขที่",
       "customer": "ลูกค้า",
@@ -305,12 +309,19 @@
       "creditTerm": "เครดิต (วัน)",
       "lineNo": "#",
       "description": "รายละเอียด",
+      "model": "รุ่น/โมเดล",
+      "uom": "หน่วย",
+      "category": "หมวดหมู่",
       "unitPrice": "ราคาต่อหน่วย",
       "qty": "จำนวน",
       "discount": "ส่วนลด %",
       "amount": "จำนวนเงิน",
       "addLine": "เพิ่มรายการ",
       "removeLine": "ลบรายการ",
+      "validityDays": "ยืนราคา (วัน)",
+      "paymentTerms": "เงื่อนไขการชำระเงิน",
+      "paymentCondition": "เงื่อนไข / สิ่งที่ส่งมอบ",
+      "addPaymentTerm": "เพิ่มงวดชำระ",
       "subtotal": "ยอดรวมย่อย",
       "vat": "ภาษี {rate}%",
       "vatExcluded": "ไม่รวม",
@@ -606,6 +617,135 @@
       "poc": "ทดสอบ POC",
       "line": "LINE",
       "note": "บันทึก"
+    }
+  },
+  "inventory": {
+    "title": "คลังสินค้า",
+    "subtitle": "{count} รายการสินค้า",
+    "newProduct": "เพิ่มสินค้า",
+    "editProduct": "แก้ไขสินค้า",
+    "noProducts": "ยังไม่มีสินค้า",
+    "search": "ค้นหา SKU หรือชื่อ",
+    "summary": {
+      "skus": "จำนวน SKU",
+      "lowOut": "ใกล้หมด / หมด",
+      "stockValue": "มูลค่าสต็อก"
+    },
+    "cols": {
+      "sku": "SKU",
+      "name": "สินค้า",
+      "category": "หมวด",
+      "qty": "คงเหลือ",
+      "status": "สถานะ",
+      "value": "มูลค่าสต็อก",
+      "cost": "ต้นทุน",
+      "sell": "ราคาขาย"
+    },
+    "status": {
+      "all": "ทุกสถานะ",
+      "in_stock": "มีสต็อก",
+      "low": "ใกล้หมด",
+      "out": "หมดสต็อก"
+    },
+    "category": {
+      "all": "ทุกหมวด",
+      "rfid_readers": "เครื่องอ่าน RFID",
+      "antennas": "เสาอากาศ",
+      "tags": "แท็ก",
+      "printers": "เครื่องพิมพ์",
+      "networking": "อุปกรณ์เครือข่าย",
+      "accessories": "อุปกรณ์เสริม",
+      "software": "ซอฟต์แวร์"
+    },
+    "form": {
+      "title": "สินค้า",
+      "code": "SKU",
+      "name": "ชื่อ",
+      "category": "หมวด",
+      "unit": "หน่วย",
+      "cost": "ต้นทุน (฿)",
+      "sell": "ราคาขาย (฿)",
+      "safety": "สต็อกปลอดภัย",
+      "description": "รายละเอียด",
+      "active": "ใช้งาน",
+      "save": "บันทึกสินค้า",
+      "required": "กรุณากรอก SKU ชื่อ และหมวด",
+      "duplicate": "SKU นี้มีอยู่แล้ว"
+    },
+    "adjust": {
+      "title": "ปรับสต็อก",
+      "action": "ปรับ",
+      "delta": "จำนวนที่เปลี่ยน (+/-)",
+      "note": "เหตุผล / หมายเหตุ",
+      "save": "ยืนยัน",
+      "insufficient": "สต็อกไม่พอสำหรับการปรับนี้",
+      "invalid": "กรอกจำนวนเต็มที่ไม่ใช่ศูนย์"
+    },
+    "deleteConfirm": "ลบสินค้านี้?"
+  },
+  "goodsReceipts": {
+    "title": "รับสินค้าเข้า",
+    "subtitle": "{count} รายการ",
+    "new": "สร้างใบรับสินค้า",
+    "edit": "แก้ไขใบรับสินค้า",
+    "detail": "ใบรับสินค้า",
+    "none": "ยังไม่มีใบรับสินค้า",
+    "cols": {
+      "code": "เลขที่",
+      "supplier": "ผู้ขาย",
+      "date": "วันที่",
+      "lines": "รายการ",
+      "qty": "จำนวนรวม",
+      "status": "สถานะ",
+      "received_by": "ผู้รับ",
+      "po_ref": "อ้างอิง PO"
+    },
+    "status": {
+      "all": "ทุกสถานะ",
+      "pending": "รออนุมัติ",
+      "approved": "อนุมัติแล้ว",
+      "rejected": "ปฏิเสธ"
+    },
+    "form": {
+      "title": "รายละเอียดใบรับสินค้า",
+      "supplier": "ผู้ขาย",
+      "po_ref": "อ้างอิง PO",
+      "date": "วันที่รับ",
+      "note": "หมายเหตุ",
+      "lines": "รายการสินค้า",
+      "product": "สินค้า",
+      "qty": "จำนวน",
+      "addLine": "เพิ่มรายการ",
+      "removeLine": "ลบ",
+      "save": "บันทึกใบรับสินค้า",
+      "required": "กรอกผู้ขายและอย่างน้อย 1 รายการพร้อมจำนวน"
+    },
+    "detailView": {
+      "poRef": "อ้างอิง PO",
+      "receivedBy": "ผู้รับ",
+      "approvedBy": "ผู้ตัดสิน",
+      "approvedAt": "เวลาตัดสิน"
+    },
+    "toast": {
+      "notPending": "ใบรับสินค้านี้ไม่ได้อยู่สถานะรออนุมัติแล้ว",
+      "deleted": "ลบใบรับสินค้าแล้ว"
+    },
+    "deleteConfirm": "ลบใบรับสินค้าที่รออนุมัตินี้?"
+  },
+  "approvals": {
+    "title": "อนุมัติ",
+    "subtitle": "รออนุมัติ {count} รายการ",
+    "none": "ไม่มีรายการรออนุมัติ",
+    "receiptsHeading": "ใบรับสินค้า",
+    "approve": "อนุมัติ",
+    "reject": "ปฏิเสธ",
+    "approved": "อนุมัติแล้ว",
+    "rejected": "ปฏิเสธแล้ว",
+    "confirmApprove": "อนุมัติ {code}? ระบบจะเพิ่มสินค้าเข้าสต็อก",
+    "confirmReject": "ปฏิเสธ {code}?",
+    "kpi": {
+      "title": "รอ Approve — รับสินค้าเข้า",
+      "hint": "Goods Receipt เพิ่ม stock"
     }
   }
 }

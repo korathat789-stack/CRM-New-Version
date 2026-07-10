@@ -24,12 +24,28 @@ import type { Grade } from "@/lib/grade";
 
 interface Line {
   description: string;
+  model: string;
+  uom: string;
+  category: string;
   unit_price: string;
   qty: string;
   discount_pct: string;
 }
 
-const EMPTY_LINE: Line = { description: "", unit_price: "", qty: "1", discount_pct: "0" };
+const EMPTY_LINE: Line = {
+  description: "",
+  model: "",
+  uom: "",
+  category: "",
+  unit_price: "",
+  qty: "1",
+  discount_pct: "0",
+};
+
+interface PaymentTermRow {
+  percent: string;
+  condition: string;
+}
 const INITIAL: QuotationFormState = { ok: false };
 
 export function QuotationForm({
@@ -57,6 +73,10 @@ export function QuotationForm({
   const [creditTerm, setCreditTerm] = useState(30);
   const [lines, setLines] = useState<Line[]>([{ ...EMPTY_LINE }]);
   const [intent, setIntent] = useState<"issue" | "draft">("issue");
+  const [validityDays, setValidityDays] = useState("30");
+  const [paymentTerms, setPaymentTerms] = useState<PaymentTermRow[]>([
+    { percent: "100", condition: "Against Purchase Order (for stock goods)" },
+  ]);
 
   const numericLines = useMemo(
     () =>
@@ -94,6 +114,8 @@ export function QuotationForm({
       <input type="hidden" name="credit_term" value={creditTerm} />
       <input type="hidden" name="intent" value={intent} />
       <input type="hidden" name="lines" value={linesPayload} />
+      <input type="hidden" name="validity_days" value={validityDays} />
+      <input type="hidden" name="payment_terms" value={JSON.stringify(paymentTerms)} />
 
       <Card>
         <div className="flex flex-wrap items-center gap-3 border-b border-[var(--color-line)] p-4">
@@ -152,7 +174,7 @@ export function QuotationForm({
           </div>
 
           {/* Meta row */}
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <label className="flex flex-col gap-1">
               <span className="text-xs font-semibold text-gray-600">{t("quotationDate")}</span>
               <input type="date" name="quotation_date" defaultValue={today} className="input" />
@@ -160,6 +182,16 @@ export function QuotationForm({
             <label className="flex flex-col gap-1">
               <span className="text-xs font-semibold text-gray-600">{t("expiringDate")}</span>
               <input type="date" name="expiring_date" className="input" />
+            </label>
+            <label className="flex flex-col gap-1">
+              <span className="text-xs font-semibold text-gray-600">{t("validityDays")}</span>
+              <input
+                type="number"
+                min={1}
+                value={validityDays}
+                onChange={(e) => setValidityDays(e.target.value)}
+                className="input"
+              />
             </label>
             <div className="flex flex-col gap-1">
               <span className="text-xs font-semibold text-gray-600">{t("creditTerm")}</span>
@@ -196,45 +228,67 @@ export function QuotationForm({
             {lines.map((l, i) => (
               <div
                 key={i}
-                className="grid grid-cols-[0.4fr_2.4fr_1.2fr_0.7fr_0.8fr_1.2fr_0.3fr] items-center gap-2 border-b border-[var(--color-line-soft)] px-3 py-2 text-xs"
+                className="border-b border-[var(--color-line-soft)] px-3 py-2 text-xs"
               >
-                <div className="text-gray-400">{i + 1}</div>
-                <input
-                  value={l.description}
-                  onChange={(e) => updateLine(i, { description: e.target.value })}
-                  className="input"
-                  placeholder={t("description")}
-                />
-                <input
-                  value={l.unit_price}
-                  onChange={(e) => updateLine(i, { unit_price: e.target.value })}
-                  inputMode="numeric"
-                  className="input text-right"
-                  placeholder="0"
-                />
-                <input
-                  value={l.qty}
-                  onChange={(e) => updateLine(i, { qty: e.target.value })}
-                  inputMode="numeric"
-                  className="input text-right"
-                />
-                <input
-                  value={l.discount_pct}
-                  onChange={(e) => updateLine(i, { discount_pct: e.target.value })}
-                  inputMode="numeric"
-                  className="input text-right"
-                />
-                <div className="text-right font-bold text-gray-900">
-                  {formatBaht(lineAmount(numericLines[i]))}
+                <div className="grid grid-cols-[0.4fr_2.4fr_1.2fr_0.7fr_0.8fr_1.2fr_0.3fr] items-center gap-2">
+                  <div className="text-gray-400">{i + 1}</div>
+                  <input
+                    value={l.description}
+                    onChange={(e) => updateLine(i, { description: e.target.value })}
+                    className="input"
+                    placeholder={t("description")}
+                  />
+                  <input
+                    value={l.unit_price}
+                    onChange={(e) => updateLine(i, { unit_price: e.target.value })}
+                    inputMode="numeric"
+                    className="input text-right"
+                    placeholder="0"
+                  />
+                  <input
+                    value={l.qty}
+                    onChange={(e) => updateLine(i, { qty: e.target.value })}
+                    inputMode="numeric"
+                    className="input text-right"
+                  />
+                  <input
+                    value={l.discount_pct}
+                    onChange={(e) => updateLine(i, { discount_pct: e.target.value })}
+                    inputMode="numeric"
+                    className="input text-right"
+                  />
+                  <div className="text-right font-bold text-gray-900">
+                    {formatBaht(lineAmount(numericLines[i]))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeLine(i)}
+                    className="text-gray-400 hover:text-[#dc2626]"
+                    aria-label={t("removeLine")}
+                  >
+                    <Trash2 className="h-3.5 w-3.5" aria-hidden />
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => removeLine(i)}
-                  className="text-gray-400 hover:text-[#dc2626]"
-                  aria-label={t("removeLine")}
-                >
-                  <Trash2 className="h-3.5 w-3.5" aria-hidden />
-                </button>
+                <div className="mt-1.5 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                  <input
+                    value={l.model}
+                    onChange={(e) => updateLine(i, { model: e.target.value })}
+                    className="input"
+                    placeholder={t("model")}
+                  />
+                  <input
+                    value={l.category}
+                    onChange={(e) => updateLine(i, { category: e.target.value })}
+                    className="input"
+                    placeholder={t("category")}
+                  />
+                  <input
+                    value={l.uom}
+                    onChange={(e) => updateLine(i, { uom: e.target.value })}
+                    className="input"
+                    placeholder={t("uom")}
+                  />
+                </div>
               </div>
             ))}
             <button
@@ -280,6 +334,60 @@ export function QuotationForm({
                 </b>
               </div>
             </div>
+          </div>
+
+          {/* Payment terms */}
+          <div className="flex flex-col gap-2 rounded-md border border-dashed border-gray-300 p-3">
+            <div className="text-xs font-bold text-gray-600">{t("paymentTerms")}</div>
+            {paymentTerms.map((p, i) => (
+              <div key={i} className="flex gap-2">
+                <input
+                  type="number"
+                  min={0}
+                  max={100}
+                  value={p.percent}
+                  onChange={(e) =>
+                    setPaymentTerms((prev) =>
+                      prev.map((r, idx) => (idx === i ? { ...r, percent: e.target.value } : r))
+                    )
+                  }
+                  className="input w-20 text-right"
+                  placeholder="%"
+                />
+                <input
+                  value={p.condition}
+                  onChange={(e) =>
+                    setPaymentTerms((prev) =>
+                      prev.map((r, idx) => (idx === i ? { ...r, condition: e.target.value } : r))
+                    )
+                  }
+                  className="input flex-1"
+                  placeholder={t("paymentCondition")}
+                />
+                <button
+                  type="button"
+                  onClick={() =>
+                    setPaymentTerms((prev) =>
+                      prev.length > 1 ? prev.filter((_, idx) => idx !== i) : prev
+                    )
+                  }
+                  className="text-gray-400 hover:text-[#dc2626]"
+                  aria-label={t("removeLine")}
+                >
+                  <Trash2 className="h-3.5 w-3.5" aria-hidden />
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() =>
+                setPaymentTerms((prev) => [...prev, { percent: "0", condition: "" }])
+              }
+              className="flex items-center gap-1 text-xs font-semibold text-[var(--color-primary)]"
+            >
+              <Plus className="h-3.5 w-3.5" aria-hidden />
+              {t("addPaymentTerm")}
+            </button>
           </div>
 
           {/* Remark + terms */}

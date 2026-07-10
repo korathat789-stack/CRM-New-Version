@@ -1,12 +1,11 @@
 {
-  "app": {
-    "name": "MatchPoint CRM"
-  },
+  "app": { "name": "MatchPoint CRM", "subtitle": "RFID · Solution Sales" },
   "nav": {
     "group": {
       "main": "Main",
       "reports": "Reports",
-      "admin": "Admin"
+      "admin": "Admin",
+      "warehouse": "Warehouse"
     },
     "dashboard": "Dashboard",
     "customers": "Customers",
@@ -14,6 +13,9 @@
     "projects": "Projects",
     "quotations": "Quotations",
     "tasks": "Tasks",
+    "inventory": "Inventory",
+    "goodsReceipt": "Goods Receipt",
+    "approvals": "Approval",
     "salesReport": "Sales Report",
     "costBudgeting": "Cost Budgeting",
     "accounting": "Accounting",
@@ -157,6 +159,7 @@
       "taxIdHint": "13 digits",
       "type": "Type",
       "province": "Province",
+      "addressHint": "No., street, sub-district, district, province, postal code",
       "segment": "Segment",
       "segmentProject": "Project",
       "segmentGeneral": "General",
@@ -275,6 +278,7 @@
     "subtitle": "{count} shown",
     "newQuotation": "New Quotation",
     "noQuotations": "No quotations yet.",
+    "download": "Download PDF",
     "cols": {
       "number": "Quotation",
       "customer": "Customer",
@@ -305,12 +309,19 @@
       "creditTerm": "Credit term (days)",
       "lineNo": "#",
       "description": "Description",
+      "model": "Model",
+      "uom": "UOM",
+      "category": "Category",
       "unitPrice": "Unit price",
       "qty": "Qty",
       "discount": "Disc %",
       "amount": "Amount",
       "addLine": "Add line",
       "removeLine": "Remove line",
+      "validityDays": "Validity (days)",
+      "paymentTerms": "Payment terms",
+      "paymentCondition": "Condition / deliverables",
+      "addPaymentTerm": "Add payment term",
       "subtotal": "Subtotal",
       "vat": "VAT {rate}%",
       "vatExcluded": "Excluded",
@@ -606,6 +617,135 @@
       "poc": "POC",
       "line": "LINE",
       "note": "Note"
+    }
+  },
+  "inventory": {
+    "title": "Inventory",
+    "subtitle": "{count} products",
+    "newProduct": "New product",
+    "editProduct": "Edit product",
+    "noProducts": "No products yet.",
+    "search": "Search SKU or name",
+    "summary": {
+      "skus": "Total SKUs",
+      "lowOut": "Low / Out",
+      "stockValue": "Stock Value"
+    },
+    "cols": {
+      "sku": "SKU",
+      "name": "Product",
+      "category": "Category",
+      "qty": "On hand",
+      "status": "Status",
+      "value": "Stock value",
+      "cost": "Cost",
+      "sell": "Sell"
+    },
+    "status": {
+      "all": "All statuses",
+      "in_stock": "In Stock",
+      "low": "Low",
+      "out": "Out of stock"
+    },
+    "category": {
+      "all": "All categories",
+      "rfid_readers": "RFID Readers",
+      "antennas": "Antennas",
+      "tags": "Tags",
+      "printers": "Printers",
+      "networking": "Networking",
+      "accessories": "Accessories",
+      "software": "Software"
+    },
+    "form": {
+      "title": "Product",
+      "code": "SKU",
+      "name": "Name",
+      "category": "Category",
+      "unit": "Unit",
+      "cost": "Cost (฿)",
+      "sell": "Sell price (฿)",
+      "safety": "Safety stock",
+      "description": "Description",
+      "active": "Active",
+      "save": "Save product",
+      "required": "Please fill in SKU, name and category.",
+      "duplicate": "That SKU already exists."
+    },
+    "adjust": {
+      "title": "Adjust stock",
+      "action": "Adjust",
+      "delta": "Change (+/-)",
+      "note": "Reason / note",
+      "save": "Apply",
+      "insufficient": "Not enough stock for this change.",
+      "invalid": "Enter a non-zero whole number."
+    },
+    "deleteConfirm": "Delete this product?"
+  },
+  "goodsReceipts": {
+    "title": "Goods Receipt",
+    "subtitle": "{count} receipts",
+    "new": "New receipt",
+    "edit": "Edit receipt",
+    "detail": "Receipt",
+    "none": "No goods receipts yet.",
+    "cols": {
+      "code": "No.",
+      "supplier": "Supplier",
+      "date": "Date",
+      "lines": "Items",
+      "qty": "Total qty",
+      "status": "Status",
+      "received_by": "Received by",
+      "po_ref": "PO Ref."
+    },
+    "status": {
+      "all": "All statuses",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "form": {
+      "title": "Receipt details",
+      "supplier": "Supplier",
+      "po_ref": "PO reference",
+      "date": "Receipt date",
+      "note": "Note",
+      "lines": "Items",
+      "product": "Product",
+      "qty": "Quantity",
+      "addLine": "Add item",
+      "removeLine": "Remove",
+      "save": "Save receipt",
+      "required": "Enter a supplier and at least one item with quantity."
+    },
+    "detailView": {
+      "poRef": "PO reference",
+      "receivedBy": "Received by",
+      "approvedBy": "Decided by",
+      "approvedAt": "Decided at"
+    },
+    "toast": {
+      "notPending": "This receipt is no longer pending.",
+      "deleted": "Receipt deleted"
+    },
+    "deleteConfirm": "Delete this pending receipt?"
+  },
+  "approvals": {
+    "title": "Approval",
+    "subtitle": "{count} pending",
+    "none": "Nothing to approve.",
+    "receiptsHeading": "Goods receipts",
+    "approve": "Approve",
+    "reject": "Reject",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "confirmApprove": "Approve {code}? This adds the items to stock.",
+    "confirmReject": "Reject {code}?",
+    "kpi": {
+      "title": "Awaiting approval — Goods Receipt",
+      "hint": "Goods Receipt adds stock"
     }
   }
 }

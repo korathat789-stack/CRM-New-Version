@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { Plus } from "lucide-react";
+import { Plus, Download } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/states/StateViews";
@@ -48,43 +48,57 @@ export default async function QuotationsPage() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-[1.2fr_1.6fr_1fr_0.9fr_1fr] gap-2 border-b border-[var(--color-line)] bg-gray-50 px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-gray-500">
+            <div className="grid grid-cols-[1.2fr_1.6fr_1fr_0.9fr_1fr_auto] gap-2 border-b border-[var(--color-line)] bg-gray-50 px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-gray-500">
               <div>{t("cols.number")}</div>
               <div>{t("cols.customer")}</div>
               <div className="text-right">{t("cols.total")}</div>
               <div>{t("cols.date")}</div>
               <div>{t("cols.status")}</div>
+              <div className="sr-only">{t("download")}</div>
             </div>
             {rows.map((r) => {
               const color =
                 QUOTATION_STATUS_COLORS[r.status] ??
                 QUOTATION_STATUS_COLORS.draft;
               return (
-                <Link
+                <div
                   key={r.id}
-                  href={`/quotations/${r.id}`}
-                  className="grid grid-cols-[1.2fr_1.6fr_1fr_0.9fr_1fr] items-center gap-2 border-b border-[var(--color-line-soft)] px-4 py-2.5 text-xs hover:bg-gray-50"
+                  className="grid grid-cols-[1.2fr_1.6fr_1fr_0.9fr_1fr_auto] items-center gap-2 border-b border-[var(--color-line-soft)] px-4 py-2.5 text-xs hover:bg-gray-50"
                 >
-                  <div className="font-semibold text-gray-900">{r.number}</div>
-                  <div className="text-gray-700">{r.customer_name ?? "—"}</div>
-                  <div className="text-right font-bold text-gray-900">
-                    {formatBahtShort(r.total)}
-                  </div>
-                  <div className="text-gray-500">
-                    {new Date(r.quotation_date).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "short",
-                    })}
-                  </div>
-                  <div>
-                    <span
-                      className="pill inline-flex px-2 py-0.5 text-[10px] font-medium"
-                      style={{ background: color.bg, color: color.fg }}
-                    >
-                      {t(`status.${r.status}`)}
-                    </span>
-                  </div>
-                </Link>
+                  <Link
+                    href={`/quotations/${r.id}`}
+                    className="col-span-5 grid grid-cols-subgrid items-center"
+                  >
+                    <div className="font-semibold text-gray-900">{r.number}</div>
+                    <div className="text-gray-700">{r.customer_name ?? "—"}</div>
+                    <div className="text-right font-bold text-gray-900">
+                      {formatBahtShort(r.total)}
+                    </div>
+                    <div className="text-gray-500">
+                      {new Date(r.quotation_date).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                      })}
+                    </div>
+                    <div>
+                      <span
+                        className="pill inline-flex px-2 py-0.5 text-[10px] font-medium"
+                        style={{ background: color.bg, color: color.fg }}
+                      >
+                        {t(`status.${r.status}`)}
+                      </span>
+                    </div>
+                  </Link>
+                  <a
+                    href={`/quotations/${r.id}/pdf`}
+                    download
+                    className="inline-flex items-center gap-1 rounded-md border border-[var(--color-line)] px-2 py-1 text-[11px] font-semibold text-[var(--color-primary)] hover:bg-blue-50"
+                    aria-label={t("download")}
+                  >
+                    <Download className="h-3.5 w-3.5" aria-hidden />
+                    {t("download")}
+                  </a>
+                </div>
               );
             })}
           </>

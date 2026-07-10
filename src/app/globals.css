@@ -16,6 +16,10 @@
   --color-line: #e5e7eb;
   --color-line-soft: #f1f5f9;
 
+  /* Semantic status */
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
   /* Fonts — Sarabun (Thai-first) then Inter, wired via next/font */
   --font-sans: var(--font-sarabun), var(--font-inter), ui-sans-serif, system-ui,
     -apple-system, "Segoe UI", Roboto, sans-serif;

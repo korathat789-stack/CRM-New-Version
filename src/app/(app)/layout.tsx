@@ -18,11 +18,11 @@ export default async function AppLayout({
     <div className="flex min-h-screen">
       <aside className="hidden md:block">
         <div className="sticky top-0 h-screen">
-          <Sidebar role={user.role} />
+          <Sidebar user={user} />
         </div>
       </aside>
       <div className="flex min-w-0 flex-1 flex-col">
-        <Topbar user={user} />
+        <Topbar />
         <main className="flex-1 p-4 sm:p-6">{children}</main>
       </div>
       <Toaster />

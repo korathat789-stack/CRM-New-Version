@@ -1,11 +1,22 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { formatBaht, formatBahtShort, parseBahtToSatang, bahtToSatang } from "../money";
+import { formatBaht, formatBahtShort, parseBahtToSatang, bahtToSatang, formatMoney2 } from "../money";
 import { computeGrade, gradeForCustomer } from "../grade";
 import { marginPct, marginTone, formatMarginPct } from "../margin";
 import { lineAmount, computeTotals } from "../quotation";
 import { evaluateGate, completeness, nextStage, type GateContext } from "../gates";
+import {
+  groupLinesByCategory,
+  paymentRowAmount,
+  pdfFilename,
+} from "../quotationPdfModel";
+import { stockStatus, stockValue } from "../inventory";
+import {
+  receiptTotalQty,
+  canEditReceipt,
+  canApproveReceipt,
+} from "../goodsReceipts-shared";
 
 // ---------------------------------------------------------------- money
 test("money: short form uses M/K and trims zeros", () => {
@@ -131,4 +142,100 @@ test("gates: linear advance order", () => {
   assert.equal(nextStage("inquiry"), "presentation");
   assert.equal(nextStage("negotiation"), "won");
   assert.equal(nextStage("won"), null);
+});
+
+import { navTitleKey } from "../roles";
+import { initialsFrom } from "../initials";
+
+// ---------------------------------------------------------------- navTitleKey
+test("navTitleKey: exact and nested routes map to the nav label", () => {
+  assert.equal(navTitleKey("/dashboard"), "nav.dashboard");
+  assert.equal(navTitleKey("/customers"), "nav.customers");
+  assert.equal(navTitleKey("/customers/CUS-000001"), "nav.customers");
+  assert.equal(navTitleKey("/customers/CUS-000001/edit"), "nav.customers");
+});
+
+test("navTitleKey: longest prefix wins for nested settings routes", () => {
+  assert.equal(navTitleKey("/settings"), "nav.settings");
+  assert.equal(navTitleKey("/settings/users"), "nav.users");
+  assert.equal(navTitleKey("/settings/import"), "nav.import");
+});
+
+test("navTitleKey: unknown route falls back to dashboard", () => {
+  assert.equal(navTitleKey("/nope"), "nav.dashboard");
+});
+
+// ---------------------------------------------------------------- initialsFrom
+test("initialsFrom: uses up to two name words, uppercased", () => {
+  assert.equal(initialsFrom("Somchai Prasert", "a@b.co"), "SP");
+  assert.equal(initialsFrom("madonna", "a@b.co"), "M");
+  assert.equal(initialsFrom("  ก ข ค ", "a@b.co"), "กข");
+});
+
+test("initialsFrom: falls back to email, then '?'", () => {
+  assert.equal(initialsFrom(null, "korat@example.com"), "K");
+  assert.equal(initialsFrom("", ""), "?");
+  assert.equal(initialsFrom(null, null), "?");
+});
+
+// ---------------------------------------------------------------- quotation pdf model
+test("formatMoney2: satang → baht, 2 decimals, grouped, no ฿", () => {
+  assert.equal(formatMoney2(84_575_000), "845,750.00");
+  assert.equal(formatMoney2(90_495_250), "904,952.50");
+  assert.equal(formatMoney2(0), "0.00");
+  assert.equal(formatMoney2(5_000_00), "5,000.00");
+});
+
+test("paymentRowAmount: round(total * percent / 100)", () => {
+  assert.equal(paymentRowAmount(90_495_250, 100), 90_495_250);
+  assert.equal(paymentRowAmount(90_495_250, 50), 45_247_625);
+  assert.equal(paymentRowAmount(100, 0), 0);
+});
+
+test("pdfFilename: number → safe .pdf name; null → quotation.pdf", () => {
+  assert.equal(pdfFilename("Q-MPT-6606030"), "Q-MPT-6606030.pdf");
+  assert.equal(pdfFilename(null), "quotation.pdf");
+  assert.equal(pdfFilename("Q/MPT 01"), "Q-MPT-01.pdf");
+});
+
+test("groupLinesByCategory: subheader on category change; items numbered sequentially; blank category → no header", () => {
+  const rows = groupLinesByCategory([
+    { line_no: 1, model: "M1", description: "A", category: "RFID", qty: 3, uom: "", unit_price: 100, amount: 300 },
+    { line_no: 2, model: "", description: "B", category: "RFID", qty: 1, uom: "pcs", unit_price: 50, amount: 50 },
+    { line_no: 3, model: "", description: "C", category: "Software", qty: 1, uom: "", unit_price: 400, amount: 400 },
+    { line_no: 4, model: "", description: "D", category: null, qty: 2, uom: "", unit_price: 10, amount: 20 },
+  ]);
+  assert.deepEqual(
+    rows.map((r) => (r.kind === "subheader" ? `#${r.category}` : `${r.no}:${r.description}`)),
+    ["#RFID", "1:A", "2:B", "#Software", "3:C", "4:D"]
+  );
+});
+
+// ---------------------------------------------------------------- inventory
+test("inventory: stock status from qty vs safety", () => {
+  assert.equal(stockStatus(0, 3), "out");   // zero → out
+  assert.equal(stockStatus(3, 3), "low");   // at safety → low
+  assert.equal(stockStatus(2, 3), "low");   // below safety → low
+  assert.equal(stockStatus(4, 3), "in_stock");
+  assert.equal(stockStatus(5, 0), "in_stock"); // no safety set
+  assert.equal(stockStatus(0, 0), "out");
+});
+
+test("inventory: stock value is qty x cost in satang", () => {
+  assert.equal(stockValue(8, 5_200_000), 41_600_000);
+  assert.equal(stockValue(0, 5_200_000), 0);
+});
+
+// ---------------------------------------------------------------- goods receipt
+test("goodsReceipt: total qty sums line quantities", () => {
+  assert.equal(receiptTotalQty([{ qty: 3 }, { qty: 5 }, { qty: 2 }]), 10);
+  assert.equal(receiptTotalQty([]), 0);
+});
+
+test("goodsReceipt: only pending is editable / approvable", () => {
+  assert.equal(canEditReceipt("pending"), true);
+  assert.equal(canEditReceipt("approved"), false);
+  assert.equal(canEditReceipt("rejected"), false);
+  assert.equal(canApproveReceipt("pending"), true);
+  assert.equal(canApproveReceipt("approved"), false);
 });

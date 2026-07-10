@@ -29,13 +29,13 @@ export function Toaster() {
           key={t.id}
           className="card flex items-center gap-2 px-3.5 py-2.5 text-sm"
           style={{
-            borderLeft: `3px solid ${t.tone === "success" ? "#16a34a" : "#dc2626"}`,
+            borderLeft: `3px solid ${t.tone === "success" ? "var(--color-success)" : "var(--color-danger)"}`,
           }}
         >
           {t.tone === "success" ? (
-            <Check className="h-4 w-4 text-[#16a34a]" aria-hidden />
+            <Check className="h-4 w-4 text-[var(--color-success)]" aria-hidden />
           ) : (
-            <AlertTriangle className="h-4 w-4 text-[#dc2626]" aria-hidden />
+            <AlertTriangle className="h-4 w-4 text-[var(--color-danger)]" aria-hidden />
           )}
           <span className="text-gray-800">{t.message}</span>
         </div>

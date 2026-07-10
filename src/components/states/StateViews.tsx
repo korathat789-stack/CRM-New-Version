@@ -49,7 +49,7 @@ export function ErrorView({
   const common = useTranslations("common");
   return (
     <Card className="flex flex-col items-center justify-center gap-2 p-10 text-center">
-      <AlertTriangle className="h-8 w-8 text-[#dc2626]" aria-hidden />
+      <AlertTriangle className="h-8 w-8 text-[var(--color-danger)]" aria-hidden />
       <div className="font-semibold text-gray-900">{t("errorTitle")}</div>
       <div className="text-sm text-gray-500">{message ?? t("errorBody")}</div>
       {reset && (
